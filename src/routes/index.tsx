@@ -169,7 +169,7 @@ function Pillars() {
     },
   ];
   return (
-    <section className="bg-ink py-24 text-cream md:py-32">
+    <section className="bg-ink py-16 text-cream md:py-24">
       <div className="container-x">
         <div className="grid items-end gap-8 md:grid-cols-12">
           <div className="md:col-span-7">
@@ -352,7 +352,7 @@ function ROI() {
     },
   ];
   return (
-    <section className="bg-ink py-24 text-cream md:py-32">
+    <section className="bg-ink py-16 text-cream md:py-24">
       <div className="container-x">
         <p className="eyebrow">O ROI</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -541,7 +541,7 @@ function Jornada() {
     },
   ];
   return (
-    <section className="bg-ink py-24 text-cream md:py-32">
+    <section className="bg-ink py-16 text-cream md:py-24">
       <div className="container-x">
         <p className="eyebrow">Jornada ACTIO_90</p>
         <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -765,7 +765,7 @@ function Servicos() {
 
 function Responsavel() {
   return (
-    <section className="bg-ink py-24 text-cream md:py-32">
+    <section className="bg-ink py-16 text-cream md:py-24">
       <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-5">
           <img
@@ -806,7 +806,7 @@ function Responsavel() {
 
 function Contato() {
   return (
-    <section id="contato" className="bg-gold py-24 text-ink md:py-32">
+    <section id="contato" className="bg-gold py-16 text-ink md:py-24">
       <div className="container-x">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-ink/70">Próximo passo</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.05] md:text-6xl">
