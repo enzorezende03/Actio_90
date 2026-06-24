@@ -809,7 +809,7 @@ function Contato() {
     <section id="contato" className="bg-gold py-16 text-ink md:py-24">
       <div className="container-x">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-ink/70">Próximo passo</p>
-        <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.05] md:text-6xl">
+        <h2 className="mt-4 max-w-4xl font-serif text-3xl leading-[1.05] sm:text-4xl md:text-6xl">
           Vamos transformar a saúde da sua equipe?
         </h2>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink/80">
