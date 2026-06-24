@@ -219,7 +219,7 @@ function Legislacao() {
               <li>• Obrigatório para <strong>todas</strong> as empresas com trabalhadores CLT.</li>
               <li>• Em vigor pleno desde 26/05/2026 — fiscalização com multas e embargos já ativa.</li>
             </ul>
-            <div className="mt-6 grid grid-cols-3 gap-4 border-t border-border pt-6">
+            <div className="mt-6 grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3">
               {[
                 ["546.254", "benefícios por transtornos mentais em 2025"],
                 ["+68%", "afastamentos 2024 vs. 2023"],
