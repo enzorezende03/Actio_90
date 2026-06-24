@@ -28,10 +28,10 @@ export const Route = createFileRoute("/")({
 function Nav() {
   return (
     <nav className="absolute inset-x-0 top-0 z-30">
-      <div className="container-x flex items-center justify-between py-6">
-        <a href="#top" className="flex items-baseline gap-2 text-cream">
-          <span className="font-serif text-2xl font-semibold tracking-tight">ACTIO</span>
-          <span className="text-[10px] uppercase tracking-[0.25em] text-cream/60">Saúde Corporativa</span>
+      <div className="container-x flex items-center justify-between gap-4 py-5 md:py-6">
+        <a href="#top" className="flex min-w-0 items-baseline gap-2 text-cream">
+          <span className="font-serif text-xl font-semibold tracking-tight sm:text-2xl">ACTIO</span>
+          <span className="hidden text-[10px] uppercase tracking-[0.25em] text-cream/60 sm:inline">Saúde Corporativa</span>
         </a>
         <div className="hidden items-center gap-8 text-sm text-cream/80 md:flex">
           <a href="#programa" className="hover:text-gold">Programa</a>
@@ -42,9 +42,10 @@ function Nav() {
         </div>
         <a
           href="#contato"
-          className="rounded-full border border-cream/30 px-4 py-2 text-xs font-medium uppercase tracking-wider text-cream transition hover:border-gold hover:text-gold"
+          className="shrink-0 rounded-full border border-cream/30 px-3.5 py-2 text-[11px] font-medium uppercase tracking-wider text-cream transition hover:border-gold hover:text-gold sm:px-4 sm:text-xs"
         >
-          Falar com a equipe
+          <span className="sm:hidden">Contato</span>
+          <span className="hidden sm:inline">Falar com a equipe</span>
         </a>
       </div>
     </nav>
@@ -63,31 +64,31 @@ function Hero() {
         className="absolute inset-0 h-full w-full object-cover opacity-45"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/60 to-ink" />
-      <div className="relative container-x flex min-h-screen flex-col justify-center pt-32 pb-20">
+      <div className="relative container-x flex min-h-screen flex-col justify-center pt-28 pb-16 md:pt-32 md:pb-20">
         <p className="eyebrow text-gold">Medicina baseada em evidências</p>
-        <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] sm:text-6xl md:text-7xl">
+        <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] leading-[1.05] sm:text-6xl md:text-7xl">
           Saúde corporativa <em className="text-gold not-italic">é estratégia.</em>
         </h1>
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-cream/80 md:text-xl">
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-cream/80 md:mt-8 md:text-xl">
           Mitigar riscos não precisa ser sinônimo de burocracia. Transformamos exigências
           legais em conhecimento, saúde, bem-estar e produtividade — com programas B2B
           personalizados para saúde física, saúde mental e gestão de riscos psicossociais.
         </p>
-        <div className="mt-10 flex flex-wrap gap-4">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4 md:mt-10">
           <a
             href="#contato"
-            className="rounded-full bg-gold px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-ink transition hover:bg-gold-soft"
+            className="rounded-full bg-gold px-6 py-3.5 text-center text-sm font-semibold uppercase tracking-wider text-ink transition hover:bg-gold-soft sm:px-7"
           >
             Agendar visita técnica
           </a>
           <a
             href="#programa"
-            className="rounded-full border border-cream/30 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-cream transition hover:border-cream"
+            className="rounded-full border border-cream/30 px-6 py-3.5 text-center text-sm font-semibold uppercase tracking-wider text-cream transition hover:border-cream sm:px-7"
           >
             Conhecer o ACTIO_90
           </a>
         </div>
-        <div className="mt-20 grid max-w-3xl grid-cols-2 gap-8 border-t border-cream/15 pt-8 sm:grid-cols-4">
+        <div className="mt-12 grid max-w-3xl grid-cols-2 gap-6 border-t border-cream/15 pt-8 sm:grid-cols-4 md:mt-20 md:gap-8">
           {[
             ["90", "dias de programa"],
             ["10+", "colaboradores por turma"],
@@ -95,7 +96,7 @@ function Hero() {
             ["3", "eixos de atuação"],
           ].map(([k, v]) => (
             <div key={v}>
-              <div className="font-serif text-4xl text-gold">{k}</div>
+              <div className="font-serif text-3xl text-gold md:text-4xl">{k}</div>
               <div className="mt-1 text-xs uppercase tracking-wider text-cream/60">{v}</div>
             </div>
           ))}
@@ -113,7 +114,7 @@ function Reflection() {
     "Sua empresa possui indicadores confiáveis de saúde corporativa para tomada de decisão?",
   ];
   return (
-    <section className="bg-cream py-24 md:py-32">
+    <section className="bg-cream py-16 md:py-24">
       <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-5">
           <p className="eyebrow">O ponto de partida</p>
@@ -168,7 +169,7 @@ function Pillars() {
     },
   ];
   return (
-    <section className="bg-ink py-24 text-cream md:py-32">
+    <section className="bg-ink py-16 text-cream md:py-24">
       <div className="container-x">
         <div className="grid items-end gap-8 md:grid-cols-12">
           <div className="md:col-span-7">
@@ -199,7 +200,7 @@ function Pillars() {
 
 function Legislacao() {
   return (
-    <section id="legislacao" className="bg-cream py-24 md:py-32">
+    <section id="legislacao" className="bg-cream py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">Legislação & conformidade</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -218,7 +219,7 @@ function Legislacao() {
               <li>• Obrigatório para <strong>todas</strong> as empresas com trabalhadores CLT.</li>
               <li>• Em vigor pleno desde 26/05/2026 — fiscalização com multas e embargos já ativa.</li>
             </ul>
-            <div className="mt-6 grid grid-cols-3 gap-4 border-t border-border pt-6">
+            <div className="mt-6 grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3">
               {[
                 ["546.254", "benefícios por transtornos mentais em 2025"],
                 ["+68%", "afastamentos 2024 vs. 2023"],
@@ -294,7 +295,7 @@ function Problema() {
     },
   ];
   return (
-    <section className="bg-secondary py-24 md:py-32">
+    <section className="bg-secondary py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">O problema que resolvemos</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -351,7 +352,7 @@ function ROI() {
     },
   ];
   return (
-    <section className="bg-ink py-24 text-cream md:py-32">
+    <section className="bg-ink py-16 text-cream md:py-24">
       <div className="container-x">
         <p className="eyebrow">O ROI</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -380,7 +381,7 @@ function ROI() {
 
 function Evidencia() {
   return (
-    <section id="evidencia" className="bg-cream py-24 md:py-32">
+    <section id="evidencia" className="bg-cream py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">Evidência científica</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -451,7 +452,7 @@ function Evidencia() {
 
 function Programa() {
   return (
-    <section id="programa" className="bg-secondary py-24 md:py-32">
+    <section id="programa" className="bg-secondary py-16 md:py-24">
       <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-5">
           <p className="eyebrow">O ACTIO_90</p>
@@ -540,7 +541,7 @@ function Jornada() {
     },
   ];
   return (
-    <section className="bg-ink py-24 text-cream md:py-32">
+    <section className="bg-ink py-16 text-cream md:py-24">
       <div className="container-x">
         <p className="eyebrow">Jornada ACTIO_90</p>
         <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -595,7 +596,7 @@ function Medimos() {
     },
   ];
   return (
-    <section className="bg-cream py-24 md:py-32">
+    <section className="bg-cream py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">Informações que escolhemos medir</p>
         <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -662,7 +663,7 @@ function Pilares() {
     },
   ];
   return (
-    <section className="bg-secondary py-24 md:py-32">
+    <section className="bg-secondary py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">Pilar 01 · Educação e promoção em saúde</p>
         <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -713,7 +714,7 @@ function Servicos() {
     },
   ];
   return (
-    <section id="servicos" className="bg-cream py-24 md:py-32">
+    <section id="servicos" className="bg-cream py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">Nossos serviços</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -764,7 +765,7 @@ function Servicos() {
 
 function Responsavel() {
   return (
-    <section className="bg-ink py-24 text-cream md:py-32">
+    <section className="bg-ink py-16 text-cream md:py-24">
       <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-5">
           <img
@@ -805,10 +806,10 @@ function Responsavel() {
 
 function Contato() {
   return (
-    <section id="contato" className="bg-gold py-24 text-ink md:py-32">
+    <section id="contato" className="bg-gold py-16 text-ink md:py-24">
       <div className="container-x">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-ink/70">Próximo passo</p>
-        <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.05] md:text-6xl">
+        <h2 className="mt-4 max-w-4xl font-serif text-3xl leading-[1.05] sm:text-4xl md:text-6xl">
           Vamos transformar a saúde da sua equipe?
         </h2>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink/80">
