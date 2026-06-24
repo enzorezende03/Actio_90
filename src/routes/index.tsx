@@ -108,9 +108,10 @@ function Hero() {
         alt="Profissionais reunidos em sala corporativa moderna ao entardecer"
         width={1920}
         height={1280}
-        className="absolute inset-0 h-full w-full object-cover opacity-45"
+        className="absolute inset-0 h-full w-full object-cover object-center opacity-70 md:opacity-45"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/60 to-ink" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/55 via-ink/55 to-ink md:from-ink/70 md:via-ink/60" />
+
       <div className="relative container-x flex min-h-screen flex-col justify-center pt-28 pb-16 md:pt-32 md:pb-20">
         <p className="eyebrow text-gold">Medicina baseada em evidências</p>
         <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] leading-[1.05] sm:text-6xl md:text-7xl">
