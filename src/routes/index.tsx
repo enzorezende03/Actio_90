@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroImg from "@/assets/hero.jpg";
 import consultaImg from "@/assets/consulta.jpg";
-import doctorImg from "@/assets/dr-leandro.png.asset.json";
+import doctorImg from "@/assets/dr-leandro.png";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -767,7 +768,7 @@ function Responsavel() {
       <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-5">
           <img
-            src={doctorImg.url}
+            src={doctorImg}
             alt="Dr. Leandro Batista, médico responsável técnico do ACTIO_90"
             loading="lazy"
             className="aspect-[4/5] w-full rounded-3xl object-cover"
