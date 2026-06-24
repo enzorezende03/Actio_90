@@ -64,31 +64,31 @@ function Hero() {
         className="absolute inset-0 h-full w-full object-cover opacity-45"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/60 to-ink" />
-      <div className="relative container-x flex min-h-screen flex-col justify-center pt-32 pb-20">
+      <div className="relative container-x flex min-h-screen flex-col justify-center pt-28 pb-16 md:pt-32 md:pb-20">
         <p className="eyebrow text-gold">Medicina baseada em evidências</p>
-        <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] sm:text-6xl md:text-7xl">
+        <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] leading-[1.05] sm:text-6xl md:text-7xl">
           Saúde corporativa <em className="text-gold not-italic">é estratégia.</em>
         </h1>
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-cream/80 md:text-xl">
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-cream/80 md:mt-8 md:text-xl">
           Mitigar riscos não precisa ser sinônimo de burocracia. Transformamos exigências
           legais em conhecimento, saúde, bem-estar e produtividade — com programas B2B
           personalizados para saúde física, saúde mental e gestão de riscos psicossociais.
         </p>
-        <div className="mt-10 flex flex-wrap gap-4">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4 md:mt-10">
           <a
             href="#contato"
-            className="rounded-full bg-gold px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-ink transition hover:bg-gold-soft"
+            className="rounded-full bg-gold px-6 py-3.5 text-center text-sm font-semibold uppercase tracking-wider text-ink transition hover:bg-gold-soft sm:px-7"
           >
             Agendar visita técnica
           </a>
           <a
             href="#programa"
-            className="rounded-full border border-cream/30 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-cream transition hover:border-cream"
+            className="rounded-full border border-cream/30 px-6 py-3.5 text-center text-sm font-semibold uppercase tracking-wider text-cream transition hover:border-cream sm:px-7"
           >
             Conhecer o ACTIO_90
           </a>
         </div>
-        <div className="mt-20 grid max-w-3xl grid-cols-2 gap-8 border-t border-cream/15 pt-8 sm:grid-cols-4">
+        <div className="mt-12 grid max-w-3xl grid-cols-2 gap-6 border-t border-cream/15 pt-8 sm:grid-cols-4 md:mt-20 md:gap-8">
           {[
             ["90", "dias de programa"],
             ["10+", "colaboradores por turma"],
@@ -96,7 +96,7 @@ function Hero() {
             ["3", "eixos de atuação"],
           ].map(([k, v]) => (
             <div key={v}>
-              <div className="font-serif text-4xl text-gold">{k}</div>
+              <div className="font-serif text-3xl text-gold md:text-4xl">{k}</div>
               <div className="mt-1 text-xs uppercase tracking-wider text-cream/60">{v}</div>
             </div>
           ))}
