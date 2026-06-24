@@ -114,7 +114,7 @@ function Reflection() {
     "Sua empresa possui indicadores confiáveis de saúde corporativa para tomada de decisão?",
   ];
   return (
-    <section className="bg-cream py-24 md:py-32">
+    <section className="bg-cream py-16 md:py-24">
       <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-5">
           <p className="eyebrow">O ponto de partida</p>
@@ -200,7 +200,7 @@ function Pillars() {
 
 function Legislacao() {
   return (
-    <section id="legislacao" className="bg-cream py-24 md:py-32">
+    <section id="legislacao" className="bg-cream py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">Legislação & conformidade</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -295,7 +295,7 @@ function Problema() {
     },
   ];
   return (
-    <section className="bg-secondary py-24 md:py-32">
+    <section className="bg-secondary py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">O problema que resolvemos</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -381,7 +381,7 @@ function ROI() {
 
 function Evidencia() {
   return (
-    <section id="evidencia" className="bg-cream py-24 md:py-32">
+    <section id="evidencia" className="bg-cream py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">Evidência científica</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -452,7 +452,7 @@ function Evidencia() {
 
 function Programa() {
   return (
-    <section id="programa" className="bg-secondary py-24 md:py-32">
+    <section id="programa" className="bg-secondary py-16 md:py-24">
       <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-5">
           <p className="eyebrow">O ACTIO_90</p>
@@ -596,7 +596,7 @@ function Medimos() {
     },
   ];
   return (
-    <section className="bg-cream py-24 md:py-32">
+    <section className="bg-cream py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">Informações que escolhemos medir</p>
         <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -663,7 +663,7 @@ function Pilares() {
     },
   ];
   return (
-    <section className="bg-secondary py-24 md:py-32">
+    <section className="bg-secondary py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">Pilar 01 · Educação e promoção em saúde</p>
         <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.1] md:text-5xl">
@@ -714,7 +714,7 @@ function Servicos() {
     },
   ];
   return (
-    <section id="servicos" className="bg-cream py-24 md:py-32">
+    <section id="servicos" className="bg-cream py-16 md:py-24">
       <div className="container-x">
         <p className="eyebrow">Nossos serviços</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
