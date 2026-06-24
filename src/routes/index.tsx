@@ -1,7 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import consultaImg from "@/assets/consulta.jpg";
 import doctorImg from "@/assets/dr-leandro.png";
+
+
 
 
 export const Route = createFileRoute("/")({
@@ -26,6 +30,14 @@ export const Route = createFileRoute("/")({
 });
 
 function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    ["#programa", "Programa"],
+    ["#legislacao", "Legislação"],
+    ["#evidencia", "Evidência"],
+    ["#servicos", "Serviços"],
+    ["#contato", "Contato"],
+  ] as const;
   return (
     <nav className="absolute inset-x-0 top-0 z-30">
       <div className="container-x flex items-center justify-between gap-4 py-5 md:py-6">
@@ -34,23 +46,58 @@ function Nav() {
           <span className="hidden text-[10px] uppercase tracking-[0.25em] text-cream/60 sm:inline">Saúde Corporativa</span>
         </a>
         <div className="hidden items-center gap-8 text-sm text-cream/80 md:flex">
-          <a href="#programa" className="hover:text-gold">Programa</a>
-          <a href="#legislacao" className="hover:text-gold">Legislação</a>
-          <a href="#evidencia" className="hover:text-gold">Evidência</a>
-          <a href="#servicos" className="hover:text-gold">Serviços</a>
-          <a href="#contato" className="hover:text-gold">Contato</a>
+          {links.map(([href, label]) => (
+            <a key={href} href={href} className="hover:text-gold">{label}</a>
+          ))}
         </div>
         <a
           href="#contato"
-          className="shrink-0 rounded-full border border-cream/30 px-3.5 py-2 text-[11px] font-medium uppercase tracking-wider text-cream transition hover:border-gold hover:text-gold sm:px-4 sm:text-xs"
+          className="hidden shrink-0 rounded-full border border-cream/30 px-4 py-2 text-xs font-medium uppercase tracking-wider text-cream transition hover:border-gold hover:text-gold md:inline-block"
         >
-          <span className="sm:hidden">Contato</span>
-          <span className="hidden sm:inline">Falar com a equipe</span>
+          Falar com a equipe
         </a>
+        <button
+          type="button"
+          aria-label="Abrir menu"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cream/30 text-cream transition hover:border-gold hover:text-gold md:hidden"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
+      {open && (
+        <div className="md:hidden">
+          <div className="container-x pb-5">
+            <div className="rounded-2xl border border-cream/15 bg-ink/95 p-5 backdrop-blur">
+              <ul className="flex flex-col divide-y divide-cream/10">
+                {links.map(([href, label]) => (
+                  <li key={href}>
+                    <a
+                      href={href}
+                      onClick={() => setOpen(false)}
+                      className="block py-3 text-sm uppercase tracking-wider text-cream/85 hover:text-gold"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#contato"
+                onClick={() => setOpen(false)}
+                className="mt-4 block rounded-full bg-gold px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-ink hover:bg-gold-soft"
+              >
+                Falar com a equipe
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
+
 
 function Hero() {
   return (
@@ -61,9 +108,10 @@ function Hero() {
         alt="Profissionais reunidos em sala corporativa moderna ao entardecer"
         width={1920}
         height={1280}
-        className="absolute inset-0 h-full w-full object-cover opacity-45"
+        className="absolute inset-0 h-full w-full object-cover object-center opacity-70 md:opacity-45"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/60 to-ink" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/55 via-ink/55 to-ink md:from-ink/70 md:via-ink/60" />
+
       <div className="relative container-x flex min-h-screen flex-col justify-center pt-28 pb-16 md:pt-32 md:pb-20">
         <p className="eyebrow text-gold">Medicina baseada em evidências</p>
         <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] leading-[1.05] sm:text-6xl md:text-7xl">
