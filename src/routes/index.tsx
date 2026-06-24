@@ -28,10 +28,10 @@ export const Route = createFileRoute("/")({
 function Nav() {
   return (
     <nav className="absolute inset-x-0 top-0 z-30">
-      <div className="container-x flex items-center justify-between py-6">
-        <a href="#top" className="flex items-baseline gap-2 text-cream">
-          <span className="font-serif text-2xl font-semibold tracking-tight">ACTIO</span>
-          <span className="text-[10px] uppercase tracking-[0.25em] text-cream/60">Saúde Corporativa</span>
+      <div className="container-x flex items-center justify-between gap-4 py-5 md:py-6">
+        <a href="#top" className="flex min-w-0 items-baseline gap-2 text-cream">
+          <span className="font-serif text-xl font-semibold tracking-tight sm:text-2xl">ACTIO</span>
+          <span className="hidden text-[10px] uppercase tracking-[0.25em] text-cream/60 sm:inline">Saúde Corporativa</span>
         </a>
         <div className="hidden items-center gap-8 text-sm text-cream/80 md:flex">
           <a href="#programa" className="hover:text-gold">Programa</a>
@@ -42,9 +42,10 @@ function Nav() {
         </div>
         <a
           href="#contato"
-          className="rounded-full border border-cream/30 px-4 py-2 text-xs font-medium uppercase tracking-wider text-cream transition hover:border-gold hover:text-gold"
+          className="shrink-0 rounded-full border border-cream/30 px-3.5 py-2 text-[11px] font-medium uppercase tracking-wider text-cream transition hover:border-gold hover:text-gold sm:px-4 sm:text-xs"
         >
-          Falar com a equipe
+          <span className="sm:hidden">Contato</span>
+          <span className="hidden sm:inline">Falar com a equipe</span>
         </a>
       </div>
     </nav>
