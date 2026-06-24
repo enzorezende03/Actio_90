@@ -1,7 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import consultaImg from "@/assets/consulta.jpg";
 import doctorImg from "@/assets/dr-leandro.png";
+
+
 
 
 export const Route = createFileRoute("/")({
