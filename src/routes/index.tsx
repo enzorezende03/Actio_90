@@ -371,13 +371,13 @@ function Problema() {
     },
   ];
   return (
-    <section className="bg-secondary py-16 md:py-24">
+    <section className="bg-secondary py-16 text-cream md:py-24">
       <div className="container-x">
         <p className="eyebrow">O problema que resolvemos</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
           O custo invisível do adoecimento.
         </h2>
-        <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground">
+        <p className="mt-6 max-w-3xl text-base leading-relaxed text-cream/85">
           Pessoas sobrecarregadas, sedentárias e tentando ter hábitos saudáveis sem
           instrução e acompanhamento especializado tornam-se um risco silencioso para si
           próprias e para sua organização — com consequências diretas em produtividade,
