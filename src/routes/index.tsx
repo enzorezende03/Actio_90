@@ -434,7 +434,7 @@ function ROI() {
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
           Pessoas saudáveis <em className="text-gold not-italic">performam mais.</em>
         </h2>
-        <p className="mt-6 max-w-3xl text-base leading-relaxed text-cream/70">
+        <p className="mt-6 max-w-3xl text-base leading-relaxed text-cream/85">
           A ciência comprova: saúde corporativa não é benefício, é vantagem competitiva.
           Organizações que investem em programas preventivos documentam ganhos
           mensuráveis em produtividade, retenção e custos médicos.
@@ -444,12 +444,12 @@ function ROI() {
             <div key={s.title} className="flex flex-col bg-ink p-8">
               <div className="font-serif text-6xl text-gold">{s.k}</div>
               <h3 className="mt-6 font-serif text-lg">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-cream/70">{s.body}</p>
-              <p className="mt-auto pt-5 text-[10px] italic leading-snug text-cream/40">{s.ref}</p>
+              <p className="mt-3 text-sm leading-relaxed text-cream/85">{s.body}</p>
+              <p className="mt-auto pt-5 text-[10px] italic leading-snug text-cream/70">{s.ref}</p>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-xs text-cream/40">Todos os estudos citados podem ser encontrados na biblioteca pública do PubMed.</p>
+        <p className="mt-6 text-xs text-cream/70">Todos os estudos citados podem ser encontrados na biblioteca pública do PubMed.</p>
       </div>
     </section>
   );
