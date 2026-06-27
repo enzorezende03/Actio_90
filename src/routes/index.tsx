@@ -468,7 +468,7 @@ function Evidencia() {
           <article className="rounded-2xl bg-ink p-8 text-cream md:p-10">
             <div className="text-xs uppercase tracking-wider text-gold">Primeiro eixo</div>
             <h3 className="mt-3 font-serif text-3xl">Atividade física e saúde mental</h3>
-            <p className="mt-5 text-sm leading-relaxed text-cream/75">
+            <p className="mt-5 text-sm leading-relaxed text-cream">
               <strong className="text-cream">Meta-análise com 79.551 participantes:</strong>{" "}
               efeitos terapêuticos mensuráveis e robustos na redução de sintomas de
               depressão, ansiedade e sofrimento psicológico — a atividade física deve ser
@@ -477,46 +477,46 @@ function Evidencia() {
             <ul className="mt-6 space-y-4 border-t border-cream/15 pt-6 text-sm">
               <li className="flex gap-4">
                 <span className="font-serif text-2xl text-gold">61%</span>
-                <p className="text-cream/75">Redução robusta de sintomas em todas as populações adultas (Cohen's d, IC 95%).</p>
+                <p className="text-cream">Redução robusta de sintomas em todas as populações adultas (Cohen's d, IC 95%).</p>
               </li>
               <li className="flex gap-4">
                 <span className="font-serif text-2xl text-gold">2×</span>
-                <p className="text-cream/75">Treinos combinados (força + aeróbico) supervisionados em grupo: mais eficazes que aeróbico isolado.</p>
+                <p className="text-cream">Treinos combinados (força + aeróbico) supervisionados em grupo: mais eficazes que aeróbico isolado.</p>
               </li>
               <li className="flex gap-4">
                 <span className="font-serif text-2xl text-gold">15 min</span>
-                <p className="text-cream/75">Apenas 15 min/dia de MVPA já melhoram saúde mental autorrelatada — independentemente do resto da rotina.</p>
+                <p className="text-cream">Apenas 15 min/dia de MVPA já melhoram saúde mental autorrelatada — independentemente do resto da rotina.</p>
               </li>
             </ul>
-            <p className="mt-6 text-[10px] italic leading-snug text-cream/40">
+            <p className="mt-6 text-[10px] italic leading-snug text-cream/70">
               Munro NR et al. Br J Sports Med. 2026;60(8):590-599. doi:10.1136/bjsports-2025-110301
             </p>
           </article>
 
           <article className="rounded-2xl border border-border bg-card p-8 md:p-10">
             <div className="text-xs uppercase tracking-wider text-gold">Segundo eixo</div>
-            <h3 className="mt-3 font-serif text-3xl">Alimentação e saúde mental</h3>
-            <p className="mt-5 text-sm leading-relaxed text-ink/75">
-              <strong className="text-ink">Estudo prospectivo · 180.446 participantes · 11,6 anos:</strong>{" "}
+            <h3 className="mt-3 font-serif text-3xl text-cream">Alimentação e saúde mental</h3>
+            <p className="mt-5 text-sm leading-relaxed text-cream/85">
+              <strong className="text-cream">Estudo prospectivo · 180.446 participantes · 11,6 anos:</strong>{" "}
               maior adesão à dieta EAT-Lancet associou-se a menor risco de depressão
               (HR 0,71–0,81), ansiedade (HR 0,77–0,82) e comorbidade simultânea (HR 0,66–0,82).
             </p>
             <div className="mt-6 border-t border-border pt-6">
-              <div className="text-xs font-semibold uppercase tracking-wider text-ink/60">
+              <div className="text-xs font-semibold uppercase tracking-wider text-cream/70">
                 Padrões alimentares com evidência
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
                 {["Mediterrânea", "DASH", "EAT-Lancet"].map((t) => (
-                  <span key={t} className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-ink">{t}</span>
+                  <span key={t} className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-cream">{t}</span>
                 ))}
               </div>
             </div>
-            <ul className="mt-6 space-y-3 text-sm text-ink/80">
-              <li>→ <strong>Vitaminas do complexo B</strong> — síntese de serotonina, dopamina e GABA.</li>
-              <li>→ <strong>Magnésio e probióticos</strong> — modulação da ansiedade e eixo microbioma-intestino-cérebro.</li>
-              <li className="text-destructive">⨯ <strong>Evitar:</strong> ultraprocessados, açúcares refinados e padrões pró-inflamatórios.</li>
+            <ul className="mt-6 space-y-3 text-sm text-cream/85">
+              <li>→ <strong className="text-cream">Vitaminas do complexo B</strong> — síntese de serotonina, dopamina e GABA.</li>
+              <li>→ <strong className="text-cream">Magnésio e probióticos</strong> — modulação da ansiedade e eixo microbioma-intestino-cérebro.</li>
+              <li className="text-destructive">⨯ <strong className="text-cream">Evitar:</strong> ultraprocessados, açúcares refinados e padrões pró-inflamatórios.</li>
             </ul>
-            <p className="mt-6 text-[10px] italic leading-snug text-muted-foreground">
+            <p className="mt-6 text-[10px] italic leading-snug text-cream/70">
               Lu X et al. Nat Commun. 2024;15(1):5599. doi:10.1038/s41467-024-49653-8
             </p>
           </article>
