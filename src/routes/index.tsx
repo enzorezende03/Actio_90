@@ -911,7 +911,7 @@ function Contato() {
           <div className="md:col-span-7">
             <div className="text-xs uppercase tracking-wider text-gold">Fale conosco</div>
             <div className="mt-2 font-serif text-2xl">Reunião de apresentação sem compromisso.</div>
-            <p className="mt-3 text-sm text-cream/70">
+            <p className="mt-3 text-sm text-cream">
               Mostramos como o programa funciona na prática para o perfil e a cultura da
               sua empresa — sem script genérico. Elaboramos uma proposta adaptada ao
               tamanho da equipe e aos objetivos de saúde corporativa, sem custo.
@@ -919,7 +919,7 @@ function Contato() {
           </div>
           <div className="md:col-span-5">
             <div className="rounded-2xl border border-cream/15 p-6">
-              <div className="text-xs uppercase tracking-wider text-cream/60">Gustavo Cavalcanti</div>
+              <div className="text-xs uppercase tracking-wider text-cream/85">Gustavo Cavalcanti</div>
               <a
                 href="tel:+5531992655261"
                 className="mt-2 block font-serif text-2xl text-cream hover:text-gold"
@@ -928,7 +928,7 @@ function Contato() {
               </a>
               <a
                 href="mailto:medgustavocavalcanti@gmail.com"
-                className="mt-1 block break-all text-sm text-cream/75 hover:text-gold"
+                className="mt-1 block break-all text-sm text-cream/85 hover:text-gold"
               >
                 medgustavocavalcanti@gmail.com
               </a>
