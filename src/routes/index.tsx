@@ -633,9 +633,9 @@ function Jornada() {
               <div className="md:col-span-3">
                 <div className="font-serif text-sm text-gold">Marco {String(i + 1).padStart(2, "0")}</div>
                 <div className="mt-1 font-serif text-3xl">{s.d}</div>
-                <div className="mt-1 text-sm text-cream/60">{s.title}</div>
+                <div className="mt-1 text-sm text-cream/80">{s.title}</div>
               </div>
-              <ul className="space-y-2 text-sm text-cream/80 md:col-span-9">
+              <ul className="space-y-2 text-sm text-cream md:col-span-9">
                 {s.bullets.map((b) => (
                   <li key={b} className="flex gap-3">
                     <span className="mt-2 h-1 w-1 flex-none rounded-full bg-gold" />
@@ -647,7 +647,7 @@ function Jornada() {
           ))}
         </ol>
 
-        <blockquote className="mt-10 max-w-3xl border-l-2 border-gold pl-6 font-serif text-xl italic leading-snug text-cream/90">
+        <blockquote className="mt-10 max-w-3xl border-l-2 border-gold pl-6 font-serif text-xl italic leading-snug text-cream">
           Cada etapa é desenhada para garantir adesão clínica, evolução mensurável e
           engajamento sustentado ao longo dos 90 dias.
         </blockquote>
