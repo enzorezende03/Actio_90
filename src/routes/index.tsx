@@ -289,10 +289,10 @@ function Legislacao() {
               <span className="h-1.5 w-1.5 rounded-full bg-destructive" />
               Obrigação vigente desde maio/2026
             </div>
-            <h3 className="mt-5 font-serif text-2xl">NR-1 atualizada: riscos psicossociais</h3>
-            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-ink/80">
+            <h3 className="mt-5 font-serif text-2xl text-cream">NR-1 atualizada: riscos psicossociais</h3>
+            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-cream/85">
               <li>• Portaria MTE nº 1.419/2024 incluiu riscos psicossociais (burnout, sobrecarga, assédio, estresse crônico) no PGR.</li>
-              <li>• Obrigatório para <strong>todas</strong> as empresas com trabalhadores CLT.</li>
+              <li>• Obrigatório para <strong className="text-cream">todas</strong> as empresas com trabalhadores CLT.</li>
               <li>• Em vigor pleno desde 26/05/2026 — fiscalização com multas e embargos já ativa.</li>
             </ul>
             <div className="mt-6 grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3">
@@ -302,8 +302,8 @@ function Legislacao() {
                 ["4º", "país mais estressado (Ipsos/OMS)"],
               ].map(([k, v]) => (
                 <div key={v}>
-                  <div className="font-serif text-xl text-ink">{k}</div>
-                  <div className="mt-1 text-[11px] leading-tight text-muted-foreground">{v}</div>
+                  <div className="font-serif text-xl text-cream">{k}</div>
+                  <div className="mt-1 text-[11px] leading-tight text-cream/70">{v}</div>
                 </div>
               ))}
             </div>
