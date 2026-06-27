@@ -739,13 +739,13 @@ function Pilares() {
     },
   ];
   return (
-    <section className="bg-secondary py-16 md:py-24">
+    <section className="bg-secondary py-16 text-cream md:py-24">
       <div className="container-x">
         <p className="eyebrow">Pilar 01 · Educação e promoção em saúde</p>
         <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.1] md:text-5xl">
           Conscientização que muda comportamento.
         </h2>
-        <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground">
+        <p className="mt-6 max-w-3xl text-base leading-relaxed text-cream/85">
           Palestras baseadas em evidência abordam os temas mais relevantes para a saúde
           da população corporativa brasileira — com linguagem direta, dados clínicos e
           aplicabilidade imediata à rotina de trabalho.
