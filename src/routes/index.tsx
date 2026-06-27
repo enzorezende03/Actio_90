@@ -332,7 +332,7 @@ function Legislacao() {
         </div>
 
         <div className="mt-10 rounded-2xl border border-border bg-card p-8 md:p-10">
-          <h4 className="font-serif text-xl">Como o ACTIO atende à legislação</h4>
+          <h4 className="font-serif text-xl text-cream">Como o ACTIO atende à legislação</h4>
           <div className="mt-6 grid gap-6 md:grid-cols-4">
             {[
               ["NR-1 · Identificação de riscos", "Avaliação clínica individual mapeia sobrecarga, sedentarismo, hipertensão e indicadores metabólicos — base para o PGR."],
@@ -342,11 +342,11 @@ function Legislacao() {
             ].map(([t, b]) => (
               <div key={t} className="border-l-2 border-gold pl-4">
                 <div className="text-xs font-semibold uppercase tracking-wider text-gold">{t}</div>
-                <p className="mt-2 text-sm leading-relaxed text-ink/80">{b}</p>
+                <p className="mt-2 text-sm leading-relaxed text-cream/85">{b}</p>
               </div>
             ))}
           </div>
-          <p className="mt-6 text-[11px] leading-relaxed text-muted-foreground">
+          <p className="mt-6 text-[11px] leading-relaxed text-cream/70">
             Portaria MTE nº 1.419/2024 (NR-1) · Lei nº 14.831, de 27 de março de 2024 · Ministério da Previdência Social, dados 2025 · Ipsos World Mental Health Day Report 2024.
           </p>
         </div>
