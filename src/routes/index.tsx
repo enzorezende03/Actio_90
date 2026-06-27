@@ -145,7 +145,7 @@ function Hero() {
         <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] leading-[1.05] sm:text-6xl md:text-7xl">
           Saúde corporativa <em className="text-gold not-italic">é estratégia.</em>
         </h1>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-cream/80 md:mt-8 md:text-xl">
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-cream md:mt-8 md:text-xl">
           Mitigar riscos não precisa ser sinônimo de burocracia. Transformamos exigências
           legais em conhecimento, saúde, bem-estar e produtividade — com programas B2B
           personalizados para saúde física, saúde mental e gestão de riscos psicossociais.
@@ -173,7 +173,7 @@ function Hero() {
           ].map(([k, v]) => (
             <div key={v}>
               <div className="font-serif text-3xl text-gold md:text-4xl">{k}</div>
-              <div className="mt-1 text-xs uppercase tracking-wider text-cream/60">{v}</div>
+              <div className="mt-1 text-xs uppercase tracking-wider text-cream/80">{v}</div>
             </div>
           ))}
         </div>
