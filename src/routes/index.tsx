@@ -950,17 +950,17 @@ function Contato() {
 
 function Footer() {
   return (
-    <footer className="bg-ink py-12 text-cream/60">
+    <footer className="bg-ink py-12 text-cream/85">
       <div className="container-x flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
           <ActioLogo />
-          <div className="mt-2 text-[10px] uppercase tracking-[0.28em] text-cream/45">Saúde Corporativa é Estratégia</div>
+          <div className="mt-2 text-[10px] uppercase tracking-[0.28em] text-cream/70">Saúde Corporativa é Estratégia</div>
         </div>
-        <p className="max-w-md text-xs leading-relaxed">
+        <p className="max-w-md text-xs leading-relaxed text-cream/85">
           Programa ACTIO_90 · Medicina baseada em evidências · Responsável técnico Dr.
           Leandro F. B. Leite, CRM-MG 68.021 / RQE 67.627.
         </p>
-        <div className="text-xs">© {new Date().getFullYear()} ACTIO. Todos os direitos reservados.</div>
+        <div className="text-xs text-cream/85">© {new Date().getFullYear()} ACTIO. Todos os direitos reservados.</div>
       </div>
     </footer>
   );
