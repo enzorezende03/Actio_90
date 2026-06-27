@@ -216,7 +216,7 @@ function Reflection() {
                 <span className="font-serif text-2xl text-gold">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="text-base leading-relaxed text-ink">{q}</p>
+                <p className="text-base leading-relaxed text-cream">{q}</p>
               </li>
             ))}
           </ul>
