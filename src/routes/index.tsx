@@ -316,14 +316,14 @@ function Legislacao() {
             <h3 className="mt-5 font-serif text-2xl">
               Lei 14.831: Certificado Empresa Promotora da Saúde Mental
             </h3>
-            <p className="mt-5 text-sm leading-relaxed text-cream/75">
+            <p className="mt-5 text-sm leading-relaxed text-cream">
               Sancionada em março de 2024, institui certificação federal para empresas
               que vão além do mínimo legal. Válido por 2 anos, reconhece organizações
               com programas estruturados — e pode ser usado em comunicação institucional.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {["Promoção da saúde mental", "Incentivo ao bem-estar", "Transparência e métricas"].map((t) => (
-                <span key={t} className="rounded-full border border-cream/20 px-3 py-1 text-xs text-cream/80">
+                <span key={t} className="rounded-full border border-cream/20 px-3 py-1 text-xs text-cream">
                   {t}
                 </span>
               ))}
