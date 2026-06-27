@@ -857,19 +857,19 @@ function Responsavel() {
             Quem desenvolveu o <em className="text-gold not-italic">ACTIO_90</em>.
           </h2>
           <div className="mt-8 rounded-2xl border border-cream/10 p-8">
-            <div className="font-serif text-2xl">Dr. Leandro Fernando Batista Leite</div>
+            <div className="font-serif text-2xl text-cream">Dr. Leandro Fernando Batista Leite</div>
             <div className="mt-1 text-sm text-gold">CRM-MG 68.021 · RQE 67.627</div>
-            <p className="mt-5 text-sm leading-relaxed text-cream/75">
+            <p className="mt-5 text-sm leading-relaxed text-cream/85">
               Pai, marido, médico especialista há +10 anos, leitor voraz, preceptor do
               internato de medicina da PUC-Minas, entusiasta e praticante de atividades
               físicas, fundador e responsável técnico do ACTIO_90.
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-cream/75">
+            <p className="mt-4 text-sm leading-relaxed text-cream/85">
               Medicina exercida com foco centrado na pessoa, atuação clínica pautada nas
               melhores práticas e evidências científicas. Supervisor clínico direto de
               todos os participantes do programa ao longo dos 90 dias.
             </p>
-            <p className="mt-6 border-t border-cream/10 pt-5 text-xs text-cream/55">
+            <p className="mt-6 border-t border-cream/10 pt-5 text-xs text-cream/70">
               Projeto ACTIO_90 — Medicina. Nasceu como projeto de pesquisa financiado pelas
               plataformas PIBIC-FAPEMIG dentro da Faculdade de Medicina da PUC-Minas.
             </p>
