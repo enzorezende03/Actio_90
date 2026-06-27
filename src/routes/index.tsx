@@ -753,8 +753,8 @@ function Pilares() {
         <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-3">
           {cols.map((c) => (
             <div key={c.title} className="bg-card p-8">
-              <h3 className="font-serif text-xl text-ink">{c.title}</h3>
-              <ul className="mt-5 space-y-2.5 text-sm text-ink/75">
+              <h3 className="font-serif text-xl text-cream">{c.title}</h3>
+              <ul className="mt-5 space-y-2.5 text-sm text-cream/85">
                 {c.items.map((i) => (
                   <li key={i}>• {i}</li>
                 ))}
