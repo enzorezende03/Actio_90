@@ -953,8 +953,8 @@ function Footer() {
     <footer className="bg-ink py-12 text-cream/60">
       <div className="container-x flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
-          <div className="font-serif text-xl text-cream">ACTIO</div>
-          <div className="text-xs uppercase tracking-[0.22em] text-cream/40">Saúde Corporativa é Estratégia</div>
+          <ActioLogo />
+          <div className="mt-2 text-[10px] uppercase tracking-[0.28em] text-cream/45">Saúde Corporativa é Estratégia</div>
         </div>
         <p className="max-w-md text-xs leading-relaxed">
           Programa ACTIO_90 · Medicina baseada em evidências · Responsável técnico Dr.
