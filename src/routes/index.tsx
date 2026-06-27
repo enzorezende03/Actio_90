@@ -386,13 +386,13 @@ function Problema() {
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {cards.map((c) => (
             <div key={c.title} className="rounded-2xl bg-card p-8">
-              <h3 className="font-serif text-xl">{c.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink/75">{c.body}</p>
+              <h3 className="font-serif text-xl text-cream">{c.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-cream/85">{c.body}</p>
             </div>
           ))}
         </div>
-        <div className="mt-10 rounded-2xl border border-border bg-card p-6 text-sm text-muted-foreground md:p-8">
-          <span className="font-semibold text-ink">Principais causas de afastamento corporativo: </span>
+        <div className="mt-10 rounded-2xl border border-border bg-card p-6 text-sm text-cream/85 md:p-8">
+          <span className="font-semibold text-cream">Principais causas de afastamento corporativo: </span>
           lombalgia · hipertensão · diabetes · ansiedade · obesidade · depressão · dor cervical · artrite · doenças cardiovasculares.
         </div>
       </div>
