@@ -145,7 +145,7 @@ function Hero() {
         <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] leading-[1.05] sm:text-6xl md:text-7xl">
           Saúde corporativa <em className="text-gold not-italic">é estratégia.</em>
         </h1>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-cream/80 md:mt-8 md:text-xl">
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-cream md:mt-8 md:text-xl">
           Mitigar riscos não precisa ser sinônimo de burocracia. Transformamos exigências
           legais em conhecimento, saúde, bem-estar e produtividade — com programas B2B
           personalizados para saúde física, saúde mental e gestão de riscos psicossociais.
@@ -173,7 +173,7 @@ function Hero() {
           ].map(([k, v]) => (
             <div key={v}>
               <div className="font-serif text-3xl text-gold md:text-4xl">{k}</div>
-              <div className="mt-1 text-xs uppercase tracking-wider text-cream/60">{v}</div>
+              <div className="mt-1 text-xs uppercase tracking-wider text-cream/80">{v}</div>
             </div>
           ))}
         </div>
@@ -254,7 +254,7 @@ function Pillars() {
               Da ação à gestão de <em className="text-gold not-italic">indicadores</em>.
             </h2>
           </div>
-          <p className="text-base text-cream/70 md:col-span-5">
+          <p className="text-base text-cream/85 md:col-span-5">
             O ACTIO estrutura programas que combinam conscientização, avaliação,
             acompanhamento e relatórios executivos — conectando saúde física, mental e
             produtividade. Em conformidade com as exigências legais.
@@ -265,7 +265,7 @@ function Pillars() {
             <div key={p.n} className="bg-ink p-8 md:p-10">
               <div className="font-serif text-5xl text-gold">{p.n}</div>
               <h3 className="mt-6 font-serif text-2xl">{p.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-cream/70">{p.body}</p>
+              <p className="mt-3 text-sm leading-relaxed text-cream/85">{p.body}</p>
             </div>
           ))}
         </div>
@@ -289,10 +289,10 @@ function Legislacao() {
               <span className="h-1.5 w-1.5 rounded-full bg-destructive" />
               Obrigação vigente desde maio/2026
             </div>
-            <h3 className="mt-5 font-serif text-2xl">NR-1 atualizada: riscos psicossociais</h3>
-            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-ink/80">
+            <h3 className="mt-5 font-serif text-2xl text-cream">NR-1 atualizada: riscos psicossociais</h3>
+            <ul className="mt-5 space-y-3 text-sm leading-relaxed text-cream/85">
               <li>• Portaria MTE nº 1.419/2024 incluiu riscos psicossociais (burnout, sobrecarga, assédio, estresse crônico) no PGR.</li>
-              <li>• Obrigatório para <strong>todas</strong> as empresas com trabalhadores CLT.</li>
+              <li>• Obrigatório para <strong className="text-cream">todas</strong> as empresas com trabalhadores CLT.</li>
               <li>• Em vigor pleno desde 26/05/2026 — fiscalização com multas e embargos já ativa.</li>
             </ul>
             <div className="mt-6 grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3">
@@ -302,8 +302,8 @@ function Legislacao() {
                 ["4º", "país mais estressado (Ipsos/OMS)"],
               ].map(([k, v]) => (
                 <div key={v}>
-                  <div className="font-serif text-xl text-ink">{k}</div>
-                  <div className="mt-1 text-[11px] leading-tight text-muted-foreground">{v}</div>
+                  <div className="font-serif text-xl text-cream">{k}</div>
+                  <div className="mt-1 text-[11px] leading-tight text-cream/70">{v}</div>
                 </div>
               ))}
             </div>
@@ -316,14 +316,14 @@ function Legislacao() {
             <h3 className="mt-5 font-serif text-2xl">
               Lei 14.831: Certificado Empresa Promotora da Saúde Mental
             </h3>
-            <p className="mt-5 text-sm leading-relaxed text-cream/75">
+            <p className="mt-5 text-sm leading-relaxed text-cream">
               Sancionada em março de 2024, institui certificação federal para empresas
               que vão além do mínimo legal. Válido por 2 anos, reconhece organizações
               com programas estruturados — e pode ser usado em comunicação institucional.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {["Promoção da saúde mental", "Incentivo ao bem-estar", "Transparência e métricas"].map((t) => (
-                <span key={t} className="rounded-full border border-cream/20 px-3 py-1 text-xs text-cream/80">
+                <span key={t} className="rounded-full border border-cream/20 px-3 py-1 text-xs text-cream">
                   {t}
                 </span>
               ))}
@@ -332,7 +332,7 @@ function Legislacao() {
         </div>
 
         <div className="mt-10 rounded-2xl border border-border bg-card p-8 md:p-10">
-          <h4 className="font-serif text-xl">Como o ACTIO atende à legislação</h4>
+          <h4 className="font-serif text-xl text-cream">Como o ACTIO atende à legislação</h4>
           <div className="mt-6 grid gap-6 md:grid-cols-4">
             {[
               ["NR-1 · Identificação de riscos", "Avaliação clínica individual mapeia sobrecarga, sedentarismo, hipertensão e indicadores metabólicos — base para o PGR."],
@@ -342,11 +342,11 @@ function Legislacao() {
             ].map(([t, b]) => (
               <div key={t} className="border-l-2 border-gold pl-4">
                 <div className="text-xs font-semibold uppercase tracking-wider text-gold">{t}</div>
-                <p className="mt-2 text-sm leading-relaxed text-ink/80">{b}</p>
+                <p className="mt-2 text-sm leading-relaxed text-cream/85">{b}</p>
               </div>
             ))}
           </div>
-          <p className="mt-6 text-[11px] leading-relaxed text-muted-foreground">
+          <p className="mt-6 text-[11px] leading-relaxed text-cream/70">
             Portaria MTE nº 1.419/2024 (NR-1) · Lei nº 14.831, de 27 de março de 2024 · Ministério da Previdência Social, dados 2025 · Ipsos World Mental Health Day Report 2024.
           </p>
         </div>
@@ -371,13 +371,13 @@ function Problema() {
     },
   ];
   return (
-    <section className="bg-secondary py-16 md:py-24">
+    <section className="bg-secondary py-16 text-cream md:py-24">
       <div className="container-x">
         <p className="eyebrow">O problema que resolvemos</p>
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
           O custo invisível do adoecimento.
         </h2>
-        <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground">
+        <p className="mt-6 max-w-3xl text-base leading-relaxed text-cream/85">
           Pessoas sobrecarregadas, sedentárias e tentando ter hábitos saudáveis sem
           instrução e acompanhamento especializado tornam-se um risco silencioso para si
           próprias e para sua organização — com consequências diretas em produtividade,
@@ -386,13 +386,13 @@ function Problema() {
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {cards.map((c) => (
             <div key={c.title} className="rounded-2xl bg-card p-8">
-              <h3 className="font-serif text-xl">{c.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink/75">{c.body}</p>
+              <h3 className="font-serif text-xl text-cream">{c.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-cream/85">{c.body}</p>
             </div>
           ))}
         </div>
-        <div className="mt-10 rounded-2xl border border-border bg-card p-6 text-sm text-muted-foreground md:p-8">
-          <span className="font-semibold text-ink">Principais causas de afastamento corporativo: </span>
+        <div className="mt-10 rounded-2xl border border-border bg-card p-6 text-sm text-cream/85 md:p-8">
+          <span className="font-semibold text-cream">Principais causas de afastamento corporativo: </span>
           lombalgia · hipertensão · diabetes · ansiedade · obesidade · depressão · dor cervical · artrite · doenças cardiovasculares.
         </div>
       </div>
@@ -434,7 +434,7 @@ function ROI() {
         <h2 className="mt-4 max-w-4xl font-serif text-4xl leading-[1.1] md:text-5xl">
           Pessoas saudáveis <em className="text-gold not-italic">performam mais.</em>
         </h2>
-        <p className="mt-6 max-w-3xl text-base leading-relaxed text-cream/70">
+        <p className="mt-6 max-w-3xl text-base leading-relaxed text-cream/85">
           A ciência comprova: saúde corporativa não é benefício, é vantagem competitiva.
           Organizações que investem em programas preventivos documentam ganhos
           mensuráveis em produtividade, retenção e custos médicos.
@@ -444,12 +444,12 @@ function ROI() {
             <div key={s.title} className="flex flex-col bg-ink p-8">
               <div className="font-serif text-6xl text-gold">{s.k}</div>
               <h3 className="mt-6 font-serif text-lg">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-cream/70">{s.body}</p>
-              <p className="mt-auto pt-5 text-[10px] italic leading-snug text-cream/40">{s.ref}</p>
+              <p className="mt-3 text-sm leading-relaxed text-cream/85">{s.body}</p>
+              <p className="mt-auto pt-5 text-[10px] italic leading-snug text-cream/70">{s.ref}</p>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-xs text-cream/40">Todos os estudos citados podem ser encontrados na biblioteca pública do PubMed.</p>
+        <p className="mt-6 text-xs text-cream/70">Todos os estudos citados podem ser encontrados na biblioteca pública do PubMed.</p>
       </div>
     </section>
   );
@@ -468,7 +468,7 @@ function Evidencia() {
           <article className="rounded-2xl bg-ink p-8 text-cream md:p-10">
             <div className="text-xs uppercase tracking-wider text-gold">Primeiro eixo</div>
             <h3 className="mt-3 font-serif text-3xl">Atividade física e saúde mental</h3>
-            <p className="mt-5 text-sm leading-relaxed text-cream/75">
+            <p className="mt-5 text-sm leading-relaxed text-cream">
               <strong className="text-cream">Meta-análise com 79.551 participantes:</strong>{" "}
               efeitos terapêuticos mensuráveis e robustos na redução de sintomas de
               depressão, ansiedade e sofrimento psicológico — a atividade física deve ser
@@ -477,46 +477,46 @@ function Evidencia() {
             <ul className="mt-6 space-y-4 border-t border-cream/15 pt-6 text-sm">
               <li className="flex gap-4">
                 <span className="font-serif text-2xl text-gold">61%</span>
-                <p className="text-cream/75">Redução robusta de sintomas em todas as populações adultas (Cohen's d, IC 95%).</p>
+                <p className="text-cream">Redução robusta de sintomas em todas as populações adultas (Cohen's d, IC 95%).</p>
               </li>
               <li className="flex gap-4">
                 <span className="font-serif text-2xl text-gold">2×</span>
-                <p className="text-cream/75">Treinos combinados (força + aeróbico) supervisionados em grupo: mais eficazes que aeróbico isolado.</p>
+                <p className="text-cream">Treinos combinados (força + aeróbico) supervisionados em grupo: mais eficazes que aeróbico isolado.</p>
               </li>
               <li className="flex gap-4">
                 <span className="font-serif text-2xl text-gold">15 min</span>
-                <p className="text-cream/75">Apenas 15 min/dia de MVPA já melhoram saúde mental autorrelatada — independentemente do resto da rotina.</p>
+                <p className="text-cream">Apenas 15 min/dia de MVPA já melhoram saúde mental autorrelatada — independentemente do resto da rotina.</p>
               </li>
             </ul>
-            <p className="mt-6 text-[10px] italic leading-snug text-cream/40">
+            <p className="mt-6 text-[10px] italic leading-snug text-cream/70">
               Munro NR et al. Br J Sports Med. 2026;60(8):590-599. doi:10.1136/bjsports-2025-110301
             </p>
           </article>
 
           <article className="rounded-2xl border border-border bg-card p-8 md:p-10">
             <div className="text-xs uppercase tracking-wider text-gold">Segundo eixo</div>
-            <h3 className="mt-3 font-serif text-3xl">Alimentação e saúde mental</h3>
-            <p className="mt-5 text-sm leading-relaxed text-ink/75">
-              <strong className="text-ink">Estudo prospectivo · 180.446 participantes · 11,6 anos:</strong>{" "}
+            <h3 className="mt-3 font-serif text-3xl text-cream">Alimentação e saúde mental</h3>
+            <p className="mt-5 text-sm leading-relaxed text-cream/85">
+              <strong className="text-cream">Estudo prospectivo · 180.446 participantes · 11,6 anos:</strong>{" "}
               maior adesão à dieta EAT-Lancet associou-se a menor risco de depressão
               (HR 0,71–0,81), ansiedade (HR 0,77–0,82) e comorbidade simultânea (HR 0,66–0,82).
             </p>
             <div className="mt-6 border-t border-border pt-6">
-              <div className="text-xs font-semibold uppercase tracking-wider text-ink/60">
+              <div className="text-xs font-semibold uppercase tracking-wider text-cream/70">
                 Padrões alimentares com evidência
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
                 {["Mediterrânea", "DASH", "EAT-Lancet"].map((t) => (
-                  <span key={t} className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-ink">{t}</span>
+                  <span key={t} className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-cream">{t}</span>
                 ))}
               </div>
             </div>
-            <ul className="mt-6 space-y-3 text-sm text-ink/80">
-              <li>→ <strong>Vitaminas do complexo B</strong> — síntese de serotonina, dopamina e GABA.</li>
-              <li>→ <strong>Magnésio e probióticos</strong> — modulação da ansiedade e eixo microbioma-intestino-cérebro.</li>
-              <li className="text-destructive">⨯ <strong>Evitar:</strong> ultraprocessados, açúcares refinados e padrões pró-inflamatórios.</li>
+            <ul className="mt-6 space-y-3 text-sm text-cream/85">
+              <li>→ <strong className="text-cream">Vitaminas do complexo B</strong> — síntese de serotonina, dopamina e GABA.</li>
+              <li>→ <strong className="text-cream">Magnésio e probióticos</strong> — modulação da ansiedade e eixo microbioma-intestino-cérebro.</li>
+              <li className="text-destructive">⨯ <strong className="text-cream">Evitar:</strong> ultraprocessados, açúcares refinados e padrões pró-inflamatórios.</li>
             </ul>
-            <p className="mt-6 text-[10px] italic leading-snug text-muted-foreground">
+            <p className="mt-6 text-[10px] italic leading-snug text-cream/70">
               Lu X et al. Nat Commun. 2024;15(1):5599. doi:10.1038/s41467-024-49653-8
             </p>
           </article>
@@ -528,14 +528,14 @@ function Evidencia() {
 
 function Programa() {
   return (
-    <section id="programa" className="bg-secondary py-16 md:py-24">
+    <section id="programa" className="bg-secondary py-16 text-cream md:py-24">
       <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-5">
           <p className="eyebrow">O ACTIO_90</p>
           <h2 className="mt-4 font-serif text-4xl leading-[1.1] md:text-5xl">
             Educação e promoção em saúde, entregues na sua empresa.
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+          <p className="mt-6 text-base leading-relaxed text-cream/85">
             O Programa ACTIO_90 Saúde Corporativa Impacto Real traduz evidência
             científica em boas práticas. Elimina barreiras de acesso, simplifica a
             literatura, fala a língua da sua equipe e torna o cuidado e a promoção de
@@ -544,11 +544,11 @@ function Programa() {
           <dl className="mt-8 space-y-5">
             <div>
               <dt className="text-xs font-semibold uppercase tracking-wider text-gold">Público-alvo</dt>
-              <dd className="mt-1 text-ink">Grupos de 10 ou mais colaboradores — com foco em lideranças e times estratégicos.</dd>
+              <dd className="mt-1 text-cream">Grupos de 10 ou mais colaboradores — com foco em lideranças e times estratégicos.</dd>
             </div>
             <div>
               <dt className="text-xs font-semibold uppercase tracking-wider text-gold">Duração e entregáveis</dt>
-              <dd className="mt-1 text-ink">90 dias de acompanhamento contínuo. Cada participante recebe relatório individual personalizado com análise comparativa e canal direto com especialistas por WhatsApp.</dd>
+              <dd className="mt-1 text-cream">90 dias de acompanhamento contínuo. Cada participante recebe relatório individual personalizado com análise comparativa e canal direto com especialistas por WhatsApp.</dd>
             </div>
           </dl>
         </div>
@@ -633,9 +633,9 @@ function Jornada() {
               <div className="md:col-span-3">
                 <div className="font-serif text-sm text-gold">Marco {String(i + 1).padStart(2, "0")}</div>
                 <div className="mt-1 font-serif text-3xl">{s.d}</div>
-                <div className="mt-1 text-sm text-cream/60">{s.title}</div>
+                <div className="mt-1 text-sm text-cream/80">{s.title}</div>
               </div>
-              <ul className="space-y-2 text-sm text-cream/80 md:col-span-9">
+              <ul className="space-y-2 text-sm text-cream md:col-span-9">
                 {s.bullets.map((b) => (
                   <li key={b} className="flex gap-3">
                     <span className="mt-2 h-1 w-1 flex-none rounded-full bg-gold" />
@@ -647,7 +647,7 @@ function Jornada() {
           ))}
         </ol>
 
-        <blockquote className="mt-10 max-w-3xl border-l-2 border-gold pl-6 font-serif text-xl italic leading-snug text-cream/90">
+        <blockquote className="mt-10 max-w-3xl border-l-2 border-gold pl-6 font-serif text-xl italic leading-snug text-cream">
           Cada etapa é desenhada para garantir adesão clínica, evolução mensurável e
           engajamento sustentado ao longo dos 90 dias.
         </blockquote>
@@ -686,8 +686,8 @@ function Medimos() {
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {groups.map((g) => (
             <div key={g.title} className="rounded-2xl border border-border bg-card p-8">
-              <h3 className="font-serif text-xl">{g.title}</h3>
-              <ul className="mt-5 space-y-2.5 text-sm text-ink/80">
+              <h3 className="font-serif text-xl text-cream">{g.title}</h3>
+              <ul className="mt-5 space-y-2.5 text-sm text-cream/85">
                 {g.items.map((i) => (
                   <li key={i} className="flex gap-2">
                     <span className="text-gold">—</span> {i}
@@ -697,7 +697,7 @@ function Medimos() {
             </div>
           ))}
         </div>
-        <div className="mt-8 rounded-2xl bg-ink p-6 text-sm text-cream/80 md:p-8">
+        <div className="mt-8 rounded-2xl bg-ink p-6 text-sm text-cream md:p-8">
           <strong className="text-cream">Pressão arterial:</strong> rastreamento de
           hipertensão — principal causa de AVC no Brasil. A identificação precoce
           permite intervenção clínica antes do evento cardiovascular irreversível.
@@ -739,13 +739,13 @@ function Pilares() {
     },
   ];
   return (
-    <section className="bg-secondary py-16 md:py-24">
+    <section className="bg-secondary py-16 text-cream md:py-24">
       <div className="container-x">
         <p className="eyebrow">Pilar 01 · Educação e promoção em saúde</p>
         <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.1] md:text-5xl">
           Conscientização que muda comportamento.
         </h2>
-        <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground">
+        <p className="mt-6 max-w-3xl text-base leading-relaxed text-cream/85">
           Palestras baseadas em evidência abordam os temas mais relevantes para a saúde
           da população corporativa brasileira — com linguagem direta, dados clínicos e
           aplicabilidade imediata à rotina de trabalho.
@@ -753,8 +753,8 @@ function Pilares() {
         <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-3">
           {cols.map((c) => (
             <div key={c.title} className="bg-card p-8">
-              <h3 className="font-serif text-xl text-ink">{c.title}</h3>
-              <ul className="mt-5 space-y-2.5 text-sm text-ink/75">
+              <h3 className="font-serif text-xl text-cream">{c.title}</h3>
+              <ul className="mt-5 space-y-2.5 text-sm text-cream/85">
                 {c.items.map((i) => (
                   <li key={i}>• {i}</li>
                 ))}
@@ -815,12 +815,12 @@ function Servicos() {
                   Mais escolhido
                 </span>
               )}
-              <div className={`text-[11px] font-semibold uppercase tracking-widest ${t.featured ? "text-gold" : "text-muted-foreground"}`}>
+              <div className={`text-[11px] font-semibold uppercase tracking-widest ${t.featured ? "text-gold" : "text-cream/70"}`}>
                 {t.tag}
               </div>
-              <h3 className="mt-4 font-serif text-3xl">{t.name}</h3>
-              <p className={`mt-4 text-sm leading-relaxed ${t.featured ? "text-cream/75" : "text-ink/75"}`}>{t.desc}</p>
-              <ul className={`mt-6 space-y-3 border-t pt-6 text-sm ${t.featured ? "border-cream/15 text-cream/85" : "border-border text-ink/80"}`}>
+              <h3 className={`mt-4 font-serif text-3xl ${t.featured ? "" : "text-cream"}`}>{t.name}</h3>
+              <p className={`mt-4 text-sm leading-relaxed ${t.featured ? "text-cream/85" : "text-cream/85"}`}>{t.desc}</p>
+              <ul className={`mt-6 space-y-3 border-t pt-6 text-sm ${t.featured ? "border-cream/15 text-cream" : "border-border text-cream/85"}`}>
                 {t.items.map((i) => (
                   <li key={i} className="flex gap-3">
                     <span className="text-gold">✓</span> {i}
@@ -857,19 +857,19 @@ function Responsavel() {
             Quem desenvolveu o <em className="text-gold not-italic">ACTIO_90</em>.
           </h2>
           <div className="mt-8 rounded-2xl border border-cream/10 p-8">
-            <div className="font-serif text-2xl">Dr. Leandro Fernando Batista Leite</div>
+            <div className="font-serif text-2xl text-cream">Dr. Leandro Fernando Batista Leite</div>
             <div className="mt-1 text-sm text-gold">CRM-MG 68.021 · RQE 67.627</div>
-            <p className="mt-5 text-sm leading-relaxed text-cream/75">
+            <p className="mt-5 text-sm leading-relaxed text-cream/85">
               Pai, marido, médico especialista há +10 anos, leitor voraz, preceptor do
               internato de medicina da PUC-Minas, entusiasta e praticante de atividades
               físicas, fundador e responsável técnico do ACTIO_90.
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-cream/75">
+            <p className="mt-4 text-sm leading-relaxed text-cream/85">
               Medicina exercida com foco centrado na pessoa, atuação clínica pautada nas
               melhores práticas e evidências científicas. Supervisor clínico direto de
               todos os participantes do programa ao longo dos 90 dias.
             </p>
-            <p className="mt-6 border-t border-cream/10 pt-5 text-xs text-cream/55">
+            <p className="mt-6 border-t border-cream/10 pt-5 text-xs text-cream/70">
               Projeto ACTIO_90 — Medicina. Nasceu como projeto de pesquisa financiado pelas
               plataformas PIBIC-FAPEMIG dentro da Faculdade de Medicina da PUC-Minas.
             </p>
@@ -911,7 +911,7 @@ function Contato() {
           <div className="md:col-span-7">
             <div className="text-xs uppercase tracking-wider text-gold">Fale conosco</div>
             <div className="mt-2 font-serif text-2xl">Reunião de apresentação sem compromisso.</div>
-            <p className="mt-3 text-sm text-cream/70">
+            <p className="mt-3 text-sm text-cream">
               Mostramos como o programa funciona na prática para o perfil e a cultura da
               sua empresa — sem script genérico. Elaboramos uma proposta adaptada ao
               tamanho da equipe e aos objetivos de saúde corporativa, sem custo.
@@ -919,7 +919,7 @@ function Contato() {
           </div>
           <div className="md:col-span-5">
             <div className="rounded-2xl border border-cream/15 p-6">
-              <div className="text-xs uppercase tracking-wider text-cream/60">Gustavo Cavalcanti</div>
+              <div className="text-xs uppercase tracking-wider text-cream/85">Gustavo Cavalcanti</div>
               <a
                 href="tel:+5531992655261"
                 className="mt-2 block font-serif text-2xl text-cream hover:text-gold"
@@ -928,7 +928,7 @@ function Contato() {
               </a>
               <a
                 href="mailto:medgustavocavalcanti@gmail.com"
-                className="mt-1 block break-all text-sm text-cream/75 hover:text-gold"
+                className="mt-1 block break-all text-sm text-cream/85 hover:text-gold"
               >
                 medgustavocavalcanti@gmail.com
               </a>
@@ -950,17 +950,17 @@ function Contato() {
 
 function Footer() {
   return (
-    <footer className="bg-ink py-12 text-cream/60">
+    <footer className="bg-ink py-12 text-cream/85">
       <div className="container-x flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
           <ActioLogo />
-          <div className="mt-2 text-[10px] uppercase tracking-[0.28em] text-cream/45">Saúde Corporativa é Estratégia</div>
+          <div className="mt-2 text-[10px] uppercase tracking-[0.28em] text-cream/70">Saúde Corporativa é Estratégia</div>
         </div>
-        <p className="max-w-md text-xs leading-relaxed">
+        <p className="max-w-md text-xs leading-relaxed text-cream/85">
           Programa ACTIO_90 · Medicina baseada em evidências · Responsável técnico Dr.
           Leandro F. B. Leite, CRM-MG 68.021 / RQE 67.627.
         </p>
-        <div className="text-xs">© {new Date().getFullYear()} ACTIO. Todos os direitos reservados.</div>
+        <div className="text-xs text-cream/85">© {new Date().getFullYear()} ACTIO. Todos os direitos reservados.</div>
       </div>
     </footer>
   );
