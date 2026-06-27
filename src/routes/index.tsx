@@ -686,8 +686,8 @@ function Medimos() {
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {groups.map((g) => (
             <div key={g.title} className="rounded-2xl border border-border bg-card p-8">
-              <h3 className="font-serif text-xl">{g.title}</h3>
-              <ul className="mt-5 space-y-2.5 text-sm text-ink/80">
+              <h3 className="font-serif text-xl text-cream">{g.title}</h3>
+              <ul className="mt-5 space-y-2.5 text-sm text-cream/85">
                 {g.items.map((i) => (
                   <li key={i} className="flex gap-2">
                     <span className="text-gold">—</span> {i}
@@ -697,7 +697,7 @@ function Medimos() {
             </div>
           ))}
         </div>
-        <div className="mt-8 rounded-2xl bg-ink p-6 text-sm text-cream/80 md:p-8">
+        <div className="mt-8 rounded-2xl bg-ink p-6 text-sm text-cream md:p-8">
           <strong className="text-cream">Pressão arterial:</strong> rastreamento de
           hipertensão — principal causa de AVC no Brasil. A identificação precoce
           permite intervenção clínica antes do evento cardiovascular irreversível.
