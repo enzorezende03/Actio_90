@@ -40,34 +40,35 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand palette: deep midnight navy + warm gold + cream */
-  --ink: oklch(0.18 0.03 250);          /* near-black navy */
-  --ink-soft: oklch(0.26 0.035 250);
-  --cream: oklch(0.97 0.012 85);        /* warm off-white */
-  --gold: oklch(0.74 0.13 70);          /* warm amber/gold */
-  --gold-soft: oklch(0.86 0.08 80);
+  /* ACTIO · Identidade de Marca v2 — minimalista, centrada no logotipo */
+  --ink: #0F0F0F;          /* Tinta */
+  --ink-soft: #1E1E1E;     /* Tinta média · painéis/cards */
+  --cream: #EFEFED;        /* Platina · texto/logotipo */
+  --gold: #D4A843;         /* Dourado · único destaque */
+  --gold-soft: #E2BE6A;
+  --steel: #5A5A58;        /* Cinza · legendas */
 
-  --background: var(--cream);
-  --foreground: var(--ink);
-  --card: oklch(1 0 0);
-  --card-foreground: var(--ink);
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--ink);
-  --primary: var(--ink);
-  --primary-foreground: var(--cream);
-  --secondary: oklch(0.93 0.012 85);
-  --secondary-foreground: var(--ink);
-  --muted: oklch(0.94 0.01 85);
-  --muted-foreground: oklch(0.45 0.02 260);
+  --background: var(--ink);
+  --foreground: var(--cream);
+  --card: var(--ink-soft);
+  --card-foreground: var(--cream);
+  --popover: var(--ink-soft);
+  --popover-foreground: var(--cream);
+  --primary: var(--gold);
+  --primary-foreground: var(--ink);
+  --secondary: #161616;
+  --secondary-foreground: var(--cream);
+  --muted: #1A1A1A;
+  --muted-foreground: var(--steel);
   --accent: var(--gold);
   --accent-foreground: var(--ink);
-  --destructive: oklch(0.55 0.2 25);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.88 0.012 85);
-  --input: oklch(0.88 0.012 85);
+  --destructive: #C9534A;
+  --destructive-foreground: var(--cream);
+  --border: rgba(239, 239, 237, 0.10);
+  --input: rgba(239, 239, 237, 0.14);
   --ring: var(--gold);
 
-  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-serif: "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
 
@@ -82,13 +83,13 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-serif);
-    font-feature-settings: "ss01";
-    letter-spacing: -0.02em;
+    font-weight: 300;          /* Space Grotesk · Leve 300 */
+    letter-spacing: -0.025em;
   }
 }
 

@@ -29,6 +29,36 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function ActioMark({ className = "h-7 w-auto" }: { className?: string }) {
+  // Símbolo "A" minimalista com ponto dourado — Identidade de Marca v2
+  return (
+    <svg
+      viewBox="0 0 56 64"
+      className={className}
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+    >
+      <path d="M28 6 L6 60" />
+      <path d="M28 6 L50 60" />
+      <circle cx="28" cy="6" r="3.2" fill="#D4A843" stroke="none" />
+    </svg>
+  );
+}
+
+function ActioLogo({ size = "default" }: { size?: "default" | "sm" }) {
+  return (
+    <a href="#top" className="flex min-w-0 items-center gap-2 text-cream">
+      <ActioMark className={size === "sm" ? "h-6 w-auto" : "h-8 w-auto sm:h-9"} />
+      <span className={`font-serif font-light tracking-[0.18em] ${size === "sm" ? "text-base" : "text-lg sm:text-xl"}`}>
+        ACTIO
+      </span>
+    </a>
+  );
+}
+
 function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
@@ -41,10 +71,8 @@ function Nav() {
   return (
     <nav className="absolute inset-x-0 top-0 z-30">
       <div className="container-x flex items-center justify-between gap-4 py-5 md:py-6">
-        <a href="#top" className="flex min-w-0 items-baseline gap-2 text-cream">
-          <span className="font-serif text-xl font-semibold tracking-tight sm:text-2xl">ACTIO</span>
-          <span className="hidden text-[10px] uppercase tracking-[0.25em] text-cream/60 sm:inline">Saúde Corporativa</span>
-        </a>
+        <ActioLogo />
+
         <div className="hidden items-center gap-8 text-sm text-cream/80 md:flex">
           {links.map(([href, label]) => (
             <a key={href} href={href} className="hover:text-gold">{label}</a>
@@ -925,8 +953,8 @@ function Footer() {
     <footer className="bg-ink py-12 text-cream/60">
       <div className="container-x flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
-          <div className="font-serif text-xl text-cream">ACTIO</div>
-          <div className="text-xs uppercase tracking-[0.22em] text-cream/40">Saúde Corporativa é Estratégia</div>
+          <ActioLogo />
+          <div className="mt-2 text-[10px] uppercase tracking-[0.28em] text-cream/45">Saúde Corporativa é Estratégia</div>
         </div>
         <p className="max-w-md text-xs leading-relaxed">
           Programa ACTIO_90 · Medicina baseada em evidências · Responsável técnico Dr.
