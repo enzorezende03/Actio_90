@@ -528,14 +528,14 @@ function Evidencia() {
 
 function Programa() {
   return (
-    <section id="programa" className="bg-secondary py-16 md:py-24">
+    <section id="programa" className="bg-secondary py-16 text-cream md:py-24">
       <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-5">
           <p className="eyebrow">O ACTIO_90</p>
           <h2 className="mt-4 font-serif text-4xl leading-[1.1] md:text-5xl">
             Educação e promoção em saúde, entregues na sua empresa.
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+          <p className="mt-6 text-base leading-relaxed text-cream/85">
             O Programa ACTIO_90 Saúde Corporativa Impacto Real traduz evidência
             científica em boas práticas. Elimina barreiras de acesso, simplifica a
             literatura, fala a língua da sua equipe e torna o cuidado e a promoção de
@@ -544,11 +544,11 @@ function Programa() {
           <dl className="mt-8 space-y-5">
             <div>
               <dt className="text-xs font-semibold uppercase tracking-wider text-gold">Público-alvo</dt>
-              <dd className="mt-1 text-ink">Grupos de 10 ou mais colaboradores — com foco em lideranças e times estratégicos.</dd>
+              <dd className="mt-1 text-cream">Grupos de 10 ou mais colaboradores — com foco em lideranças e times estratégicos.</dd>
             </div>
             <div>
               <dt className="text-xs font-semibold uppercase tracking-wider text-gold">Duração e entregáveis</dt>
-              <dd className="mt-1 text-ink">90 dias de acompanhamento contínuo. Cada participante recebe relatório individual personalizado com análise comparativa e canal direto com especialistas por WhatsApp.</dd>
+              <dd className="mt-1 text-cream">90 dias de acompanhamento contínuo. Cada participante recebe relatório individual personalizado com análise comparativa e canal direto com especialistas por WhatsApp.</dd>
             </div>
           </dl>
         </div>
