@@ -815,12 +815,12 @@ function Servicos() {
                   Mais escolhido
                 </span>
               )}
-              <div className={`text-[11px] font-semibold uppercase tracking-widest ${t.featured ? "text-gold" : "text-muted-foreground"}`}>
+              <div className={`text-[11px] font-semibold uppercase tracking-widest ${t.featured ? "text-gold" : "text-cream/70"}`}>
                 {t.tag}
               </div>
-              <h3 className="mt-4 font-serif text-3xl">{t.name}</h3>
-              <p className={`mt-4 text-sm leading-relaxed ${t.featured ? "text-cream/75" : "text-ink/75"}`}>{t.desc}</p>
-              <ul className={`mt-6 space-y-3 border-t pt-6 text-sm ${t.featured ? "border-cream/15 text-cream/85" : "border-border text-ink/80"}`}>
+              <h3 className={`mt-4 font-serif text-3xl ${t.featured ? "" : "text-cream"}`}>{t.name}</h3>
+              <p className={`mt-4 text-sm leading-relaxed ${t.featured ? "text-cream/85" : "text-cream/85"}`}>{t.desc}</p>
+              <ul className={`mt-6 space-y-3 border-t pt-6 text-sm ${t.featured ? "border-cream/15 text-cream" : "border-border text-cream/85"}`}>
                 {t.items.map((i) => (
                   <li key={i} className="flex gap-3">
                     <span className="text-gold">✓</span> {i}
