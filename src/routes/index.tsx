@@ -254,7 +254,7 @@ function Pillars() {
               Da ação à gestão de <em className="text-gold not-italic">indicadores</em>.
             </h2>
           </div>
-          <p className="text-base text-cream/70 md:col-span-5">
+          <p className="text-base text-cream/85 md:col-span-5">
             O ACTIO estrutura programas que combinam conscientização, avaliação,
             acompanhamento e relatórios executivos — conectando saúde física, mental e
             produtividade. Em conformidade com as exigências legais.
@@ -265,7 +265,7 @@ function Pillars() {
             <div key={p.n} className="bg-ink p-8 md:p-10">
               <div className="font-serif text-5xl text-gold">{p.n}</div>
               <h3 className="mt-6 font-serif text-2xl">{p.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-cream/70">{p.body}</p>
+              <p className="mt-3 text-sm leading-relaxed text-cream/85">{p.body}</p>
             </div>
           ))}
         </div>
