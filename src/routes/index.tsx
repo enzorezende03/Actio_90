@@ -32,7 +32,6 @@ export const Route = createFileRoute("/")({
 /* -------------------------------------------------------------------------- */
 
 function ActioMark({ className = "h-7 w-7" }: { className?: string }) {
-  // Símbolo "A" minimalista: duas diagonais finas + ponto dourado acima do ápice
   return (
     <svg viewBox="0 0 48 56" className={className} aria-hidden="true">
       <circle cx="24" cy="5" r="3" fill="var(--gold)" />
@@ -47,10 +46,20 @@ function ActioMark({ className = "h-7 w-7" }: { className?: string }) {
   );
 }
 
-function ActioWordmark({ size = "md" }: { size?: "sm" | "md" }) {
+function ActioWordmark({
+  size = "md",
+  tone = "cream",
+}: {
+  size?: "sm" | "md";
+  tone?: "cream" | "ink";
+}) {
   const isSm = size === "sm";
+  const color = tone === "ink" ? "text-ink" : "text-cream";
   return (
-    <a href="#top" className="inline-flex items-center gap-2 font-serif font-light tracking-tight text-cream">
+    <a
+      href="#top"
+      className={`inline-flex items-center gap-2 font-serif font-light tracking-tight ${color}`}
+    >
       <ActioMark className={isSm ? "h-6 w-6" : "h-8 w-8"} />
       <span className={isSm ? "text-lg" : "text-2xl"}>ACTIO</span>
     </a>
@@ -58,21 +67,37 @@ function ActioWordmark({ size = "md" }: { size?: "sm" | "md" }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Sub-componentes utilitários                                               */
+/*  Utilitários                                                               */
 /* -------------------------------------------------------------------------- */
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function Eyebrow({ children, tone = "gold" }: { children: React.ReactNode; tone?: "gold" | "ink" }) {
+  const color = tone === "ink" ? "text-ink" : "text-gold";
   return (
-    <span className="block text-[10px] font-medium uppercase tracking-[0.28em] text-gold">
+    <span className={`block text-[10px] font-medium uppercase tracking-[0.28em] ${color}`}>
       {children}
     </span>
   );
 }
 
-function SectionTitle({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+/**
+ * Título de seção tricolor-aware.
+ * - tone="dark"  → fundo #0F0F0F/ink-soft → título dourado
+ * - tone="cream" → fundo #EFEFED → título dourado
+ * - tone="gold"  → fundo #D4A843 → título preto #0F0F0F
+ */
+function SectionTitle({
+  children,
+  tone = "dark",
+  className = "",
+}: {
+  children: React.ReactNode;
+  tone?: "dark" | "cream" | "gold";
+  className?: string;
+}) {
+  const color = tone === "gold" ? "text-ink" : "text-gold";
   return (
     <h2
-      className={`font-serif font-light leading-[1.05] text-cream text-[2rem] sm:text-4xl md:text-5xl ${className}`}
+      className={`font-serif font-light leading-[1.05] text-[2rem] sm:text-4xl md:text-5xl ${color} ${className}`}
     >
       {children}
     </h2>
@@ -153,7 +178,7 @@ function Nav() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Hero — blueprint editorial                                                */
+/*  Hero — DARK                                                               */
 /* -------------------------------------------------------------------------- */
 
 function Hero() {
@@ -168,18 +193,17 @@ function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/85 to-ink" />
 
-      {/* Blueprint corner frame */}
       <div className="pointer-events-none absolute right-4 bottom-24 h-28 w-28 border-r border-b border-gold/25 md:right-10 md:bottom-32 md:h-40 md:w-40" />
       <div className="pointer-events-none absolute right-4 bottom-24 hidden h-px w-40 bg-gold/15 md:right-10 md:bottom-32 md:block" />
 
       <div className="relative container-x pt-32 pb-20 md:pt-40 md:pb-28">
         <Eyebrow>Saúde corporativa · medicina baseada em evidência</Eyebrow>
-        <h1 className="mt-6 max-w-4xl font-serif font-light leading-[1.05] text-[2.6rem] sm:text-6xl md:text-7xl">
+        <h1 className="mt-6 max-w-4xl font-serif font-light leading-[1.05] text-[2.6rem] text-gold sm:text-6xl md:text-7xl">
           Saúde não é custo.
           <br />
-          <span className="text-gold">É performance.</span>
+          <span className="text-cream">É performance.</span>
         </h1>
-        <p className="mt-8 max-w-xl text-base leading-relaxed text-cream/75 md:text-lg">
+        <p className="mt-8 max-w-xl text-base leading-relaxed text-cream/85 md:text-lg">
           Gestão estratégica de saúde corporativa para lideranças que buscam
           conformidade legal, produtividade real e indicadores confiáveis para a tomada
           de decisão.
@@ -218,7 +242,7 @@ function Hero() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Cenário · O problema                                                      */
+/*  Cenário · DARK                                                            */
 /* -------------------------------------------------------------------------- */
 
 function Cenario() {
@@ -232,10 +256,10 @@ function Cenario() {
     <section className="bg-ink-soft py-20 text-cream md:py-28">
       <div className="container-x">
         <Eyebrow>O cenário atual</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
+        <SectionTitle tone="dark" className="mt-5 max-w-3xl">
           O custo invisível do adoecimento corporativo.
         </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-cream/65">
+        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-cream/75">
           Pessoas sobrecarregadas, sedentárias e sem instrução clínica tornam-se um
           risco silencioso para si próprias e para a organização — com consequências
           diretas em produtividade, cultura e resultados.
@@ -245,13 +269,13 @@ function Cenario() {
           {stats.map(([k, b]) => (
             <div key={k} className="border-l border-gold bg-ink/60 p-6">
               <div className="font-serif font-light text-3xl text-cream">{k}</div>
-              <p className="mt-3 text-[13px] leading-relaxed text-cream/65">{b}</p>
+              <p className="mt-3 text-[13px] leading-relaxed text-cream/75">{b}</p>
             </div>
           ))}
         </div>
 
-        <p className="mt-10 max-w-3xl text-[13px] leading-relaxed text-cream/55">
-          <span className="text-cream/80">Principais causas de afastamento:</span>{" "}
+        <p className="mt-10 max-w-3xl text-[13px] leading-relaxed text-cream/65">
+          <span className="text-cream">Principais causas de afastamento:</span>{" "}
           lombalgia · hipertensão · diabetes · ansiedade · obesidade · depressão · dor
           cervical · artrite · doenças cardiovasculares.
         </p>
@@ -261,7 +285,7 @@ function Cenario() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Reflexão                                                                  */
+/*  Reflexão · CREAM                                                          */
 /* -------------------------------------------------------------------------- */
 
 function Reflection() {
@@ -272,29 +296,29 @@ function Reflection() {
     "Sua empresa possui indicadores confiáveis de saúde corporativa?",
   ];
   return (
-    <section className="bg-ink py-20 text-cream md:py-28">
+    <section className="bg-cream py-20 text-ink md:py-28">
       <div className="container-x grid gap-14 md:grid-cols-12">
         <div className="md:col-span-5">
           <Eyebrow>Ponto de partida</Eyebrow>
-          <SectionTitle className="mt-5">
+          <SectionTitle tone="cream" className="mt-5">
             O que sua instituição ganha com o que investe nas pessoas?
           </SectionTitle>
-          <blockquote className="mt-10 border-l border-gold pl-5 font-serif text-lg italic leading-snug text-cream/80">
+          <blockquote className="mt-10 border-l border-gold pl-5 font-serif text-lg italic leading-snug text-ink/80">
             A oportunidade não está em oferecer mais uma ação de bem-estar — mas em
             transformar exigências legais em cultura empresarial de bem-estar.
           </blockquote>
         </div>
         <div className="md:col-span-7">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/55">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-ink/60">
             Apenas para refletir
           </p>
-          <ol className="mt-6 divide-y divide-cream/10 border-y border-cream/10">
+          <ol className="mt-6 divide-y divide-ink/10 border-y border-ink/10">
             {questions.map((q, i) => (
               <li key={q} className="grid grid-cols-[auto_1fr] gap-5 py-6">
                 <span className="font-serif font-light text-2xl text-gold">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="text-[15px] leading-relaxed text-cream">{q}</p>
+                <p className="text-[15px] leading-relaxed text-ink">{q}</p>
               </li>
             ))}
           </ol>
@@ -305,7 +329,7 @@ function Reflection() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Pilares                                                                   */
+/*  Pilares · DARK                                                            */
 /* -------------------------------------------------------------------------- */
 
 function Pillars() {
@@ -327,16 +351,16 @@ function Pillars() {
     },
   ];
   return (
-    <section className="bg-ink-soft py-20 text-cream md:py-28">
+    <section className="bg-ink py-20 text-cream md:py-28">
       <div className="container-x">
         <div className="grid items-end gap-8 md:grid-cols-12">
           <div className="md:col-span-7">
             <Eyebrow>Nossa visão</Eyebrow>
-            <SectionTitle className="mt-5">
-              Da ação à gestão de <span className="text-gold">indicadores</span>.
+            <SectionTitle tone="dark" className="mt-5">
+              Da ação à gestão de indicadores.
             </SectionTitle>
           </div>
-          <p className="text-[15px] leading-relaxed text-cream/65 md:col-span-5">
+          <p className="text-[15px] leading-relaxed text-cream/75 md:col-span-5">
             O ACTIO estrutura programas que combinam conscientização, avaliação,
             acompanhamento e relatórios executivos — conectando saúde física, mental e
             produtividade.
@@ -346,8 +370,8 @@ function Pillars() {
           {items.map((p) => (
             <div key={p.n} className="bg-ink-soft p-8 md:p-10">
               <div className="font-serif font-light text-3xl text-gold">{p.n}</div>
-              <h3 className="mt-5 font-serif font-light text-xl text-cream">{p.title}</h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-cream/65">{p.body}</p>
+              <h3 className="mt-5 font-serif font-light text-xl text-gold">{p.title}</h3>
+              <p className="mt-3 text-[14px] leading-relaxed text-cream/80">{p.body}</p>
             </div>
           ))}
         </div>
@@ -357,49 +381,49 @@ function Pillars() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Legislação · bloco dourado de alto contraste                              */
+/*  Legislação · CREAM                                                        */
 /* -------------------------------------------------------------------------- */
 
 function Legislacao() {
   return (
-    <section id="legislacao" className="bg-ink py-20 text-cream md:py-28">
+    <section id="legislacao" className="bg-cream py-20 text-ink md:py-28">
       <div className="container-x">
         <Eyebrow>Legislação & conformidade</Eyebrow>
-        <SectionTitle className="mt-5 max-w-4xl">
+        <SectionTitle tone="cream" className="mt-5 max-w-4xl">
           Sua empresa já tem uma obrigação legal. Nós ajudamos a cumpri-la — e a ir além.
         </SectionTitle>
 
-        <div className="mt-14 grid gap-px bg-cream/10 md:grid-cols-2">
-          <article className="bg-ink-soft p-8 md:p-10">
-            <div className="inline-flex items-center gap-2 border border-destructive/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-destructive">
+        <div className="mt-14 grid gap-px bg-ink/10 md:grid-cols-2">
+          <article className="bg-cream p-8 md:p-10">
+            <div className="inline-flex items-center gap-2 border border-destructive/50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-destructive">
               <span className="h-1.5 w-1.5 rounded-full bg-destructive" />
               Vigente desde 05/2026
             </div>
-            <h3 className="mt-5 font-serif font-light text-2xl text-cream">
+            <h3 className="mt-5 font-serif font-light text-2xl text-gold">
               NR-1 atualizada — riscos psicossociais
             </h3>
-            <ul className="mt-5 space-y-3 text-[13px] leading-relaxed text-cream/75">
+            <ul className="mt-5 space-y-3 text-[13px] leading-relaxed text-ink/80">
               <li>— Portaria MTE nº 1.419/2024 incluiu burnout, sobrecarga, assédio e estresse crônico no PGR.</li>
               <li>— Obrigatório para todas as empresas com trabalhadores CLT.</li>
               <li>— Fiscalização ativa com multas e embargos desde 26/05/2026.</li>
             </ul>
           </article>
 
-          <article className="bg-ink-soft p-8 md:p-10">
-            <div className="inline-flex items-center gap-2 border border-gold/50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gold">
+          <article className="bg-cream p-8 md:p-10">
+            <div className="inline-flex items-center gap-2 border border-gold px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gold">
               Vantagem competitiva
             </div>
-            <h3 className="mt-5 font-serif font-light text-2xl text-cream">
+            <h3 className="mt-5 font-serif font-light text-2xl text-gold">
               Lei 14.831 — Certificação Empresa Promotora da Saúde Mental
             </h3>
-            <p className="mt-5 text-[13px] leading-relaxed text-cream/75">
+            <p className="mt-5 text-[13px] leading-relaxed text-ink/80">
               Sancionada em março/2024, institui certificação federal para empresas que
               vão além do mínimo legal. Válida por 2 anos, reconhece organizações com
               programas estruturados.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {["Promoção da saúde mental", "Bem-estar", "Métricas e transparência"].map((t) => (
-                <span key={t} className="border border-cream/15 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-cream/75">
+                <span key={t} className="border border-ink/20 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-ink/75">
                   {t}
                 </span>
               ))}
@@ -407,18 +431,18 @@ function Legislacao() {
           </article>
         </div>
 
-        {/* Faixa dourada — único bloco de alto contraste */}
+        {/* Faixa dourada — alto contraste */}
         <div className="mt-12 bg-gold p-8 text-ink md:p-12">
           <div className="grid gap-8 md:grid-cols-12">
             <div className="md:col-span-5">
-              <h3 className="font-serif font-light text-2xl uppercase tracking-tight md:text-3xl">
+              <h3 className="font-serif font-light text-2xl uppercase tracking-tight text-ink md:text-3xl">
                 Segurança jurídica absoluta.
               </h3>
               <div className="mt-6 flex flex-wrap gap-2">
-                <span className="border border-ink/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
+                <span className="border border-ink/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-ink">
                   NR-1 Compliant
                 </span>
-                <span className="border border-ink/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
+                <span className="border border-ink/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-ink">
                   Lei 14.831
                 </span>
               </div>
@@ -431,15 +455,15 @@ function Legislacao() {
                 ["Lei 14.831 · Conscientização", "Eventos educativos baseados em evidência cumprem o Art. 3º, alínea c da lei."],
               ].map(([t, b]) => (
                 <div key={t} className="border-l border-ink/40 pl-4">
-                  <div className="text-[10px] font-bold uppercase tracking-[0.22em]">{t}</div>
-                  <p className="mt-2 text-[13px] leading-relaxed text-ink/80">{b}</p>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-ink">{t}</div>
+                  <p className="mt-2 text-[13px] leading-relaxed text-ink/85">{b}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <p className="mt-6 text-[10px] leading-relaxed text-cream/50">
+        <p className="mt-6 text-[10px] leading-relaxed text-ink/55">
           Portaria MTE nº 1.419/2024 · Lei nº 14.831/2024 · Ministério da Previdência Social
           (2025) · Ipsos World Mental Health Day Report 2024.
         </p>
@@ -449,7 +473,7 @@ function Legislacao() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  ROI                                                                       */
+/*  ROI · GOLD                                                                */
 /* -------------------------------------------------------------------------- */
 
 function ROI() {
@@ -480,24 +504,24 @@ function ROI() {
     },
   ];
   return (
-    <section className="bg-cream py-20 text-ink md:py-28">
+    <section className="bg-gold py-20 text-ink md:py-28">
       <div className="container-x">
-        <Eyebrow>O ROI</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl text-ink">
-          Pessoas saudáveis <span className="text-gold">performam mais</span>.
+        <Eyebrow tone="ink">O ROI</Eyebrow>
+        <SectionTitle tone="gold" className="mt-5 max-w-3xl">
+          Pessoas saudáveis performam mais.
         </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink/70">
+        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink/80">
           A ciência comprova: saúde corporativa não é benefício — é vantagem
           competitiva. Programas preventivos documentam ganhos mensuráveis em
           produtividade, retenção e custos médicos.
         </p>
-        <div className="mt-12 grid gap-px bg-ink/10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-px bg-ink/15 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.title} className="flex flex-col bg-cream p-7">
-              <div className="font-serif font-light text-5xl text-gold">{s.k}</div>
+            <div key={s.title} className="flex flex-col bg-gold p-7">
+              <div className="font-serif font-light text-5xl text-ink">{s.k}</div>
               <h3 className="mt-5 font-serif font-light text-lg text-ink">{s.title}</h3>
-              <p className="mt-3 text-[13px] leading-relaxed text-ink/70">{s.body}</p>
-              <p className="mt-auto pt-5 text-[9px] italic leading-snug text-ink/50">{s.ref}</p>
+              <p className="mt-3 text-[13px] leading-relaxed text-ink/80">{s.body}</p>
+              <p className="mt-auto pt-5 text-[9px] italic leading-snug text-ink/60">{s.ref}</p>
             </div>
           ))}
         </div>
@@ -507,7 +531,7 @@ function ROI() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Evidência científica                                                      */
+/*  Evidência científica · DARK                                               */
 /* -------------------------------------------------------------------------- */
 
 function Evidencia() {
@@ -515,7 +539,7 @@ function Evidencia() {
     <section id="evidencia" className="bg-ink py-20 text-cream md:py-28">
       <div className="container-x">
         <Eyebrow>Evidência científica</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
+        <SectionTitle tone="dark" className="mt-5 max-w-3xl">
           O que ensinamos ao seu time — em duas frentes.
         </SectionTitle>
 
@@ -524,10 +548,10 @@ function Evidencia() {
             <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
               Primeiro eixo
             </div>
-            <h3 className="mt-3 font-serif font-light text-2xl text-cream">
+            <h3 className="mt-3 font-serif font-light text-2xl text-gold">
               Atividade física e saúde mental
             </h3>
-            <p className="mt-5 text-[13px] leading-relaxed text-cream/75">
+            <p className="mt-5 text-[13px] leading-relaxed text-cream/85">
               <span className="text-cream">Meta-análise · 79.551 participantes:</span>{" "}
               efeitos terapêuticos mensuráveis na redução de depressão, ansiedade e
               sofrimento psicológico — atividade física como abordagem principal.
@@ -540,11 +564,11 @@ function Evidencia() {
               ].map(([k, b]) => (
                 <li key={k} className="grid grid-cols-[auto_1fr] gap-4">
                   <span className="font-serif font-light text-xl text-gold">{k}</span>
-                  <p className="text-[13px] text-cream/75">{b}</p>
+                  <p className="text-[13px] text-cream/85">{b}</p>
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-[10px] italic leading-snug text-cream/45">
+            <p className="mt-6 text-[10px] italic leading-snug text-cream/55">
               Munro NR et al. Br J Sports Med. 2026;60(8):590-599.
             </p>
           </article>
@@ -553,10 +577,10 @@ function Evidencia() {
             <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
               Segundo eixo
             </div>
-            <h3 className="mt-3 font-serif font-light text-2xl text-cream">
+            <h3 className="mt-3 font-serif font-light text-2xl text-gold">
               Alimentação e saúde mental
             </h3>
-            <p className="mt-5 text-[13px] leading-relaxed text-cream/75">
+            <p className="mt-5 text-[13px] leading-relaxed text-cream/85">
               <span className="text-cream">
                 Estudo prospectivo · 180.446 participantes · 11,6 anos:
               </span>{" "}
@@ -564,31 +588,31 @@ function Evidencia() {
               (HR 0,71–0,81), ansiedade e comorbidade.
             </p>
             <div className="mt-6 border-t border-cream/10 pt-6">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cream/55">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cream/65">
                 Padrões com evidência
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
                 {["Mediterrânea", "DASH", "EAT-Lancet"].map((t) => (
                   <span
                     key={t}
-                    className="border border-cream/15 px-3 py-1 text-[11px] text-cream/80"
+                    className="border border-cream/15 px-3 py-1 text-[11px] text-cream/85"
                   >
                     {t}
                   </span>
                 ))}
               </div>
             </div>
-            <ul className="mt-6 space-y-3 text-[13px] text-cream/75">
+            <ul className="mt-6 space-y-3 text-[13px] text-cream/85">
               <li>→ <span className="text-cream">Vitaminas do complexo B</span> — síntese de serotonina, dopamina e GABA.</li>
               <li>→ <span className="text-cream">Magnésio e probióticos</span> — modulação da ansiedade e eixo microbioma-intestino-cérebro.</li>
               <li className="text-destructive">⨯ <span className="text-cream">Evitar:</span> ultraprocessados, açúcares refinados e padrões pró-inflamatórios.</li>
             </ul>
-            <p className="mt-6 text-[10px] italic leading-snug text-cream/45">
+            <p className="mt-6 text-[10px] italic leading-snug text-cream/55">
               Lu X et al. Nat Commun. 2024;15(1):5599.
             </p>
           </article>
         </div>
-        <p className="mt-6 text-[11px] text-cream/55">
+        <p className="mt-6 text-[11px] text-cream/65">
           Estudos disponíveis na biblioteca pública do PubMed.
         </p>
       </div>
@@ -597,29 +621,29 @@ function Evidencia() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Programa ACTIO_90                                                         */
+/*  Programa ACTIO_90 · CREAM                                                 */
 /* -------------------------------------------------------------------------- */
 
 function Programa() {
   return (
-    <section id="programa" className="bg-ink-soft py-20 text-cream md:py-28">
+    <section id="programa" className="bg-cream py-20 text-ink md:py-28">
       <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-5">
           <Eyebrow>O ACTIO_90</Eyebrow>
-          <SectionTitle className="mt-5">
+          <SectionTitle tone="cream" className="mt-5">
             Educação e promoção em saúde, entregues na sua empresa.
           </SectionTitle>
-          <p className="mt-6 text-[15px] leading-relaxed text-cream/70">
+          <p className="mt-6 text-[15px] leading-relaxed text-ink/80">
             O Programa ACTIO_90 Saúde Corporativa Impacto Real traduz evidência
             científica em boas práticas. Elimina barreiras de acesso, simplifica a
             literatura e fala a língua do seu time.
           </p>
-          <dl className="mt-8 space-y-6 border-t border-cream/10 pt-6">
+          <dl className="mt-8 space-y-6 border-t border-ink/10 pt-6">
             <div>
               <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
                 Público-alvo
               </dt>
-              <dd className="mt-2 text-[14px] text-cream/80">
+              <dd className="mt-2 text-[14px] text-ink/85">
                 Grupos de 10 ou mais colaboradores — foco em lideranças e times estratégicos.
               </dd>
             </div>
@@ -627,7 +651,7 @@ function Programa() {
               <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
                 Duração & entregáveis
               </dt>
-              <dd className="mt-2 text-[14px] text-cream/80">
+              <dd className="mt-2 text-[14px] text-ink/85">
                 90 dias de acompanhamento contínuo. Cada participante recebe relatório
                 individual personalizado e canal direto com especialistas por WhatsApp.
               </dd>
@@ -642,7 +666,7 @@ function Programa() {
               loading="lazy"
               className="aspect-[4/5] w-full object-cover grayscale"
             />
-            <div className="pointer-events-none absolute -bottom-3 -right-3 h-16 w-16 border-r border-b border-gold/40" />
+            <div className="pointer-events-none absolute -bottom-3 -right-3 h-16 w-16 border-r border-b border-gold" />
           </div>
         </div>
       </div>
@@ -651,7 +675,7 @@ function Programa() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Jornada · 5 marcos                                                        */
+/*  Jornada · DARK                                                            */
 /* -------------------------------------------------------------------------- */
 
 function Jornada() {
@@ -707,8 +731,8 @@ function Jornada() {
     <section className="bg-ink py-20 text-cream md:py-28">
       <div className="container-x">
         <Eyebrow>Jornada ACTIO_90</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
-          90 dias de transformação — <span className="text-gold">5 marcos clínicos</span>.
+        <SectionTitle tone="dark" className="mt-5 max-w-3xl">
+          90 dias de transformação — 5 marcos clínicos.
         </SectionTitle>
 
         <ol className="mt-12 divide-y divide-cream/10 border-y border-cream/10">
@@ -718,10 +742,10 @@ function Jornada() {
                 <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
                   Marco {String(i + 1).padStart(2, "0")}
                 </div>
-                <div className="mt-2 font-serif font-light text-2xl text-cream md:text-3xl">{s.d}</div>
-                <div className="mt-1 text-[13px] text-cream/65">{s.title}</div>
+                <div className="mt-2 font-serif font-light text-2xl text-gold md:text-3xl">{s.d}</div>
+                <div className="mt-1 text-[13px] text-cream/75">{s.title}</div>
               </div>
-              <ul className="space-y-2.5 text-[14px] text-cream/80 md:col-span-8">
+              <ul className="space-y-2.5 text-[14px] text-cream/85 md:col-span-8">
                 {s.bullets.map((b) => (
                   <li key={b} className="grid grid-cols-[auto_1fr] gap-3">
                     <span className="mt-2 h-1 w-1 rounded-full bg-gold" />
@@ -733,7 +757,7 @@ function Jornada() {
           ))}
         </ol>
 
-        <blockquote className="mt-12 max-w-3xl border-l border-gold pl-5 font-serif text-lg italic leading-snug text-cream/85">
+        <blockquote className="mt-12 max-w-3xl border-l border-gold pl-5 font-serif text-lg italic leading-snug text-cream/90">
           Cada etapa é desenhada para garantir adesão clínica, evolução mensurável e
           engajamento sustentado ao longo dos 90 dias.
         </blockquote>
@@ -743,7 +767,7 @@ function Jornada() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Medimos                                                                   */
+/*  Medimos · CREAM                                                           */
 /* -------------------------------------------------------------------------- */
 
 function Medimos() {
@@ -762,21 +786,21 @@ function Medimos() {
     },
   ];
   return (
-    <section className="bg-ink-soft py-20 text-cream md:py-28">
+    <section className="bg-cream py-20 text-ink md:py-28">
       <div className="container-x">
         <Eyebrow>O que medimos</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
+        <SectionTitle tone="cream" className="mt-5 max-w-3xl">
           Métricas que importam — e por quê.
         </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-cream/65">
+        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink/75">
           Não queremos formar atletas. Queremos cuidar das pessoas do seu time naquilo
           que mais adoece e prevenir desfechos desfavoráveis.
         </p>
-        <div className="mt-12 grid gap-px bg-cream/10 md:grid-cols-3">
+        <div className="mt-12 grid gap-px bg-ink/10 md:grid-cols-3">
           {groups.map((g) => (
-            <div key={g.title} className="bg-ink-soft p-8">
-              <h3 className="font-serif font-light text-xl text-cream">{g.title}</h3>
-              <ul className="mt-5 space-y-2.5 text-[13px] text-cream/75">
+            <div key={g.title} className="bg-cream p-8">
+              <h3 className="font-serif font-light text-xl text-gold">{g.title}</h3>
+              <ul className="mt-5 space-y-2.5 text-[13px] text-ink/80">
                 {g.items.map((i) => (
                   <li key={i} className="grid grid-cols-[auto_1fr] gap-3">
                     <span className="text-gold">—</span>
@@ -787,8 +811,8 @@ function Medimos() {
             </div>
           ))}
         </div>
-        <div className="mt-8 border-l border-gold bg-ink p-6 text-[13px] leading-relaxed text-cream/80 md:p-7">
-          <span className="text-cream">Pressão arterial:</span> rastreamento de
+        <div className="mt-8 border-l border-gold bg-ink p-6 text-[13px] leading-relaxed text-cream md:p-7">
+          <span className="text-gold">Pressão arterial:</span> rastreamento de
           hipertensão — principal causa de AVC no Brasil. A identificação precoce
           permite intervenção clínica antes do evento cardiovascular irreversível.
         </div>
@@ -798,7 +822,7 @@ function Medimos() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Pilares de conteúdo                                                       */
+/*  Pilares de conteúdo · DARK                                                */
 /* -------------------------------------------------------------------------- */
 
 function Pilares() {
@@ -836,18 +860,18 @@ function Pilares() {
     <section className="bg-ink py-20 text-cream md:py-28">
       <div className="container-x">
         <Eyebrow>Pilar 01 · Educação e promoção em saúde</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
+        <SectionTitle tone="dark" className="mt-5 max-w-3xl">
           Conscientização que muda comportamento.
         </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-cream/65">
+        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-cream/75">
           Palestras baseadas em evidência abordam os temas mais relevantes para a saúde
           da população corporativa brasileira — linguagem direta e aplicabilidade imediata.
         </p>
         <div className="mt-12 grid gap-px bg-cream/10 md:grid-cols-3">
           {cols.map((c) => (
             <div key={c.title} className="bg-ink-soft p-8">
-              <h3 className="font-serif font-light text-xl text-cream">{c.title}</h3>
-              <ul className="mt-5 space-y-2.5 text-[13px] text-cream/75">
+              <h3 className="font-serif font-light text-xl text-gold">{c.title}</h3>
+              <ul className="mt-5 space-y-2.5 text-[13px] text-cream/85">
                 {c.items.map((i) => (
                   <li key={i}>• {i}</li>
                 ))}
@@ -861,7 +885,7 @@ function Pilares() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Serviços · escaláveis                                                     */
+/*  Serviços · CREAM                                                          */
 /* -------------------------------------------------------------------------- */
 
 function Servicos() {
@@ -887,13 +911,13 @@ function Servicos() {
     },
   ];
   return (
-    <section id="servicos" className="bg-ink-soft py-20 text-cream md:py-28">
+    <section id="servicos" className="bg-cream py-20 text-ink md:py-28">
       <div className="container-x">
         <Eyebrow>Soluções</Eyebrow>
-        <SectionTitle className="mt-5 max-w-4xl">
+        <SectionTitle tone="cream" className="mt-5 max-w-4xl">
           Três níveis de serviço — escaláveis para diferentes maturidades corporativas.
         </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-cream/65">
+        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink/75">
           O formato final é definido após entender o porte, o perfil de colaboradores e
           os objetivos da instituição.
         </p>
@@ -904,12 +928,16 @@ function Servicos() {
               key={t.name}
               className={
                 t.featured
-                  ? "relative border border-gold bg-ink p-7 md:p-8"
-                  : "border border-cream/10 bg-ink p-7 transition hover:border-gold md:p-8"
+                  ? "relative border border-gold bg-ink p-7 text-cream md:p-8"
+                  : "border border-ink/15 bg-cream p-7 text-ink transition hover:border-gold md:p-8"
               }
             >
               <div className="flex items-start justify-between gap-3">
-                <h3 className="font-serif font-light text-xl text-cream">{t.name}</h3>
+                <h3
+                  className={`font-serif font-light text-xl ${t.featured ? "text-gold" : "text-gold"}`}
+                >
+                  {t.name}
+                </h3>
                 {t.featured ? (
                   <span className="bg-gold px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.18em] text-ink">
                     Popular
@@ -921,8 +949,16 @@ function Servicos() {
               <div className="mt-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">
                 {t.tag}
               </div>
-              <p className="mt-4 text-[13px] leading-relaxed text-cream/70">{t.desc}</p>
-              <ul className="mt-6 space-y-2.5 border-t border-cream/10 pt-5 text-[13px] text-cream/80">
+              <p
+                className={`mt-4 text-[13px] leading-relaxed ${t.featured ? "text-cream/85" : "text-ink/80"}`}
+              >
+                {t.desc}
+              </p>
+              <ul
+                className={`mt-6 space-y-2.5 border-t pt-5 text-[13px] ${
+                  t.featured ? "border-cream/10 text-cream/90" : "border-ink/10 text-ink/85"
+                }`}
+              >
                 {t.items.map((i) => (
                   <li key={i} className="grid grid-cols-[auto_1fr] gap-3">
                     <span className="text-gold">✓</span>
@@ -934,7 +970,7 @@ function Servicos() {
           ))}
         </div>
 
-        <p className="mt-10 max-w-2xl border-l border-gold pl-5 font-serif text-lg italic text-cream/80">
+        <p className="mt-10 max-w-2xl border-l border-gold pl-5 font-serif text-lg italic text-ink/85">
           Não é uma solução de prateleira. É uma conversa técnica que desenha a melhor
           entrada para a realidade da instituição.
         </p>
@@ -944,7 +980,7 @@ function Servicos() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Responsabilidade técnica · ficha do médico                                */
+/*  Responsabilidade técnica · DARK                                           */
 /* -------------------------------------------------------------------------- */
 
 function Responsavel() {
@@ -952,8 +988,8 @@ function Responsavel() {
     <section id="responsavel" className="bg-ink py-20 text-cream md:py-28">
       <div className="container-x">
         <Eyebrow>Responsabilidade técnica</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
-          Quem desenvolveu o <span className="text-gold">ACTIO_90</span>.
+        <SectionTitle tone="dark" className="mt-5 max-w-3xl">
+          Quem desenvolveu o ACTIO_90.
         </SectionTitle>
 
         <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-14">
@@ -969,35 +1005,35 @@ function Responsavel() {
             </div>
           </div>
           <div className="md:col-span-7">
-            <blockquote className="border-l border-gold pl-5 font-serif text-xl italic leading-snug text-cream/85 md:text-2xl">
+            <blockquote className="border-l border-gold pl-5 font-serif text-xl italic leading-snug text-cream/90 md:text-2xl">
               Medicina exercida com foco centrado na pessoa — pautada nas melhores
               práticas e evidências científicas.
             </blockquote>
 
             <div className="mt-10 border-t border-cream/10 pt-8">
-              <div className="font-serif font-light text-2xl text-cream md:text-3xl">
+              <div className="font-serif font-light text-2xl text-gold md:text-3xl">
                 Dr. Leandro Fernando Batista Leite
               </div>
-              <div className="mt-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
+              <div className="mt-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/80">
                 CRM-MG 68.021 · RQE 67.627
               </div>
-              <p className="mt-6 text-[14px] leading-relaxed text-cream/75">
+              <p className="mt-6 text-[14px] leading-relaxed text-cream/85">
                 Pai, marido, médico especialista há +10 anos, leitor voraz, preceptor do
                 internato de medicina da PUC-Minas, entusiasta e praticante de
                 atividades físicas, fundador e responsável técnico do ACTIO_90.
               </p>
-              <p className="mt-4 text-[14px] leading-relaxed text-cream/75">
+              <p className="mt-4 text-[14px] leading-relaxed text-cream/85">
                 Supervisor clínico direto de todos os participantes do programa ao longo
                 dos 90 dias.
               </p>
 
               <div className="mt-8 grid grid-cols-[auto_1fr] items-center gap-4 border-t border-cream/10 pt-6">
                 <span className="h-px w-10 bg-gold" />
-                <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/80">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/85">
                   Evidência científica aplicada
                 </span>
               </div>
-              <p className="mt-6 text-[11px] leading-relaxed text-cream/55">
+              <p className="mt-6 text-[11px] leading-relaxed text-cream/70">
                 Projeto ACTIO_90 — Medicina. Nasceu como projeto de pesquisa financiado
                 pelas plataformas PIBIC-FAPEMIG dentro da Faculdade de Medicina da
                 PUC-Minas.
@@ -1011,53 +1047,53 @@ function Responsavel() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  CTA & Contato · ficha técnica                                             */
+/*  Contato · CREAM                                                           */
 /* -------------------------------------------------------------------------- */
 
 function Contato() {
   return (
-    <section id="contato" className="bg-ink-soft py-20 text-cream md:py-28">
+    <section id="contato" className="bg-cream py-20 text-ink md:py-28">
       <div className="container-x">
         <Eyebrow>Próximo passo</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
+        <SectionTitle tone="cream" className="mt-5 max-w-3xl">
           Pronto para elevar o padrão da sua gestão de saúde?
         </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-cream/70">
+        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink/80">
           Em 30 minutos, a equipe ACTIO conhece o contexto da instituição e apresenta
           caminhos possíveis para transformar saúde corporativa em indicadores de gestão.
         </p>
 
-        <div className="mt-12 grid gap-px bg-cream/10 md:grid-cols-3">
+        <div className="mt-12 grid gap-px bg-ink/10 md:grid-cols-3">
           {[
             ["01", "Entender o cenário", "Mapeamos o contexto atual de RH, SST e saúde corporativa."],
             ["02", "Identificar oportunidades", "Pontos de risco, oportunidade e aderência regulatória."],
             ["03", "Arquitetura sob medida", "Proposta inicial de programa personalizado."],
           ].map(([n, t, b]) => (
-            <div key={n} className="bg-ink-soft p-7">
+            <div key={n} className="bg-cream p-7">
               <div className="font-serif font-light text-3xl text-gold">{n}</div>
-              <div className="mt-4 font-serif font-light text-lg text-cream">{t}</div>
-              <p className="mt-2 text-[13px] leading-relaxed text-cream/65">{b}</p>
+              <div className="mt-4 font-serif font-light text-lg text-gold">{t}</div>
+              <p className="mt-2 text-[13px] leading-relaxed text-ink/75">{b}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 bg-ink p-8 md:p-10">
+        <div className="mt-12 bg-ink p-8 text-cream md:p-10">
           <div className="grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
               <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
                 Fale com o responsável comercial
               </div>
-              <div className="mt-3 font-serif font-light text-2xl text-cream md:text-3xl">
+              <div className="mt-3 font-serif font-light text-2xl text-gold md:text-3xl">
                 Reunião de apresentação sem compromisso.
               </div>
-              <p className="mt-4 max-w-xl text-[14px] leading-relaxed text-cream/70">
+              <p className="mt-4 max-w-xl text-[14px] leading-relaxed text-cream/85">
                 Mostramos como o programa funciona na prática para o perfil e a cultura
                 da sua empresa. Proposta adaptada ao tamanho da equipe — sem custo.
               </p>
             </div>
             <div className="md:col-span-5">
               <div className="border border-cream/15 p-6">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cream/65">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cream/75">
                   Gustavo Cavalcanti
                 </div>
                 <a
@@ -1068,7 +1104,7 @@ function Contato() {
                 </a>
                 <a
                   href="mailto:medgustavocavalcanti@gmail.com"
-                  className="mt-2 block break-all text-[13px] text-cream/75 transition hover:text-gold"
+                  className="mt-2 block break-all text-[13px] text-cream/85 transition hover:text-gold"
                 >
                   medgustavocavalcanti@gmail.com
                 </a>
@@ -1090,24 +1126,24 @@ function Contato() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Footer                                                                    */
+/*  Footer · DARK                                                             */
 /* -------------------------------------------------------------------------- */
 
 function Footer() {
   return (
-    <footer className="border-t border-cream/10 bg-ink py-12 text-cream/75">
+    <footer className="border-t border-cream/10 bg-ink py-12 text-cream/85">
       <div className="container-x flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
         <div>
           <ActioWordmark size="sm" />
-          <div className="mt-2 text-[10px] uppercase tracking-[0.28em] text-cream/60">
+          <div className="mt-2 text-[10px] uppercase tracking-[0.28em] text-cream/70">
             Saúde corporativa é estratégia
           </div>
         </div>
-        <p className="max-w-md text-[11px] leading-relaxed text-cream/70">
+        <p className="max-w-md text-[11px] leading-relaxed text-cream/80">
           Programa ACTIO_90 · Medicina baseada em evidências · Responsável técnico Dr.
           Leandro F. B. Leite, CRM-MG 68.021 / RQE 67.627.
         </p>
-        <div className="text-[11px] uppercase tracking-[0.2em] text-cream/60">
+        <div className="text-[11px] uppercase tracking-[0.2em] text-cream/70">
           © {new Date().getFullYear()} ACTIO
         </div>
       </div>
@@ -1116,27 +1152,27 @@ function Footer() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Composição da página                                                      */
+/*  Composição da página · alternância tricolor                               */
 /* -------------------------------------------------------------------------- */
 
 function Index() {
   return (
     <main className="bg-ink text-cream">
-      <Hero />
-      <Cenario />
-      <Reflection />
-      <Pillars />
-      <Legislacao />
-      <ROI />
-      <Evidencia />
-      <Programa />
-      <Jornada />
-      <Medimos />
-      <Pilares />
-      <Servicos />
-      <Responsavel />
-      <Contato />
-      <Footer />
+      <Hero />        {/* dark  */}
+      <Cenario />     {/* dark  */}
+      <Reflection />  {/* cream */}
+      <Pillars />     {/* dark  */}
+      <Legislacao />  {/* cream */}
+      <ROI />         {/* gold  */}
+      <Evidencia />   {/* dark  */}
+      <Programa />    {/* cream */}
+      <Jornada />     {/* dark  */}
+      <Medimos />     {/* cream */}
+      <Pilares />     {/* dark  */}
+      <Servicos />    {/* cream */}
+      <Responsavel /> {/* dark  */}
+      <Contato />     {/* cream */}
+      <Footer />      {/* dark  */}
     </main>
   );
 }
