@@ -31,11 +31,22 @@ export const Route = createFileRoute("/")({
 /*  Marca                                                                     */
 /* -------------------------------------------------------------------------- */
 
-function ActioWordmark({ size = "md" }: { size?: "sm" | "md" }) {
+function ActioMark({ className = "h-7 w-7" }: { className?: string }) {
   return (
-    <a href="#top" className="inline-flex items-baseline font-serif font-light tracking-tighter text-cream">
-      <span className={size === "sm" ? "text-lg" : "text-2xl"}>ACTIO</span>
-      <span className="ml-0.5 text-gold">.</span>
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      <circle cx="24" cy="6" r="3" fill="var(--gold)" />
+      <path d="M24 10 L8 42 M24 10 L40 42 M14 32 L34 32"
+        stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" fill="none" />
+    </svg>
+  );
+}
+
+function ActioWordmark({ size = "md" }: { size?: "sm" | "md" }) {
+  const isSm = size === "sm";
+  return (
+    <a href="#top" className="inline-flex items-center gap-2 font-serif font-light tracking-tight text-cream">
+      <ActioMark className={isSm ? "h-6 w-6" : "h-8 w-8"} />
+      <span className={isSm ? "text-lg" : "text-2xl"}>ACTIO</span>
     </a>
   );
 }
