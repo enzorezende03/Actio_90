@@ -32,11 +32,17 @@ export const Route = createFileRoute("/")({
 /* -------------------------------------------------------------------------- */
 
 function ActioMark({ className = "h-7 w-7" }: { className?: string }) {
+  // Símbolo "A" minimalista: duas diagonais finas + ponto dourado acima do ápice
   return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-      <circle cx="24" cy="6" r="3" fill="var(--gold)" />
-      <path d="M24 10 L8 42 M24 10 L40 42 M14 32 L34 32"
-        stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" fill="none" />
+    <svg viewBox="0 0 48 56" className={className} aria-hidden="true">
+      <circle cx="24" cy="5" r="3" fill="var(--gold)" />
+      <path
+        d="M24 10 L6 52 M24 10 L42 52"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        fill="none"
+      />
     </svg>
   );
 }
@@ -474,24 +480,24 @@ function ROI() {
     },
   ];
   return (
-    <section className="bg-ink-soft py-20 text-cream md:py-28">
+    <section className="bg-cream py-20 text-ink md:py-28">
       <div className="container-x">
         <Eyebrow>O ROI</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
+        <SectionTitle className="mt-5 max-w-3xl text-ink">
           Pessoas saudáveis <span className="text-gold">performam mais</span>.
         </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-cream/65">
+        <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink/70">
           A ciência comprova: saúde corporativa não é benefício — é vantagem
           competitiva. Programas preventivos documentam ganhos mensuráveis em
           produtividade, retenção e custos médicos.
         </p>
-        <div className="mt-12 grid gap-px bg-cream/10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-px bg-ink/10 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.title} className="flex flex-col bg-ink-soft p-7">
+            <div key={s.title} className="flex flex-col bg-cream p-7">
               <div className="font-serif font-light text-5xl text-gold">{s.k}</div>
-              <h3 className="mt-5 font-serif font-light text-lg text-cream">{s.title}</h3>
-              <p className="mt-3 text-[13px] leading-relaxed text-cream/65">{s.body}</p>
-              <p className="mt-auto pt-5 text-[9px] italic leading-snug text-cream/45">{s.ref}</p>
+              <h3 className="mt-5 font-serif font-light text-lg text-ink">{s.title}</h3>
+              <p className="mt-3 text-[13px] leading-relaxed text-ink/70">{s.body}</p>
+              <p className="mt-auto pt-5 text-[9px] italic leading-snug text-ink/50">{s.ref}</p>
             </div>
           ))}
         </div>
