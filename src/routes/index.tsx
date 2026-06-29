@@ -32,11 +32,17 @@ export const Route = createFileRoute("/")({
 /* -------------------------------------------------------------------------- */
 
 function ActioMark({ className = "h-7 w-7" }: { className?: string }) {
+  // Símbolo "A" minimalista: duas diagonais finas + ponto dourado acima do ápice
   return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-      <circle cx="24" cy="6" r="3" fill="var(--gold)" />
-      <path d="M24 10 L8 42 M24 10 L40 42 M14 32 L34 32"
-        stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" fill="none" />
+    <svg viewBox="0 0 48 56" className={className} aria-hidden="true">
+      <circle cx="24" cy="5" r="3" fill="var(--gold)" />
+      <path
+        d="M24 10 L6 52 M24 10 L42 52"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        fill="none"
+      />
     </svg>
   );
 }
