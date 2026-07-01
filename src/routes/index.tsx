@@ -111,6 +111,7 @@ function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
     ["#programa", "Programas"],
+    ["#servicos", "Serviços"],
     ["#evidencia", "Evidências"],
     ["#responsavel", "Sobre"],
     ["#contato", "Contato"],
@@ -232,9 +233,11 @@ function Hero() {
 
 function Problema() {
   const stats = [
-    ["93,6%", "do custo de produtividade vem de presenteísmo — 15× mais que o absenteísmo."],
-    ["+68%", "afastamentos por saúde mental em 2024 vs. 2023."],
-    ["546.254", "benefícios concedidos por transtornos mentais em 2025 no Brasil."],
+    ["93%", "dos profissionais com saúde comprometida continuam comparecendo ao trabalho — o custo invisível do presenteísmo."],
+    ["+68%", "crescimento em afastamentos por transtornos mentais no Brasil em apenas um ano."],
+    ["1 em 4", "trabalhadores em países industrializados exposto a riscos psicossociais crônicos."],
+    ["38%", "dos profissionais com DM2 apresentam depressão concomitante não diagnosticada."],
+    ["546.254", "benefícios concedidos por transtornos mentais em 2025 no Brasil — o maior número já registrado."],
     ["NR-1", "Portaria MTE nº 1.419/2024 em vigor desde maio/2026."],
   ];
   return (
@@ -250,7 +253,7 @@ function Problema() {
           produtividade, cultura e resultados.
         </p>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stats.map(([k, b]) => (
             <div
               key={k}
@@ -279,6 +282,8 @@ function Problema() {
 
 function Reflection() {
   const questions = [
+    "Quantas pessoas do seu time estão presentes — mas não inteiras?",
+    "E quantas você consegue ver antes que o custo apareça em afastamento ou demissão?",
     "É possível cumprir exigências legais sem se afogar em burocracia?",
     "Sua empresa trata saúde do trabalhador apenas como exames admissionais e ASOs?",
     "Sua empresa está adequada para lidar com riscos psicossociais da NR-1?",
@@ -904,8 +909,29 @@ function Contato() {
           >
             Agendar visita técnica <ArrowRight className="h-4 w-4" />
           </a>
-          <div className="mt-4 font-serif text-[11px] uppercase tracking-[0.22em] text-[color:var(--steel)]">
-            Gustavo Cavalcanti · 31 99265-5261
+          <div className="mx-auto mt-8 max-w-md rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-6 text-center">
+            <div className="font-serif text-lg font-medium text-cream">
+              Gustavo Cavalcanti
+            </div>
+            <div className="mt-1 font-serif text-[10px] font-semibold uppercase tracking-[0.28em] text-gold">
+              Diretor Comercial
+            </div>
+            <div className="mt-4 space-y-1 text-[13px] text-cream/85">
+              <a
+                href="mailto:medgustavocavalcanti@gmail.com"
+                className="block break-all font-serif transition hover:text-gold"
+              >
+                medgustavocavalcanti@gmail.com
+              </a>
+              <a
+                href="https://wa.me/5531992655261"
+                target="_blank"
+                rel="noreferrer"
+                className="block font-serif tracking-[0.14em] transition hover:text-gold"
+              >
+                31 99265-5261
+              </a>
+            </div>
           </div>
         </div>
 
@@ -928,14 +954,6 @@ function Contato() {
           ))}
         </div>
 
-        <div className="mx-auto mt-10 max-w-2xl rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-6 text-center">
-          <a
-            href="mailto:medgustavocavalcanti@gmail.com"
-            className="break-all font-serif text-[13px] text-cream/85 transition hover:text-gold"
-          >
-            medgustavocavalcanti@gmail.com
-          </a>
-        </div>
       </div>
     </section>
   );
