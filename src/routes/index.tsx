@@ -190,7 +190,7 @@ function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/95 to-ink" />
 
-      <div className="relative container-x py-20 md:py-32">
+      <div className="relative container-x pt-6 pb-20 md:pt-10 md:pb-32">
         <div className="flex flex-wrap items-center gap-2">
           <Badge>NR-1 Conforme</Badge>
           <Badge>Lei 14.831/2024</Badge>
