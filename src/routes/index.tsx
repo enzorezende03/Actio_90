@@ -909,8 +909,29 @@ function Contato() {
           >
             Agendar visita técnica <ArrowRight className="h-4 w-4" />
           </a>
-          <div className="mt-4 font-serif text-[11px] uppercase tracking-[0.22em] text-[color:var(--steel)]">
-            Gustavo Cavalcanti · 31 99265-5261
+          <div className="mx-auto mt-8 max-w-md rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-6 text-center">
+            <div className="font-serif text-lg font-medium text-cream">
+              Gustavo Cavalcanti
+            </div>
+            <div className="mt-1 font-serif text-[10px] font-semibold uppercase tracking-[0.28em] text-gold">
+              Diretor Comercial
+            </div>
+            <div className="mt-4 space-y-1 text-[13px] text-cream/85">
+              <a
+                href="mailto:medgustavocavalcanti@gmail.com"
+                className="block break-all font-serif transition hover:text-gold"
+              >
+                medgustavocavalcanti@gmail.com
+              </a>
+              <a
+                href="https://wa.me/5531992655261"
+                target="_blank"
+                rel="noreferrer"
+                className="block font-serif tracking-[0.14em] transition hover:text-gold"
+              >
+                31 99265-5261
+              </a>
+            </div>
           </div>
         </div>
 
@@ -933,14 +954,6 @@ function Contato() {
           ))}
         </div>
 
-        <div className="mx-auto mt-10 max-w-2xl rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-6 text-center">
-          <a
-            href="mailto:medgustavocavalcanti@gmail.com"
-            className="break-all font-serif text-[13px] text-cream/85 transition hover:text-gold"
-          >
-            medgustavocavalcanti@gmail.com
-          </a>
-        </div>
       </div>
     </section>
   );
