@@ -901,11 +901,33 @@ function Contato() {
             apresenta caminhos para transformar saúde corporativa em indicadores de
             gestão. Não é uma solução de prateleira.
           </p>
+        </div>
+
+        <div className="mx-auto mt-16 grid max-w-5xl gap-4 md:grid-cols-3">
+          {[
+            ["01", "Entender o cenário", "Mapeamos o contexto atual de RH, SST e saúde corporativa."],
+            ["02", "Identificar oportunidades", "Pontos de risco, oportunidade e aderência regulatória."],
+            ["03", "Arquitetura sob medida", "Proposta inicial de programa personalizado."],
+          ].map(([n, t, b]) => (
+            <div
+              key={n}
+              className="rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-7"
+            >
+              <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--gold)]/15 font-serif text-sm font-bold text-gold">
+                {n}
+              </div>
+              <div className="mt-5 font-serif text-lg font-medium text-cream">{t}</div>
+              <p className="mt-2 text-[13px] leading-[1.6] text-cream/70">{b}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mx-auto mt-12 max-w-3xl text-center">
           <a
             href="https://wa.me/5531992655261"
             target="_blank"
             rel="noreferrer"
-            className="mt-10 inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-8 py-4 font-serif text-[12px] font-semibold uppercase tracking-[0.22em] text-ink transition hover:bg-[color:var(--gold-soft)]"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-8 py-4 font-serif text-[12px] font-semibold uppercase tracking-[0.22em] text-ink transition hover:bg-[color:var(--gold-soft)]"
           >
             Agendar visita técnica <ArrowRight className="h-4 w-4" />
           </a>
@@ -935,24 +957,6 @@ function Contato() {
           </div>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl gap-4 md:grid-cols-3">
-          {[
-            ["01", "Entender o cenário", "Mapeamos o contexto atual de RH, SST e saúde corporativa."],
-            ["02", "Identificar oportunidades", "Pontos de risco, oportunidade e aderência regulatória."],
-            ["03", "Arquitetura sob medida", "Proposta inicial de programa personalizado."],
-          ].map(([n, t, b]) => (
-            <div
-              key={n}
-              className="rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-7"
-            >
-              <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--gold)]/15 font-serif text-sm font-bold text-gold">
-                {n}
-              </div>
-              <div className="mt-5 font-serif text-lg font-medium text-cream">{t}</div>
-              <p className="mt-2 text-[13px] leading-[1.6] text-cream/70">{b}</p>
-            </div>
-          ))}
-        </div>
 
       </div>
     </section>
