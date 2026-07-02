@@ -1,9 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight, ArrowRight } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import consultaImg from "@/assets/consulta.jpg";
 import doctorImg from "@/assets/dr-leandro.png";
+
+function useIsMobileDevice() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const ua = navigator.userAgent.toLowerCase();
+    setIsMobile(/android|iphone|ipad|ipod|blackberry|iemobile|opera mini/.test(ua));
+  }, []);
+  return isMobile;
+}
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
