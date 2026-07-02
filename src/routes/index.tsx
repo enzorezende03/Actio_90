@@ -940,7 +940,9 @@ function Contato() {
             </div>
             <div className="mt-4 space-y-1 text-[13px] text-cream/85">
               <a
-                href="mailto:medgustavocavalcanti@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=medgustavocavalcanti@gmail.com"
+                target="_blank"
+                rel="noreferrer"
                 className="block break-all font-serif transition hover:text-gold"
               >
                 medgustavocavalcanti@gmail.com
