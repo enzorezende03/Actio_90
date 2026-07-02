@@ -14,6 +14,24 @@ function useIsMobileDevice() {
   return isMobile;
 }
 
+function EmailLink() {
+  const isMobile = useIsMobileDevice();
+  const href = isMobile
+    ? "mailto:medgustavocavalcanti@gmail.com"
+    : "https://mail.google.com/mail/?view=cm&fs=1&to=medgustavocavalcanti@gmail.com";
+  return (
+    <a
+      href={href}
+      target={isMobile ? undefined : "_blank"}
+      rel={isMobile ? undefined : "noreferrer"}
+      className="block break-all font-serif transition hover:text-gold"
+    >
+      medgustavocavalcanti@gmail.com
+    </a>
+  );
+}
+
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
