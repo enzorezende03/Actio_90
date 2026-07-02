@@ -949,14 +949,8 @@ function Contato() {
               Diretor Comercial
             </div>
             <div className="mt-4 space-y-1 text-[13px] text-cream/85">
-              <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=medgustavocavalcanti@gmail.com"
-                target="_blank"
-                rel="noreferrer"
-                className="block break-all font-serif transition hover:text-gold"
-              >
-                medgustavocavalcanti@gmail.com
-              </a>
+              <EmailLink />
+
               <a
                 href="https://wa.me/5531992655261"
                 target="_blank"
