@@ -1,9 +1,37 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight, ArrowRight } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import consultaImg from "@/assets/consulta.jpg";
 import doctorImg from "@/assets/dr-leandro.png";
+
+function useIsMobileDevice() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const ua = navigator.userAgent.toLowerCase();
+    setIsMobile(/android|iphone|ipad|ipod|blackberry|iemobile|opera mini/.test(ua));
+  }, []);
+  return isMobile;
+}
+
+function EmailLink() {
+  const isMobile = useIsMobileDevice();
+  const href = isMobile
+    ? "mailto:medgustavocavalcanti@gmail.com"
+    : "https://mail.google.com/mail/?view=cm&fs=1&to=medgustavocavalcanti@gmail.com";
+  return (
+    <a
+      href={href}
+      target={isMobile ? undefined : "_blank"}
+      rel={isMobile ? undefined : "noreferrer"}
+      className="block break-all font-serif transition hover:text-gold"
+    >
+      medgustavocavalcanti@gmail.com
+    </a>
+  );
+}
+
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -939,14 +967,8 @@ function Contato() {
               Diretor Comercial
             </div>
             <div className="mt-4 space-y-1 text-[13px] text-cream/85">
-              <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=medgustavocavalcanti@gmail.com"
-                target="_blank"
-                rel="noreferrer"
-                className="block break-all font-serif transition hover:text-gold"
-              >
-                medgustavocavalcanti@gmail.com
-              </a>
+              <EmailLink />
+
               <a
                 href="https://wa.me/5531992655261"
                 target="_blank"
