@@ -855,14 +855,14 @@ function Servicos() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Responsável técnico                                                       */
+/*  Diretor técnico                                                           */
 /* -------------------------------------------------------------------------- */
 
 function Responsavel() {
   return (
     <section id="responsavel" className="bg-[color:var(--ink-soft)] py-20 md:py-28">
       <div className="container-x">
-        <Eyebrow>Responsabilidade técnica</Eyebrow>
+        <Eyebrow>Direção técnica</Eyebrow>
         <SectionTitle className="mt-5 max-w-3xl">
           Quem desenvolveu o ACTIO_90.
         </SectionTitle>
@@ -892,7 +892,7 @@ function Responsavel() {
               <p className="mt-6 text-[14px] leading-[1.7] text-cream/80">
                 Pai, marido, médico especialista há +10 anos, leitor voraz, preceptor
                 do internato de medicina da PUC-Minas, entusiasta e praticante de
-                atividades físicas, fundador e responsável técnico do ACTIO_90.
+                atividades físicas, fundador e diretor técnico do ACTIO_90.
               </p>
               <p className="mt-4 text-[14px] leading-[1.7] text-cream/80">
                 Supervisor clínico direto de todos os participantes do programa ao
@@ -1002,7 +1002,7 @@ function Footer() {
           </div>
         </div>
         <p className="max-w-md text-[11px] leading-[1.7] text-cream/65">
-          Programa ACTIO_90 · Medicina baseada em evidências · Responsável técnico
+          Programa ACTIO_90 · Medicina baseada em evidências · Diretor técnico
           Dr. Leandro F. B. Leite, CRM-MG 68.021 / RQE 67.627.
         </p>
         <div className="font-serif text-[10px] uppercase tracking-[0.22em] text-[color:var(--steel)]">
