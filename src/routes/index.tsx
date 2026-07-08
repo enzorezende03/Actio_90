@@ -1,9 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowUpRight, ArrowRight } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowRight,
+  ArrowUpRight,
+  ShieldCheck,
+  AlertTriangle,
+  Activity,
+  Brain,
+  HeartPulse,
+  LineChart,
+  ClipboardCheck,
+  Stethoscope,
+  MessageCircle,
+  Award,
+  Check,
+} from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import consultaImg from "@/assets/consulta.jpg";
 import doctorImg from "@/assets/dr-leandro.png";
+
+/* -------------------------------------------------------------------------- */
+/*  Utilidades                                                                */
+/* -------------------------------------------------------------------------- */
 
 function useIsMobileDevice() {
   const [isMobile, setIsMobile] = useState(false);
@@ -14,7 +34,7 @@ function useIsMobileDevice() {
   return isMobile;
 }
 
-function EmailLink() {
+function EmailLink({ className = "" }: { className?: string }) {
   const isMobile = useIsMobileDevice();
   const href = isMobile
     ? "mailto:medgustavocavalcanti@gmail.com"
@@ -24,7 +44,7 @@ function EmailLink() {
       href={href}
       target={isMobile ? undefined : "_blank"}
       rel={isMobile ? undefined : "noreferrer"}
-      className="font-serif underline decoration-gold/40 decoration-1 underline-offset-4 transition hover:decoration-gold"
+      className={className}
     >
       medgustavocavalcanti@gmail.com
     </a>
@@ -34,20 +54,21 @@ function EmailLink() {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ACTIO — Dossiê de Saúde Corporativa" },
+      { title: "ACTIO — Saúde Corporativa e Conformidade NR-1" },
       {
         name: "description",
         content:
-          "Uma leitura editorial sobre saúde corporativa baseada em evidência. Conformidade NR-1, Lei 14.831 e o método ACTIO_90 para RH, SST e diretoria.",
+          "Programa clínico em 90 dias que adequa sua empresa à NR-1, reduz afastamentos e transforma saúde em indicador de gestão. Direção Dr. Leandro F. B. Leite.",
       },
-      { property: "og:title", content: "ACTIO — Dossiê de Saúde Corporativa" },
+      { property: "og:title", content: "ACTIO — Saúde Corporativa e Conformidade NR-1" },
       {
         property: "og:description",
         content:
-          "Da conformidade à cultura. Uma leitura editorial sobre saúde corporativa baseada em evidência.",
+          "Adequação à NR-1, redução de afastamentos e cultura de saúde mensurável. Programa clínico em 90 dias.",
       },
       { property: "og:image", content: heroImg },
       { name: "twitter:image", content: heroImg },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
@@ -82,86 +103,83 @@ function ActioWordmark({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Primitivos editoriais                                                     */
+/*  Botões                                                                    */
 /* -------------------------------------------------------------------------- */
 
-function Rubric({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center gap-3 font-serif text-[10px] font-semibold uppercase tracking-[0.32em] text-gold">
-      <span className="h-px w-6 bg-gold/60" />
-      {children}
-    </span>
-  );
-}
-
-function Kicker({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="font-serif text-[10px] font-semibold uppercase tracking-[0.32em] text-[color:var(--steel)]">
-      {children}
-    </div>
-  );
-}
-
-function Headline({
-  as: Tag = "h2",
+function PrimaryCTA({
+  href,
   children,
   className = "",
 }: {
-  as?: "h1" | "h2" | "h3";
+  href: string;
   children: React.ReactNode;
   className?: string;
 }) {
   return (
-    <Tag
-      className={`font-serif font-light leading-[1.02] tracking-[-0.03em] text-cream ${className}`}
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noreferrer" : undefined}
+      className={`inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 font-sans text-[14px] font-semibold text-ink transition hover:bg-[color:var(--gold-soft)] ${className}`}
     >
       {children}
-    </Tag>
+      <ArrowRight className="h-4 w-4" />
+    </a>
+  );
+}
+
+function GhostCTA({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <a
+      href={href}
+      className={`inline-flex items-center justify-center gap-2 rounded-full border border-cream/20 px-6 py-3.5 font-sans text-[14px] font-medium text-cream transition hover:border-gold hover:text-gold ${className}`}
+    >
+      {children}
+    </a>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Cabeçalho / Nav — estilo masthead                                         */
+/*  Nav                                                                       */
 /* -------------------------------------------------------------------------- */
 
 function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
-    ["#dossie", "Dossiê"],
-    ["#legado", "Conformidade"],
-    ["#metodo", "Método"],
-    ["#programas", "Programas"],
-    ["#perfil", "Perfil"],
-    ["#expediente", "Expediente"],
+    ["#solucao", "Solução"],
+    ["#nr1", "NR-1"],
+    ["#como-funciona", "Como funciona"],
+    ["#planos", "Planos"],
+    ["#autoridade", "Quem conduz"],
   ] as const;
   return (
     <nav className="fixed inset-x-0 top-0 z-40 border-b border-cream/[0.08] bg-ink/85 backdrop-blur-md">
       <div className="container-x flex items-center justify-between gap-4 py-4">
-        <div className="flex items-center gap-6">
-          <ActioWordmark />
-          <span className="hidden font-serif text-[10px] uppercase tracking-[0.32em] text-[color:var(--steel)] lg:inline">
-            Nº 01 · Dossiê de Saúde Corporativa
-          </span>
-        </div>
-        <div className="hidden items-center gap-7 text-[12px] uppercase tracking-[0.22em] text-cream/70 md:flex">
+        <ActioWordmark />
+        <div className="hidden items-center gap-8 text-[13px] font-medium text-cream/75 md:flex">
           {links.map(([href, label]) => (
-            <a key={href} href={href} className="font-serif transition hover:text-gold">
+            <a key={href} href={href} className="transition hover:text-gold">
               {label}
             </a>
           ))}
         </div>
-        <a
-          href="#expediente"
-          className="hidden shrink-0 rounded-none border border-gold px-4 py-2.5 font-serif text-[11px] font-semibold uppercase tracking-[0.22em] text-gold transition hover:bg-gold hover:text-ink md:inline-block"
-        >
-          Agendar leitura
-        </a>
+        <div className="hidden md:block">
+          <PrimaryCTA href="#contato">Agendar demonstração</PrimaryCTA>
+        </div>
         <button
           type="button"
           aria-label="Abrir menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-cream/15 text-cream transition hover:border-gold hover:text-gold md:hidden"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cream/15 text-cream transition hover:border-gold hover:text-gold md:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -169,14 +187,14 @@ function Nav() {
       {open && (
         <div className="md:hidden">
           <div className="container-x pb-5">
-            <div className="border border-cream/10 bg-ink-soft p-5">
+            <div className="rounded-2xl border border-cream/10 bg-ink-soft p-5">
               <ul className="divide-y divide-cream/[0.07]">
                 {links.map(([href, label]) => (
                   <li key={href}>
                     <a
                       href={href}
                       onClick={() => setOpen(false)}
-                      className="block py-3 font-serif text-[13px] uppercase tracking-[0.24em] text-cream/85 hover:text-gold"
+                      className="block py-3 text-[14px] text-cream/90 hover:text-gold"
                     >
                       {label}
                     </a>
@@ -184,11 +202,11 @@ function Nav() {
                 ))}
               </ul>
               <a
-                href="#expediente"
+                href="#contato"
                 onClick={() => setOpen(false)}
-                className="mt-5 block border border-gold px-5 py-3 text-center font-serif text-[11px] font-semibold uppercase tracking-[0.22em] text-gold"
+                className="mt-5 block rounded-full bg-gold px-5 py-3 text-center text-[13px] font-semibold text-ink"
               >
-                Agendar leitura
+                Agendar demonstração
               </a>
             </div>
           </div>
@@ -199,83 +217,156 @@ function Nav() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Capa editorial                                                            */
+/*  Hero                                                                      */
 /* -------------------------------------------------------------------------- */
 
-function Cover() {
+function Hero() {
   return (
-    <header id="top" className="relative isolate overflow-hidden bg-ink pt-24">
-      <img
-        src={heroImg}
-        alt=""
+    <header
+      id="top"
+      className="relative isolate overflow-hidden bg-ink pt-28 md:pt-32"
+    >
+      {/* Fundo com aura dourada */}
+      <div
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover opacity-[0.14]"
+        className="absolute inset-0 -z-10 opacity-70"
+        style={{
+          background:
+            "radial-gradient(60% 45% at 85% 20%, rgba(212,168,67,0.18) 0%, transparent 60%), radial-gradient(50% 40% at 10% 90%, rgba(212,168,67,0.10) 0%, transparent 60%)",
+        }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/95 to-ink" />
+      <div className="container-x relative grid items-center gap-14 pb-20 md:grid-cols-12 md:gap-10 md:pb-28">
+        <div className="md:col-span-7">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+            <AlertTriangle className="h-3.5 w-3.5" />
+            NR-1 vigente desde 05/2026
+          </span>
 
-      <div className="relative container-x pt-8 pb-24 md:pt-14 md:pb-36">
-        {/* Masthead */}
-        <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-cream/[0.10] pb-6">
-          <div className="font-serif text-[11px] uppercase tracking-[0.4em] text-cream/60">
-            ACTIO · Edição Nº 01
+          <h1 className="mt-6 font-serif text-[2.5rem] font-light leading-[1.05] tracking-[-0.03em] text-cream sm:text-5xl md:text-[4rem]">
+            Sua empresa está{" "}
+            <span className="italic text-gold">em conformidade</span> com a nova NR-1?
+          </h1>
+
+          <p className="mt-6 max-w-xl text-[16px] leading-[1.7] text-cream/75 md:text-[17px]">
+            O ACTIO adequa sua organização aos riscos psicossociais da Portaria MTE
+            1.419/2024, reduz afastamentos e transforma saúde corporativa em
+            indicador de gestão — com um programa clínico em 90 dias conduzido por
+            médicos especialistas.
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <PrimaryCTA href="#contato">Agendar demonstração</PrimaryCTA>
+            <GhostCTA href="#nr1">Ver o que mudou na NR-1</GhostCTA>
           </div>
-          <div className="font-serif text-[11px] uppercase tracking-[0.32em] text-[color:var(--steel)]">
-            Dossiê · Belo Horizonte · 2026
-          </div>
+
+          <ul className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px] text-cream/70">
+            {[
+              "Medicina baseada em evidência",
+              "Cobertura NR-1 + Lei 14.831",
+              "Relatório executivo para diretoria",
+            ].map((f) => (
+              <li key={f} className="inline-flex items-center gap-2">
+                <Check className="h-4 w-4 text-gold" />
+                {f}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Grid editorial */}
-        <div className="mt-14 grid gap-10 md:grid-cols-12 md:gap-12">
-          <div className="md:col-span-8">
-            <Rubric>Editorial de abertura</Rubric>
-            <Headline
-              as="h1"
-              className="mt-8 text-[2.75rem] sm:text-6xl md:text-[5.4rem]"
-            >
-              Da conformidade
-              <br />
-              <span className="italic text-gold">à cultura.</span>
-            </Headline>
-            <p className="mt-8 max-w-xl text-[15px] leading-[1.75] text-cream/70 md:text-[16px]">
-              Uma leitura em cinco atos sobre por que saúde deixou de ser benefício e
-              passou a ser indicador de gestão — para empresas que não querem descobrir
-              o custo depois que ele aparece na folha.
-            </p>
-          </div>
+        {/* Mock de dashboard */}
+        <div className="md:col-span-5">
+          <div className="relative">
+            <div
+              aria-hidden="true"
+              className="absolute -inset-4 -z-10 rounded-[28px] bg-gradient-to-tr from-gold/20 to-transparent blur-2xl"
+            />
+            <div className="overflow-hidden rounded-2xl border border-cream/10 bg-ink-soft shadow-2xl shadow-black/40">
+              <div className="flex items-center gap-1.5 border-b border-cream/[0.08] px-4 py-2.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-cream/20" />
+                <span className="h-2.5 w-2.5 rounded-full bg-cream/20" />
+                <span className="h-2.5 w-2.5 rounded-full bg-cream/20" />
+                <span className="ml-3 font-sans text-[11px] uppercase tracking-[0.24em] text-cream/50">
+                  ACTIO · Painel Clínico
+                </span>
+              </div>
+              <div className="p-6">
+                <div className="flex items-baseline justify-between">
+                  <div>
+                    <div className="text-[11px] uppercase tracking-[0.2em] text-cream/50">
+                      Conformidade NR-1
+                    </div>
+                    <div className="mt-1 font-serif text-4xl font-light text-cream">
+                      92<span className="text-gold">%</span>
+                    </div>
+                  </div>
+                  <div className="rounded-full bg-gold/15 px-3 py-1 text-[11px] font-semibold text-gold">
+                    +18% vs. Q1
+                  </div>
+                </div>
 
-          <aside className="border-t border-cream/[0.10] pt-8 md:col-span-4 md:border-l md:border-t-0 md:pl-10 md:pt-0">
-            <Kicker>Nesta edição</Kicker>
-            <ul className="mt-6 space-y-4 font-serif text-[13px] text-cream/80">
-              {[
-                ["I", "O silêncio que custa caro"],
-                ["II", "A lei virou linha de base"],
-                ["III", "Ciência traduzida em rotina"],
-                ["IV", "Um método em 90 dias"],
-                ["V", "Programas escaláveis"],
-              ].map(([r, t]) => (
-                <li key={r} className="flex items-baseline gap-4">
-                  <span className="w-6 shrink-0 text-gold">{r}</span>
-                  <span className="flex-1 leading-snug">{t}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 border-t border-cream/[0.10] pt-6">
-              <a
-                href="#dossie"
-                className="inline-flex items-center gap-2 font-serif text-[11px] uppercase tracking-[0.28em] text-gold transition hover:text-cream"
-              >
-                Iniciar leitura <ArrowRight className="h-3.5 w-3.5" />
-              </a>
+                <div className="mt-5 h-2 w-full overflow-hidden rounded-full bg-cream/[0.08]">
+                  <div className="h-full w-[92%] rounded-full bg-gradient-to-r from-gold to-[color:var(--gold-soft)]" />
+                </div>
+
+                <div className="mt-6 grid grid-cols-3 gap-3">
+                  {[
+                    ["PHQ-9", "−34%"],
+                    ["GAD-7", "−29%"],
+                    ["Afast.", "−28%"],
+                  ].map(([k, v]) => (
+                    <div
+                      key={k}
+                      className="rounded-lg border border-cream/[0.08] bg-ink p-3"
+                    >
+                      <div className="text-[10px] uppercase tracking-[0.2em] text-cream/50">
+                        {k}
+                      </div>
+                      <div className="mt-1 font-serif text-lg font-light text-gold">
+                        {v}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 space-y-2.5">
+                  {[
+                    ["Riscos psicossociais mapeados", true],
+                    ["Plano de intervenção documentado", true],
+                    ["Reavaliação e evidência de eficácia", true],
+                  ].map(([label, ok]) => (
+                    <div key={String(label)} className="flex items-center gap-3">
+                      <span
+                        className={`inline-flex h-5 w-5 items-center justify-center rounded-full ${
+                          ok ? "bg-gold/15 text-gold" : "bg-cream/10 text-cream/50"
+                        }`}
+                      >
+                        <Check className="h-3 w-3" />
+                      </span>
+                      <span className="text-[12.5px] text-cream/80">{label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </aside>
+          </div>
         </div>
+      </div>
 
-        {/* Assinatura da edição */}
-        <div className="mt-16 flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-cream/[0.10] pt-8 text-[11px] uppercase tracking-[0.28em] text-cream/50">
-          <span className="font-serif">NR-1 · vigente 05/2026</span>
-          <span className="font-serif">Lei 14.831/2024</span>
-          <span className="font-serif">PUC Minas · PIBIC-FAPEMIG</span>
-          <span className="ml-auto font-serif text-gold/80">Direção Dr. L. F. B. Leite</span>
+      {/* Prova social */}
+      <div className="border-y border-cream/[0.08] bg-ink-soft/50">
+        <div className="container-x flex flex-wrap items-center justify-between gap-6 py-6 text-[11.5px] uppercase tracking-[0.22em] text-cream/50">
+          <span className="text-cream/70">Reconhecido por</span>
+          {[
+            "PUC Minas",
+            "PIBIC-FAPEMIG",
+            "CRM-MG 68.021",
+            "RQE 67.627",
+            "MTE 1.419/2024",
+          ].map((b) => (
+            <span key={b} className="font-serif tracking-[0.28em]">
+              {b}
+            </span>
+          ))}
         </div>
       </div>
     </header>
@@ -283,210 +374,49 @@ function Cover() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Ato I — O silêncio que custa caro (feature magazine)                      */
+/*  Problema — números que a diretoria não pode ignorar                       */
 /* -------------------------------------------------------------------------- */
 
-function AtoI() {
-  return (
-    <section id="dossie" className="relative bg-ink py-24 md:py-32">
-      <div className="container-x">
-        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
-          <Rubric>Ato I</Rubric>
-          <Kicker>Reportagem · pág. 04</Kicker>
-        </div>
-
-        <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-14">
-          {/* Coluna manchete */}
-          <div className="md:col-span-7">
-            <Headline className="text-[2rem] md:text-[3.4rem]">
-              O silêncio que custa caro.
-            </Headline>
-            <p className="mt-8 text-[15px] leading-[1.75] text-cream/85 first-letter:font-serif first-letter:text-6xl first-letter:font-light first-letter:leading-none first-letter:text-gold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-              A maior parte do adoecimento corporativo não aparece em atestado. Aparece
-              em prazos que escorregam, reuniões esvaziadas de energia, decisões
-              adiadas — e num dado silencioso: a maioria dos profissionais com saúde
-              comprometida continua comparecendo ao trabalho como se nada estivesse
-              acontecendo.
-            </p>
-            <p className="mt-5 columns-1 gap-8 text-[14.5px] leading-[1.75] text-cream/75 md:columns-2">
-              Chamamos isso de presenteísmo, e ele custa mais do que qualquer
-              afastamento. É o intervalo entre o momento em que o corpo pede socorro
-              e o momento em que a empresa percebe. Nesse intervalo, cultura, entrega
-              e retenção erodem — sem que nenhum indicador soe o alarme.
-              <br className="hidden md:block" />
-              <br className="hidden md:block" />
-              A saída não é oferecer mais uma ação isolada de bem-estar. É construir
-              uma leitura contínua da saúde do time — clínica, mensurável e
-              acompanhada por profissionais. É trocar campanhas por método.
-            </p>
-          </div>
-
-          {/* Coluna lateral com dados */}
-          <aside className="md:col-span-5">
-            <div className="border-y border-cream/[0.10] py-6">
-              <blockquote className="font-serif text-2xl italic leading-[1.25] text-cream md:text-[1.7rem]">
-                “Antes do afastamento, existe uma janela.
-                <span className="text-gold"> Nela cabe uma decisão.”</span>
-              </blockquote>
-            </div>
-
-            <ul className="mt-8 divide-y divide-cream/[0.10]">
-              {[
-                ["93%", "dos profissionais com saúde comprometida seguem comparecendo — presenteísmo invisível."],
-                ["+68%", "de crescimento de afastamentos por transtornos mentais no Brasil em um ano."],
-                ["546.254", "benefícios concedidos por transtornos mentais em 2025 — recorde histórico."],
-                ["1 / 4", "trabalhadores em países industrializados exposto a riscos psicossociais crônicos."],
-              ].map(([k, b]) => (
-                <li key={k} className="grid grid-cols-[auto_1fr] items-baseline gap-5 py-4">
-                  <span className="font-serif text-[26px] font-light leading-none text-gold">
-                    {k}
-                  </span>
-                  <p className="text-[13px] leading-[1.55] text-cream/80">{b}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-[10.5px] italic leading-relaxed text-[color:var(--steel)]">
-              Fontes: Ministério da Previdência Social, 2025 · Bialowolski P et al.
-              PLoS One, 2020 · Ipsos, 2024.
-            </p>
-          </aside>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Ensaio — perguntas ao leitor                                              */
-/* -------------------------------------------------------------------------- */
-
-function Ensaio() {
-  const perguntas = [
-    "Quantas pessoas do seu time estão presentes — mas não inteiras?",
-    "Quantas dessas você consegue enxergar antes que o custo apareça em folha?",
-    "É possível cumprir a NR-1 sem se afogar em burocracia?",
-    "Sua saúde ocupacional se resume a admissional, periódico e ASO?",
-    "Você tem indicadores confiáveis de saúde corporativa — ou intuição?",
+function Problem() {
+  const stats = [
+    { k: "93%", t: "seguem presentes, mas adoecidos", d: "Presenteísmo invisível na equipe." },
+    { k: "+68%", t: "de afastamentos por transtornos mentais", d: "Crescimento em apenas um ano." },
+    { k: "546k", t: "benefícios concedidos em 2025", d: "Recorde histórico da Previdência." },
+    { k: "1 / 4", t: "trabalhadores expostos a risco crônico", d: "Riscos psicossociais em países industrializados." },
   ];
   return (
-    <section className="bg-[color:var(--ink-soft)] py-24 md:py-32">
+    <section className="bg-ink py-24 md:py-28">
       <div className="container-x">
-        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
-          <Rubric>Entre atos · ensaio</Rubric>
-          <Kicker>Cinco perguntas ao leitor</Kicker>
-        </div>
-        <div className="mt-14 grid gap-12 md:grid-cols-12 md:gap-16">
-          <Headline className="text-[1.8rem] md:col-span-5 md:text-[2.6rem]">
-            Antes de qualquer programa, cinco perguntas que só a diretoria pode
-            responder.
-          </Headline>
-          <ol className="md:col-span-7">
-            {perguntas.map((q, i) => (
-              <li
-                key={q}
-                className="grid grid-cols-[auto_1fr] items-baseline gap-6 border-b border-cream/[0.10] py-5 first:border-t"
-              >
-                <span className="font-serif text-3xl font-light text-gold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="font-serif text-[17px] leading-[1.45] text-cream/90 md:text-[19px]">
-                  {q}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Ato II — Conformidade (Legislação)                                        */
-/* -------------------------------------------------------------------------- */
-
-function AtoII() {
-  return (
-    <section id="legado" className="bg-ink py-24 md:py-32">
-      <div className="container-x">
-        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
-          <Rubric>Ato II</Rubric>
-          <Kicker>Conformidade · pág. 12</Kicker>
+        <div className="max-w-2xl">
+          <span className="eyebrow">O problema</span>
+          <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-cream md:text-5xl">
+            Adoecer no trabalho virou{" "}
+            <span className="italic text-gold">indicador financeiro.</span>
+          </h2>
+          <p className="mt-5 text-[15.5px] leading-[1.7] text-cream/70">
+            A maior parte do adoecimento corporativo não aparece em atestado. Aparece
+            em prazos que escorregam, entregas erráticas e talentos que somem — antes
+            de qualquer indicador soar o alarme.
+          </p>
         </div>
 
-        <div className="mt-12 grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-8">
-            <Headline className="text-[2rem] md:text-[3.4rem]">
-              A lei virou linha de base —{" "}
-              <span className="italic text-gold">o resto é reputação.</span>
-            </Headline>
-            <p className="mt-8 max-w-2xl text-[15px] leading-[1.75] text-cream/75">
-              Em maio de 2026, a nova NR-1 tornou os riscos psicossociais parte
-              obrigatória do PGR. No mesmo movimento, a Lei 14.831 abriu espaço para
-              quem decide ir além. Duas frentes, um único plano: transformar
-              obrigação em vantagem.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-14 grid gap-0 border border-cream/[0.10] md:grid-cols-2">
-          <article className="border-b border-cream/[0.10] p-8 md:border-b-0 md:border-r md:p-10">
-            <Kicker>Coluna A · obrigatório</Kicker>
-            <h3 className="mt-4 font-serif text-2xl font-light text-cream md:text-[1.8rem]">
-              NR-1 — riscos psicossociais no PGR
-            </h3>
-            <p className="mt-5 text-[13.5px] leading-[1.7] text-cream/75">
-              A Portaria MTE 1.419/2024 incluiu burnout, sobrecarga, assédio e
-              estresse crônico entre os riscos que precisam ser identificados,
-              avaliados e prevenidos. Vale para toda empresa com CLT. Fiscalização
-              ativa, multa e embargo desde 26/05/2026.
-            </p>
-            <ul className="mt-6 divide-y divide-cream/[0.10] text-[13px] text-cream/80">
-              {[
-                "Identificação de riscos por avaliação clínica individual",
-                "Plano de intervenção documentado e rastreável",
-                "Reavaliação e evidência de eficácia",
-              ].map((i) => (
-                <li key={i} className="grid grid-cols-[auto_1fr] gap-3 py-3">
-                  <span className="text-gold">—</span>
-                  <span>{i}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-
-          <article className="bg-[color:var(--ink-soft)] p-8 md:p-10">
-            <Kicker>Coluna B · voluntário</Kicker>
-            <h3 className="mt-4 font-serif text-2xl font-light text-cream md:text-[1.8rem]">
-              Lei 14.831 — <span className="text-gold">selo de reputação</span>
-            </h3>
-            <p className="mt-5 text-[13.5px] leading-[1.7] text-cream/75">
-              Sancionada em março/2024, cria a certificação federal de{" "}
-              <em>Empresa Promotora da Saúde Mental</em>. Vale por dois anos e
-              reconhece organizações que estruturam programa, promovem
-              conscientização e mensuram resultados.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {["Promoção da saúde mental", "Bem-estar organizacional", "Métricas verificáveis"].map(
-                (t) => (
-                  <span
-                    key={t}
-                    className="inline-block border border-cream/15 px-3 py-1 font-serif text-[10px] uppercase tracking-[0.24em] text-cream/70"
-                  >
-                    {t}
-                  </span>
-                ),
-              )}
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((s) => (
+            <div
+              key={s.t}
+              className="rounded-2xl border border-cream/[0.08] bg-ink-soft p-6 transition hover:border-gold/40"
+            >
+              <div className="font-serif text-4xl font-light text-gold md:text-5xl">
+                {s.k}
+              </div>
+              <div className="mt-4 text-[14px] font-medium text-cream">{s.t}</div>
+              <p className="mt-2 text-[12.5px] leading-[1.6] text-cream/60">{s.d}</p>
             </div>
-            <p className="mt-6 border-l-2 border-gold pl-4 font-serif text-[13px] italic leading-[1.55] text-cream/80">
-              Cumprir a NR-1 é obrigação. Buscar o selo da 14.831 é escolha —
-              e diferencial competitivo diante de talentos e clientes.
-            </p>
-          </article>
+          ))}
         </div>
-
-        <p className="mt-6 text-[10.5px] italic text-[color:var(--steel)]">
-          Portaria MTE 1.419/2024 · Lei 14.831/2024 · Ministério da Previdência Social.
+        <p className="mt-6 text-[11px] italic text-[color:var(--steel)]">
+          Fontes: Ministério da Previdência Social · Bialowolski P et al., PLoS One
+          · Ipsos, 2024.
         </p>
       </div>
     </section>
@@ -494,54 +424,71 @@ function AtoII() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Data spread — ciência em números                                          */
+/*  Solução — o que o ACTIO entrega                                           */
 /* -------------------------------------------------------------------------- */
 
-function DataSpread() {
-  const dados = [
-    { k: "2,3×", t: "Produtividade", b: "Profissionais saudáveis performam até 2,3× acima de pares debilitados.", r: "Carnethon M et al. Circulation, 2009." },
-    { k: "R$ 2,54", t: "Retorno por real", b: "Para cada real investido em prevenção, economia média em custos médicos.", r: "Dement JM et al. J Occup Environ Med, 2015." },
-    { k: "−28%", t: "Afastamentos", b: "Redução observada em programas preventivos estruturados.", r: "Carnethon M et al. Circulation, 2009." },
-    { k: "61%", t: "Sintomas mentais", b: "Redução robusta de depressão e ansiedade com atividade física supervisionada.", r: "Munro NR et al. Br J Sports Med, 2026." },
-    { k: "15 min/d", t: "Limiar mínimo", b: "MVPA a partir de 15 min/dia já melhora a saúde mental autorrelatada.", r: "Munro NR et al., 2026." },
-    { k: "HR 0,71", t: "Alimentação", b: "Maior adesão à dieta EAT-Lancet associada a menor risco de depressão.", r: "Lu X et al. Nat Commun, 2024." },
+function Solution() {
+  const cards = [
+    {
+      icon: ShieldCheck,
+      t: "Conformidade NR-1 sem burocracia",
+      d: "Riscos psicossociais identificados, plano de intervenção documentado e reavaliação com evidência — pronto para fiscalização.",
+    },
+    {
+      icon: Brain,
+      t: "Saúde mental mensurável",
+      d: "Instrumentos validados (PHQ-9, GAD-7, GHQ-12, DASS-21) aplicados por médicos, não por formulários genéricos.",
+    },
+    {
+      icon: HeartPulse,
+      t: "Cuidado clínico individual",
+      d: "Consultas médicas, bioimpedância, exames e prescrição personalizada — dentro da empresa e no ritmo do time.",
+    },
+    {
+      icon: LineChart,
+      t: "Relatório executivo",
+      d: "Indicadores consolidados para RH, SST e diretoria: presenteísmo, sinais vitais, saúde mental e evolução no período.",
+    },
+    {
+      icon: MessageCircle,
+      t: "Acesso direto por WhatsApp",
+      d: "Canal contínuo com especialistas para dúvidas, ajustes de plano e educação semanal em saúde.",
+    },
+    {
+      icon: Award,
+      t: "Rumo ao selo 14.831",
+      d: "Estrutura pronta para pleitear a certificação federal de Empresa Promotora da Saúde Mental.",
+    },
   ];
   return (
-    <section id="metodo" className="bg-[color:var(--ink-soft)] py-24 md:py-32">
+    <section id="solucao" className="bg-[color:var(--ink-soft)] py-24 md:py-28">
       <div className="container-x">
-        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
-          <Rubric>Ato III</Rubric>
-          <Kicker>Ciência traduzida · pág. 20</Kicker>
-        </div>
-
-        <div className="mt-12 grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-7">
-            <Headline className="text-[2rem] md:text-[3.2rem]">
-              Ciência traduzida <span className="italic text-gold">em rotina.</span>
-            </Headline>
+        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <span className="eyebrow">A solução</span>
+            <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-cream md:text-5xl">
+              Um único programa cobre{" "}
+              <span className="italic text-gold">obrigação e cultura.</span>
+            </h2>
           </div>
-          <p className="text-[15px] leading-[1.75] text-cream/75 md:col-span-5">
-            Duas frentes de evidência sustentam o programa: atividade física
-            supervisionada e alimentação com padrão anti-inflamatório. Nada de
-            promessa; tudo com desfecho medido em revistas revisadas por pares.
+          <p className="max-w-md text-[15px] leading-[1.7] text-cream/70">
+            O ACTIO substitui campanhas isoladas de bem-estar por um método clínico
+            contínuo, com métricas verificáveis e responsabilidade médica.
           </p>
         </div>
 
-        {/* Grid tipográfico */}
-        <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-cream/[0.10] bg-cream/[0.10] sm:grid-cols-2 lg:grid-cols-3">
-          {dados.map((d) => (
-            <div key={d.t} className="flex flex-col bg-ink p-7 md:p-8">
-              <div className="font-serif text-[42px] font-light leading-none text-gold md:text-[54px]">
-                {d.k}
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {cards.map(({ icon: Icon, t, d }) => (
+            <article
+              key={t}
+              className="group rounded-2xl border border-cream/[0.08] bg-ink p-7 transition hover:-translate-y-0.5 hover:border-gold/40"
+            >
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gold/12 text-gold transition group-hover:bg-gold group-hover:text-ink">
+                <Icon className="h-5 w-5" />
               </div>
-              <div className="mt-5 font-serif text-[11px] font-semibold uppercase tracking-[0.28em] text-cream">
-                {d.t}
-              </div>
-              <p className="mt-3 text-[13px] leading-[1.6] text-cream/75">{d.b}</p>
-              <p className="mt-auto pt-5 text-[10px] italic leading-snug text-[color:var(--steel)]">
-                {d.r}
-              </p>
-            </div>
+              <h3 className="mt-6 font-serif text-xl font-light text-cream">{t}</h3>
+              <p className="mt-3 text-[13.5px] leading-[1.65] text-cream/70">{d}</p>
+            </article>
           ))}
         </div>
       </div>
@@ -550,16 +497,102 @@ function DataSpread() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Ato IV — Método ACTIO_90 (Jornada + o que medimos)                        */
+/*  NR-1 — o que mudou (duas colunas)                                         */
 /* -------------------------------------------------------------------------- */
 
-function AtoIV() {
-  const marcos = [
-    { d: "D0", t: "Fundação", b: "Palestra de abertura, avaliação de composição corporal e sinais vitais. Bioimpedância, PA, glicemia, FC, SpO₂." },
-    { d: "D1 → D10", t: "Consulta clínica", b: "Consultas médicas individuais online. Exames se aplicáveis, prescrição alimentar e plano físico personalizados." },
-    { d: "D11 → D30", t: "Rotina em curso", b: "Canal direto por WhatsApp com especialistas. Ajustes contínuos e educação semanal em saúde." },
-    { d: "D31 → D60", t: "Reavaliação", b: "Segundo ciclo educativo, adequação dos planos e nova leitura dos indicadores." },
-    { d: "D61 → D90", t: "Entrega", b: "Terceiro ciclo, avaliação final e relatório individual do percurso — pronto para gestão." },
+function NR1() {
+  return (
+    <section id="nr1" className="bg-ink py-24 md:py-28">
+      <div className="container-x">
+        <div className="max-w-2xl">
+          <span className="eyebrow">Contexto regulatório</span>
+          <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-cream md:text-5xl">
+            O que mudou na{" "}
+            <span className="italic text-gold">NR-1 em 2026.</span>
+          </h2>
+          <p className="mt-5 text-[15.5px] leading-[1.7] text-cream/70">
+            A Portaria MTE 1.419/2024 tornou obrigatória a inclusão de riscos
+            psicossociais no PGR. Junto com a Lei 14.831/2024, redefine o papel
+            estratégico do RH.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          <article className="rounded-2xl border border-cream/[0.10] bg-ink-soft p-8 md:p-10">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gold/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+              Obrigatório
+            </div>
+            <h3 className="mt-5 font-serif text-2xl font-light text-cream md:text-3xl">
+              NR-1 · riscos psicossociais no PGR
+            </h3>
+            <p className="mt-4 text-[14px] leading-[1.7] text-cream/75">
+              Burnout, sobrecarga, assédio e estresse crônico entraram na lista de
+              riscos que precisam ser identificados, avaliados e prevenidos. Vale
+              para toda empresa com CLT. Fiscalização ativa, multa e embargo desde
+              26/05/2026.
+            </p>
+            <ul className="mt-6 space-y-3 text-[13.5px] text-cream/85">
+              {[
+                "Identificação por avaliação clínica individual",
+                "Plano de intervenção documentado e rastreável",
+                "Reavaliação e evidência de eficácia",
+              ].map((i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                  <span>{i}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article className="rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/10 to-transparent p-8 md:p-10">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gold px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink">
+              Diferencial
+            </div>
+            <h3 className="mt-5 font-serif text-2xl font-light text-cream md:text-3xl">
+              Lei 14.831 · selo de reputação
+            </h3>
+            <p className="mt-4 text-[14px] leading-[1.7] text-cream/75">
+              Sancionada em março/2024, cria a certificação federal de{" "}
+              <em>Empresa Promotora da Saúde Mental</em>. Vale por dois anos e
+              reconhece organizações que estruturam programa, promovem
+              conscientização e mensuram resultados.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {[
+                "Promoção da saúde mental",
+                "Bem-estar organizacional",
+                "Métricas verificáveis",
+              ].map((t) => (
+                <span
+                  key={t}
+                  className="inline-block rounded-full border border-cream/15 bg-ink/40 px-3 py-1 text-[11px] text-cream/80"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </article>
+        </div>
+        <p className="mt-6 text-[11px] italic text-[color:var(--steel)]">
+          Portaria MTE 1.419/2024 · Lei 14.831/2024 · Ministério da Previdência Social.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Como funciona — 5 etapas                                                  */
+/* -------------------------------------------------------------------------- */
+
+function HowItWorks() {
+  const steps = [
+    { d: "D0", t: "Fundação", b: "Palestra de abertura, bioimpedância, PA, glicemia, FC e SpO₂." , icon: ClipboardCheck },
+    { d: "D1 → D10", t: "Consulta clínica", b: "Consultas médicas online, exames e prescrição personalizada.", icon: Stethoscope },
+    { d: "D11 → D30", t: "Rotina em curso", b: "WhatsApp com especialistas, ajustes contínuos e educação semanal.", icon: Activity },
+    { d: "D31 → D60", t: "Reavaliação", b: "Segundo ciclo educativo e nova leitura dos indicadores.", icon: LineChart },
+    { d: "D61 → D90", t: "Entrega", b: "Avaliação final e relatório individual — pronto para gestão.", icon: Award },
   ];
 
   const medidas = [
@@ -569,73 +602,70 @@ function AtoIV() {
   ];
 
   return (
-    <section className="bg-ink py-24 md:py-32">
+    <section id="como-funciona" className="bg-[color:var(--ink-soft)] py-24 md:py-28">
       <div className="container-x">
-        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
-          <Rubric>Ato IV</Rubric>
-          <Kicker>Método ACTIO_90 · pág. 28</Kicker>
-        </div>
-
-        <div className="mt-12 grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-8">
-            <Headline className="text-[2rem] md:text-[3.4rem]">
-              Um método <span className="italic text-gold">em 90 dias</span> — cinco
-              marcos clínicos, um relatório executivo.
-            </Headline>
-          </div>
-          <p className="text-[15px] leading-[1.75] text-cream/75 md:col-span-4">
+        <div className="max-w-2xl">
+          <span className="eyebrow">Como funciona</span>
+          <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-cream md:text-5xl">
+            Método <span className="italic text-gold">ACTIO_90.</span>
+          </h2>
+          <p className="mt-5 text-[15.5px] leading-[1.7] text-cream/70">
             Educação, avaliação e acompanhamento entregues dentro da empresa — na
             língua do time e no ritmo do calendário corporativo.
           </p>
         </div>
 
-        {/* Timeline horizontal em desktop, vertical em mobile */}
-        <ol className="mt-14 grid gap-6 border-t border-cream/[0.10] pt-8 md:grid-cols-5 md:gap-4">
-          {marcos.map((m, i) => (
-            <li key={m.d} className="relative border-t-2 border-gold/40 pt-5 md:pt-6">
-              <div className="absolute -top-[7px] left-0 h-3 w-3 rounded-full bg-gold" />
-              <div className="font-serif text-[10px] uppercase tracking-[0.28em] text-[color:var(--steel)]">
-                Marco {String(i + 1).padStart(2, "0")}
+        <ol className="mt-12 grid gap-5 md:grid-cols-5">
+          {steps.map(({ d, t, b, icon: Icon }, i) => (
+            <li
+              key={d}
+              className="relative rounded-2xl border border-cream/[0.08] bg-ink p-6"
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-serif text-[11px] uppercase tracking-[0.22em] text-[color:var(--steel)]">
+                  Etapa {String(i + 1).padStart(2, "0")}
+                </span>
+                <Icon className="h-4 w-4 text-gold" />
               </div>
-              <div className="mt-2 font-serif text-2xl font-light text-gold">{m.d}</div>
-              <div className="mt-1 font-serif text-[15px] text-cream">{m.t}</div>
-              <p className="mt-3 text-[12.5px] leading-[1.55] text-cream/70">{m.b}</p>
+              <div className="mt-4 font-serif text-2xl font-light text-gold">{d}</div>
+              <div className="mt-1 font-serif text-[15px] text-cream">{t}</div>
+              <p className="mt-3 text-[12.5px] leading-[1.55] text-cream/70">{b}</p>
             </li>
           ))}
         </ol>
 
-        {/* O que medimos + imagem */}
-        <div className="mt-20 grid gap-10 md:grid-cols-12 md:gap-14">
+        {/* O que medimos */}
+        <div className="mt-20 grid gap-10 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-5">
             <img
               src={consultaImg}
-              alt="Consulta clínica"
+              alt="Avaliação clínica presencial"
               loading="lazy"
-              className="aspect-[4/5] w-full object-cover grayscale contrast-110"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
             />
-            <p className="mt-3 font-serif text-[10.5px] uppercase tracking-[0.24em] text-[color:var(--steel)]">
-              Fig. 01 · Avaliação clínica presencial, sede do cliente.
-            </p>
           </div>
           <div className="md:col-span-7">
-            <Kicker>O que medimos</Kicker>
-            <Headline className="mt-3 text-[1.6rem] md:text-[2.2rem]">
+            <span className="eyebrow">O que medimos</span>
+            <h3 className="mt-4 font-serif text-2xl font-light leading-tight text-cream md:text-4xl">
               Métricas que importam — e por que importam.
-            </Headline>
-            <p className="mt-5 text-[14.5px] leading-[1.7] text-cream/75">
+            </h3>
+            <p className="mt-4 text-[14.5px] leading-[1.7] text-cream/75">
               Não formamos atletas. Cuidamos das pessoas do seu time naquilo que mais
               adoece — e prevenimos os desfechos que a empresa não vê.
             </p>
-            <div className="mt-8 grid gap-px overflow-hidden border border-cream/[0.10] bg-cream/[0.10] sm:grid-cols-3">
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
               {medidas.map((m) => (
-                <div key={m.g} className="bg-ink p-6">
-                  <div className="font-serif text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
+                <div
+                  key={m.g}
+                  className="rounded-2xl border border-cream/[0.08] bg-ink p-5"
+                >
+                  <div className="font-serif text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
                     {m.g}
                   </div>
                   <ul className="mt-4 space-y-2 text-[12.5px] text-cream/80">
                     {m.i.map((x) => (
-                      <li key={x} className="grid grid-cols-[auto_1fr] gap-2">
-                        <span className="text-gold">·</span>
+                      <li key={x} className="flex items-start gap-2">
+                        <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold" />
                         <span>{x}</span>
                       </li>
                     ))}
@@ -643,10 +673,6 @@ function AtoIV() {
                 </div>
               ))}
             </div>
-            <p className="mt-6 border-l-2 border-gold pl-4 text-[13px] leading-[1.6] text-cream/85">
-              A pressão arterial isolada já rastreia hipertensão — principal causa de
-              AVC no Brasil. Diagnosticar cedo é intervir antes do irreversível.
-            </p>
           </div>
         </div>
       </div>
@@ -655,294 +681,293 @@ function AtoIV() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Ato V — Programas Now / One / X                                           */
+/*  Planos                                                                    */
 /* -------------------------------------------------------------------------- */
 
-function AtoV() {
+function Plans() {
   const tiers = [
     {
       tag: "Diagnóstico estratégico",
-      name: "_Now",
-      pretitle: "Prancheta 01",
-      desc: "Uma leitura inicial da saúde do seu time — para saber onde intervir antes de investir.",
-      items: ["Entrevista com colaboradores", "Palestras empresariais", "Relatório simplificado"],
+      name: "Now",
+      desc: "Leitura inicial da saúde do seu time — para saber onde intervir antes de investir.",
+      items: [
+        "Entrevistas com colaboradores",
+        "Palestras empresariais",
+        "Relatório simplificado",
+      ],
       variant: "outline" as const,
     },
     {
       tag: "30 a 180 dias · acompanhamento",
-      name: "_One",
-      pretitle: "Prancheta 02",
+      name: "One",
       desc: "Programa de promoção da saúde com acompanhamento contínuo e evolução mensurável.",
-      items: ["Entrevistas e acompanhamento individualizado", "Palestras empresariais", "Consultas com especialistas"],
+      items: [
+        "Entrevistas e acompanhamento individual",
+        "Palestras empresariais",
+        "Consultas com especialistas",
+      ],
       variant: "solid" as const,
     },
     {
       tag: "Premium · liderança",
-      name: "_X",
-      pretitle: "Prancheta 03",
+      name: "X",
       desc: "Solução dedicada a lideranças e equipes estratégicas, com acompanhamento ampliado.",
-      items: ["Apoio médico online e WhatsApp", "Planos personalizados", "Relatório executivo"],
+      items: [
+        "Apoio médico online e WhatsApp",
+        "Planos personalizados",
+        "Relatório executivo",
+      ],
       variant: "outline" as const,
     },
   ];
   return (
-    <section id="programas" className="bg-[color:var(--ink-soft)] py-24 md:py-32">
+    <section id="planos" className="bg-ink py-24 md:py-28">
       <div className="container-x">
-        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
-          <Rubric>Ato V</Rubric>
-          <Kicker>Programas · pág. 36</Kicker>
-        </div>
-
-        <div className="mt-12 grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-7">
-            <Headline className="text-[2rem] md:text-[3.4rem]">
-              Três programas <span className="italic text-gold">escaláveis.</span>
-            </Headline>
-          </div>
-          <p className="text-[15px] leading-[1.75] text-cream/75 md:col-span-5">
+        <div className="max-w-2xl">
+          <span className="eyebrow">Planos</span>
+          <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-cream md:text-5xl">
+            Três formatos <span className="italic text-gold">escaláveis.</span>
+          </h2>
+          <p className="mt-5 text-[15.5px] leading-[1.7] text-cream/70">
             Não vendemos pacotes fechados. O desenho final leva em conta porte, perfil
             de colaboradores e maturidade da instituição.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-5 md:grid-cols-3">
           {tiers.map((t) => {
             const solid = t.variant === "solid";
-            const card = solid
-              ? "bg-gold text-ink"
-              : "border border-cream/[0.10] bg-ink text-cream";
             return (
-              <article key={t.name} className={`flex flex-col p-8 md:p-10 ${card}`}>
+              <article
+                key={t.name}
+                className={`relative flex flex-col rounded-2xl p-8 md:p-9 ${
+                  solid
+                    ? "bg-gold text-ink shadow-2xl shadow-gold/20"
+                    : "border border-cream/[0.10] bg-ink-soft text-cream"
+                }`}
+              >
+                {solid && (
+                  <div className="absolute -top-3 right-6 rounded-full bg-ink px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
+                    Mais escolhido
+                  </div>
+                )}
                 <div
-                  className={`font-serif text-[10px] uppercase tracking-[0.32em] ${
-                    solid ? "text-ink/60" : "text-[color:var(--steel)]"
-                  }`}
-                >
-                  {t.pretitle}
-                </div>
-                <h3
-                  className={`mt-6 font-serif text-5xl font-light ${
-                    solid ? "text-ink" : "text-cream"
-                  }`}
-                >
-                  ACTIO<span className={solid ? "text-ink/70" : "text-gold"}>{t.name}</span>
-                </h3>
-                <div
-                  className={`mt-4 font-serif text-[11px] font-semibold uppercase tracking-[0.24em] ${
-                    solid ? "text-ink/75" : "text-gold"
+                  className={`text-[11px] font-semibold uppercase tracking-[0.22em] ${
+                    solid ? "text-ink/70" : "text-gold"
                   }`}
                 >
                   {t.tag}
                 </div>
+                <h3
+                  className={`mt-4 font-serif text-4xl font-light ${
+                    solid ? "text-ink" : "text-cream"
+                  }`}
+                >
+                  ACTIO<span className={solid ? "text-ink/70" : "text-gold"}>_{t.name}</span>
+                </h3>
                 <p
-                  className={`mt-5 text-[13.5px] leading-[1.7] ${
+                  className={`mt-4 text-[13.5px] leading-[1.7] ${
                     solid ? "text-ink/85" : "text-cream/80"
                   }`}
                 >
                   {t.desc}
                 </p>
                 <ul
-                  className={`mt-6 space-y-2.5 border-t pt-5 text-[13px] ${
-                    solid ? "border-ink/20 text-ink/85" : "border-cream/[0.10] text-cream/85"
+                  className={`mt-6 space-y-3 border-t pt-6 text-[13.5px] ${
+                    solid ? "border-ink/20 text-ink/90" : "border-cream/[0.10] text-cream/85"
                   }`}
                 >
                   {t.items.map((i) => (
-                    <li key={i} className="grid grid-cols-[auto_1fr] gap-3">
-                      <span className={solid ? "text-ink" : "text-gold"}>—</span>
+                    <li key={i} className="flex items-start gap-3">
+                      <Check
+                        className={`mt-0.5 h-4 w-4 shrink-0 ${
+                          solid ? "text-ink" : "text-gold"
+                        }`}
+                      />
                       <span>{i}</span>
                     </li>
                   ))}
                 </ul>
-                {solid && (
-                  <div className="mt-6 inline-block self-start border border-ink/30 px-3 py-1 font-serif text-[9px] uppercase tracking-[0.28em] text-ink">
-                    Escolha mais frequente
-                  </div>
-                )}
+                <a
+                  href="#contato"
+                  className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-[13px] font-semibold transition ${
+                    solid
+                      ? "bg-ink text-gold hover:bg-ink/80"
+                      : "border border-gold text-gold hover:bg-gold hover:text-ink"
+                  }`}
+                >
+                  Falar com especialista <ArrowRight className="h-4 w-4" />
+                </a>
               </article>
             );
           })}
         </div>
-
-        <p className="mt-10 max-w-2xl border-l-2 border-gold pl-5 font-serif text-[17px] italic leading-snug text-cream/90 md:text-[19px]">
-          Não é solução de prateleira — é uma conversa técnica de trinta minutos.
-        </p>
       </div>
     </section>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Perfil — Dr. Leandro                                                      */
+/*  Autoridade — Dr. Leandro                                                  */
 /* -------------------------------------------------------------------------- */
 
-function Perfil() {
+function Authority() {
   return (
-    <section id="perfil" className="bg-ink py-24 md:py-32">
-      <div className="container-x">
-        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
-          <Rubric>Perfil</Rubric>
-          <Kicker>Direção técnica · pág. 44</Kicker>
+    <section id="autoridade" className="bg-[color:var(--ink-soft)] py-24 md:py-28">
+      <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
+        <div className="md:col-span-5">
+          <img
+            src={doctorImg}
+            alt="Dr. Leandro Fernando Batista Leite"
+            loading="lazy"
+            className="aspect-[4/5] w-full rounded-2xl object-cover"
+          />
         </div>
-
-        <div className="mt-12 grid gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-5">
-            <img
-              src={doctorImg}
-              alt="Dr. Leandro Fernando Batista Leite"
-              loading="lazy"
-              className="aspect-[4/5] w-full object-cover grayscale"
-            />
-            <p className="mt-3 font-serif text-[10.5px] uppercase tracking-[0.24em] text-[color:var(--steel)]">
-              Retrato · Dr. Leandro F. B. Leite
+        <div className="md:col-span-7">
+          <span className="eyebrow">Direção técnica</span>
+          <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-cream md:text-5xl">
+            Dr. Leandro F. B. Leite
+          </h2>
+          <div className="mt-2 text-[12px] font-semibold uppercase tracking-[0.22em] text-gold">
+            CRM-MG 68.021 · RQE 67.627
+          </div>
+          <blockquote className="mt-8 border-l-2 border-gold pl-5 font-serif text-xl italic leading-snug text-cream/90 md:text-2xl">
+            “Medicina exercida com foco{" "}
+            <span className="text-gold">centrado na pessoa</span> — pautada pelas
+            melhores práticas e evidências científicas.”
+          </blockquote>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            <p className="text-[14px] leading-[1.7] text-cream/80">
+              Pai, marido, médico especialista há mais de dez anos, leitor voraz e
+              preceptor do internato de medicina da PUC-Minas. Entusiasta e
+              praticante de atividades físicas.
+            </p>
+            <p className="text-[14px] leading-[1.7] text-cream/80">
+              Fundador e diretor técnico do ACTIO, supervisor clínico direto de todos
+              os participantes ao longo dos noventa dias de programa.
             </p>
           </div>
+          <div className="mt-8 flex flex-wrap gap-2">
+            {["PUC Minas", "PIBIC-FAPEMIG", "Medicina baseada em evidência"].map((t) => (
+              <span
+                key={t}
+                className="inline-block rounded-full border border-cream/15 px-3 py-1 text-[11px] text-cream/80"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-          <div className="md:col-span-7">
-            <blockquote className="font-serif text-2xl italic leading-[1.2] text-cream md:text-[2rem]">
-              “Medicina exercida com foco{" "}
-              <span className="text-gold">centrado na pessoa</span> — pautada pelas
-              melhores práticas e evidências científicas.”
-            </blockquote>
+/* -------------------------------------------------------------------------- */
+/*  CTA final + contato                                                       */
+/* -------------------------------------------------------------------------- */
 
-            <div className="mt-10 border-t border-cream/[0.10] pt-8">
-              <Headline as="h3" className="text-[1.8rem] md:text-[2.4rem]">
-                Dr. Leandro Fernando Batista Leite
-              </Headline>
-              <div className="mt-3 font-serif text-[11px] font-semibold uppercase tracking-[0.28em] text-gold">
-                CRM-MG 68.021 · RQE 67.627 · Diretor técnico
-              </div>
+function Contact() {
+  return (
+    <section id="contato" className="bg-ink py-24 md:py-28">
+      <div className="container-x">
+        <div className="relative overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-gold/10 via-ink-soft to-ink p-8 md:p-14">
+          <div
+            aria-hidden="true"
+            className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gold/20 blur-3xl"
+          />
+          <div className="relative grid gap-10 md:grid-cols-12 md:gap-12">
+            <div className="md:col-span-7">
+              <span className="eyebrow">Próximo passo</span>
+              <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-cream md:text-5xl">
+                Pronto para adequar sua empresa à{" "}
+                <span className="italic text-gold">NR-1?</span>
+              </h2>
+              <p className="mt-5 max-w-xl text-[15.5px] leading-[1.7] text-cream/80">
+                Em trinta minutos, conhecemos o contexto da instituição e apresentamos
+                caminhos concretos para transformar saúde corporativa em indicadores
+                de gestão. Conversa técnica — não pitch comercial.
+              </p>
 
-              <div className="mt-8 grid gap-8 sm:grid-cols-2">
-                <p className="text-[14px] leading-[1.75] text-cream/80">
-                  Pai, marido, médico especialista há mais de dez anos, leitor voraz e
-                  preceptor do internato de medicina da PUC-Minas. Entusiasta e
-                  praticante de atividades físicas.
-                </p>
-                <p className="text-[14px] leading-[1.75] text-cream/80">
-                  Fundador e diretor técnico do ACTIO_90, supervisor clínico direto de
-                  todos os participantes ao longo dos noventa dias de programa.
-                </p>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-2">
-                {["PUC Minas", "PIBIC-FAPEMIG", "Medicina baseada em evidência"].map(
-                  (t) => (
-                    <span
-                      key={t}
-                      className="inline-block border border-cream/15 px-3 py-1 font-serif text-[10px] uppercase tracking-[0.24em] text-cream/70"
-                    >
-                      {t}
+              <ol className="mt-8 space-y-4">
+                {[
+                  ["Entender o cenário", "Mapeamos o momento atual de RH, SST e saúde corporativa."],
+                  ["Identificar oportunidades", "Riscos, aderência regulatória e prioridades reais."],
+                  ["Arquitetura sob medida", "Proposta inicial desenhada para o seu contexto."],
+                ].map(([t, b], i) => (
+                  <li key={t} className="flex items-start gap-4">
+                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold text-[13px] font-semibold text-gold">
+                      {i + 1}
                     </span>
-                  ),
-                )}
+                    <div>
+                      <div className="font-serif text-[16px] text-cream">{t}</div>
+                      <p className="mt-1 text-[13px] leading-[1.55] text-cream/70">{b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="mt-10 flex flex-wrap gap-3">
+                <PrimaryCTA href="https://wa.me/5531992655261">
+                  Falar no WhatsApp
+                </PrimaryCTA>
+                <GhostCTA href="#solucao">Rever a solução</GhostCTA>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
-/* -------------------------------------------------------------------------- */
-/*  Expediente — contato + CTA                                                */
-/* -------------------------------------------------------------------------- */
+            <aside className="md:col-span-5">
+              <div className="rounded-2xl border border-cream/[0.10] bg-ink p-7">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
+                  Contato comercial
+                </div>
+                <div className="mt-4 font-serif text-2xl font-light text-cream">
+                  Gustavo Cavalcanti
+                </div>
+                <div className="mt-1 text-[12px] text-cream/60">Diretor Comercial</div>
 
-function Expediente() {
-  const passos = [
-    ["01", "Entender o cenário", "Mapeamos o momento atual de RH, SST e saúde corporativa."],
-    ["02", "Identificar oportunidades", "Riscos, aderência regulatória e prioridades reais."],
-    ["03", "Arquitetura sob medida", "Proposta inicial de programa desenhada para o seu contexto."],
-  ];
-  return (
-    <section id="expediente" className="bg-[color:var(--ink-soft)] py-24 md:py-32">
-      <div className="container-x">
-        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
-          <Rubric>Expediente</Rubric>
-          <Kicker>Carta ao leitor · pág. 48</Kicker>
-        </div>
-
-        <div className="mt-14 grid gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-7">
-            <Headline className="text-[2rem] md:text-[3.4rem]">
-              Pronto para elevar o padrão da sua gestão de{" "}
-              <span className="italic text-gold">saúde?</span>
-            </Headline>
-            <p className="mt-8 max-w-xl text-[15px] leading-[1.75] text-cream/80">
-              Em trinta minutos, conhecemos o contexto da instituição e apresentamos
-              caminhos concretos para transformar saúde corporativa em indicadores de
-              gestão. É uma conversa técnica — não um pitch comercial.
-            </p>
-
-            <ol className="mt-10 divide-y divide-cream/[0.10] border-y border-cream/[0.10]">
-              {passos.map(([n, t, b]) => (
-                <li key={n} className="grid grid-cols-[auto_1fr] items-baseline gap-6 py-5">
-                  <span className="font-serif text-3xl font-light text-gold">{n}</span>
-                  <div>
-                    <div className="font-serif text-[16px] text-cream">{t}</div>
-                    <p className="mt-1 text-[13px] leading-[1.55] text-cream/70">{b}</p>
+                <dl className="mt-6 divide-y divide-cream/[0.10] border-t border-cream/[0.10] text-[13.5px]">
+                  <div className="py-4">
+                    <dt className="text-[11px] uppercase tracking-[0.22em] text-[color:var(--steel)]">
+                      E-mail
+                    </dt>
+                    <dd className="mt-1 break-all text-cream/90">
+                      <EmailLink className="underline decoration-gold/40 decoration-1 underline-offset-4 transition hover:decoration-gold hover:text-gold" />
+                    </dd>
                   </div>
-                </li>
-              ))}
-            </ol>
+                  <div className="py-4">
+                    <dt className="text-[11px] uppercase tracking-[0.22em] text-[color:var(--steel)]">
+                      WhatsApp
+                    </dt>
+                    <dd className="mt-1">
+                      <a
+                        href="https://wa.me/5531992655261"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-cream/90 underline decoration-gold/40 underline-offset-4 transition hover:text-gold hover:decoration-gold"
+                      >
+                        (31) 99265-5261
+                      </a>
+                    </dd>
+                  </div>
+                  <div className="py-4">
+                    <dt className="text-[11px] uppercase tracking-[0.22em] text-[color:var(--steel)]">
+                      Sede
+                    </dt>
+                    <dd className="mt-1 text-cream/80">Belo Horizonte · MG</dd>
+                  </div>
+                </dl>
 
-            <a
-              href="https://wa.me/5531992655261"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-10 inline-flex items-center justify-center gap-3 border border-gold bg-gold px-8 py-4 font-serif text-[12px] font-semibold uppercase tracking-[0.24em] text-ink transition hover:bg-transparent hover:text-gold"
-            >
-              Agendar visita técnica <ArrowUpRight className="h-4 w-4" />
-            </a>
+                <a
+                  href="https://wa.me/5531992655261"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold px-5 py-3 text-[13px] font-semibold text-gold transition hover:bg-gold hover:text-ink"
+                >
+                  Agendar visita técnica <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </aside>
           </div>
-
-          <aside className="md:col-span-5">
-            <div className="border border-cream/[0.10] bg-ink p-8">
-              <Kicker>Contato editorial</Kicker>
-              <div className="mt-5 font-serif text-2xl font-light text-cream">
-                Gustavo Cavalcanti
-              </div>
-              <div className="mt-1 font-serif text-[10px] font-semibold uppercase tracking-[0.28em] text-gold">
-                Diretor Comercial
-              </div>
-              <dl className="mt-8 divide-y divide-cream/[0.10] border-t border-cream/[0.10] text-[13.5px]">
-                <div className="grid grid-cols-[80px_1fr] items-baseline gap-4 py-4">
-                  <dt className="font-serif text-[10px] uppercase tracking-[0.28em] text-[color:var(--steel)]">
-                    E-mail
-                  </dt>
-                  <dd className="break-all text-cream/90">
-                    <EmailLink />
-                  </dd>
-                </div>
-                <div className="grid grid-cols-[80px_1fr] items-baseline gap-4 py-4">
-                  <dt className="font-serif text-[10px] uppercase tracking-[0.28em] text-[color:var(--steel)]">
-                    WhatsApp
-                  </dt>
-                  <dd>
-                    <a
-                      href="https://wa.me/5531992655261"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-serif tracking-[0.12em] text-cream/90 underline decoration-gold/40 underline-offset-4 transition hover:text-gold hover:decoration-gold"
-                    >
-                      31 99265-5261
-                    </a>
-                  </dd>
-                </div>
-                <div className="grid grid-cols-[80px_1fr] items-baseline gap-4 py-4">
-                  <dt className="font-serif text-[10px] uppercase tracking-[0.28em] text-[color:var(--steel)]">
-                    Sede
-                  </dt>
-                  <dd className="text-cream/80">Belo Horizonte · MG</dd>
-                </div>
-              </dl>
-            </div>
-
-            <p className="mt-6 font-serif text-[11px] italic leading-[1.7] text-[color:var(--steel)]">
-              Esta edição foi composta em Space Grotesk e Inter. Impressa em pixels
-              sobre fundo tinta. Circulação nacional.
-            </p>
-          </aside>
         </div>
       </div>
     </section>
@@ -950,7 +975,7 @@ function Expediente() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Rodapé — colofão                                                          */
+/*  Footer                                                                    */
 /* -------------------------------------------------------------------------- */
 
 function Footer() {
@@ -959,16 +984,16 @@ function Footer() {
       <div className="container-x grid gap-8 md:grid-cols-12">
         <div className="md:col-span-4">
           <ActioWordmark size="sm" />
-          <div className="mt-3 font-serif text-[10px] uppercase tracking-[0.3em] text-[color:var(--steel)]">
+          <div className="mt-3 text-[11px] uppercase tracking-[0.28em] text-[color:var(--steel)]">
             Saúde corporativa é estratégia
           </div>
         </div>
         <p className="text-[11.5px] leading-[1.75] text-cream/65 md:col-span-5">
-          Programa ACTIO_90 · Medicina baseada em evidências · Direção técnica
-          Dr. Leandro F. B. Leite, CRM-MG 68.021 / RQE 67.627.
+          Programa ACTIO · Medicina baseada em evidências · Direção técnica Dr.
+          Leandro F. B. Leite, CRM-MG 68.021 / RQE 67.627.
         </p>
-        <div className="font-serif text-[10px] uppercase tracking-[0.24em] text-[color:var(--steel)] md:col-span-3 md:text-right">
-          © {new Date().getFullYear()} ACTIO · Edição Nº 01
+        <div className="text-[11px] uppercase tracking-[0.22em] text-[color:var(--steel)] md:col-span-3 md:text-right">
+          © {new Date().getFullYear()} ACTIO
         </div>
       </div>
     </footer>
@@ -983,15 +1008,14 @@ function Index() {
   return (
     <main className="bg-ink text-cream">
       <Nav />
-      <Cover />
-      <AtoI />
-      <Ensaio />
-      <AtoII />
-      <DataSpread />
-      <AtoIV />
-      <AtoV />
-      <Perfil />
-      <Expediente />
+      <Hero />
+      <Problem />
+      <Solution />
+      <NR1 />
+      <HowItWorks />
+      <Plans />
+      <Authority />
+      <Contact />
       <Footer />
     </main>
   );
