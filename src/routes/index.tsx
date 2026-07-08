@@ -24,29 +24,27 @@ function EmailLink() {
       href={href}
       target={isMobile ? undefined : "_blank"}
       rel={isMobile ? undefined : "noreferrer"}
-      className="block break-all font-serif transition hover:text-gold"
+      className="font-serif underline decoration-gold/40 decoration-1 underline-offset-4 transition hover:decoration-gold"
     >
       medgustavocavalcanti@gmail.com
     </a>
   );
 }
 
-
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ACTIO — Saúde Corporativa é Estratégia" },
+      { title: "ACTIO — Dossiê de Saúde Corporativa" },
       {
         name: "description",
         content:
-          "Programa B2B de saúde corporativa baseado em evidência. Conformidade NR-1, Lei 14.831 e indicadores reais para RH, SST e diretoria.",
+          "Uma leitura editorial sobre saúde corporativa baseada em evidência. Conformidade NR-1, Lei 14.831 e o método ACTIO_90 para RH, SST e diretoria.",
       },
-      { property: "og:title", content: "ACTIO — Saúde Corporativa é Estratégia" },
+      { property: "og:title", content: "ACTIO — Dossiê de Saúde Corporativa" },
       {
         property: "og:description",
         content:
-          "Conformidade NR-1 convertida em cultura. ACTIO_Now · ACTIO_One · ACTIO_X — programas para empresas que tratam saúde como vantagem competitiva.",
+          "Da conformidade à cultura. Uma leitura editorial sobre saúde corporativa baseada em evidência.",
       },
       { property: "og:image", content: heroImg },
       { name: "twitter:image", content: heroImg },
@@ -56,7 +54,7 @@ export const Route = createFileRoute("/")({
 });
 
 /* -------------------------------------------------------------------------- */
-/*  Marca — Logo ACTIO conforme guia (duas diagonais + ponto dourado)         */
+/*  Marca                                                                     */
 /* -------------------------------------------------------------------------- */
 
 function ActioMark({ className = "h-6 w-7" }: { className?: string }) {
@@ -84,89 +82,86 @@ function ActioWordmark({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Primitivos                                                                */
+/*  Primitivos editoriais                                                     */
 /* -------------------------------------------------------------------------- */
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function Rubric({ children }: { children: React.ReactNode }) {
   return (
-    <span className="block font-serif text-[10px] font-semibold uppercase tracking-[0.3em] text-[color:var(--gold)]/80">
+    <span className="inline-flex items-center gap-3 font-serif text-[10px] font-semibold uppercase tracking-[0.32em] text-gold">
+      <span className="h-px w-6 bg-gold/60" />
       {children}
     </span>
   );
 }
 
-function SectionTitle({
+function Kicker({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="font-serif text-[10px] font-semibold uppercase tracking-[0.32em] text-[color:var(--steel)]">
+      {children}
+    </div>
+  );
+}
+
+function Headline({
+  as: Tag = "h2",
   children,
   className = "",
 }: {
+  as?: "h1" | "h2" | "h3";
   children: React.ReactNode;
   className?: string;
 }) {
   return (
-    <h2
-      className={`font-serif font-light leading-[1.1] tracking-[-0.02em] text-[2rem] text-cream sm:text-4xl md:text-5xl ${className}`}
+    <Tag
+      className={`font-serif font-light leading-[1.02] tracking-[-0.03em] text-cream ${className}`}
     >
       {children}
-    </h2>
-  );
-}
-
-function Badge({
-  tone = "gold",
-  children,
-}: {
-  tone?: "gold" | "outline";
-  children: React.ReactNode;
-}) {
-  const cls =
-    tone === "gold"
-      ? "border border-gold/25 bg-[color:var(--gold)]/10 text-gold"
-      : "border border-cream/15 text-cream/70";
-  return (
-    <span
-      className={`inline-block rounded-full px-3 py-1 font-serif text-[10px] font-semibold uppercase tracking-[0.22em] ${cls}`}
-    >
-      {children}
-    </span>
+    </Tag>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Nav                                                                       */
+/*  Cabeçalho / Nav — estilo masthead                                         */
 /* -------------------------------------------------------------------------- */
 
 function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
-    ["#programa", "Programas"],
-    ["#servicos", "Serviços"],
-    ["#evidencia", "Evidências"],
-    ["#responsavel", "Sobre"],
-    ["#contato", "Contato"],
+    ["#dossie", "Dossiê"],
+    ["#legado", "Conformidade"],
+    ["#metodo", "Método"],
+    ["#programas", "Programas"],
+    ["#perfil", "Perfil"],
+    ["#expediente", "Expediente"],
   ] as const;
   return (
-    <nav className="fixed inset-x-0 top-0 z-40 border-b border-cream/[0.07] bg-ink/90 backdrop-blur-md">
+    <nav className="fixed inset-x-0 top-0 z-40 border-b border-cream/[0.08] bg-ink/85 backdrop-blur-md">
       <div className="container-x flex items-center justify-between gap-4 py-4">
-        <ActioWordmark />
-        <div className="hidden items-center gap-8 text-[13px] text-cream/70 md:flex">
+        <div className="flex items-center gap-6">
+          <ActioWordmark />
+          <span className="hidden font-serif text-[10px] uppercase tracking-[0.32em] text-[color:var(--steel)] lg:inline">
+            Nº 01 · Dossiê de Saúde Corporativa
+          </span>
+        </div>
+        <div className="hidden items-center gap-7 text-[12px] uppercase tracking-[0.22em] text-cream/70 md:flex">
           {links.map(([href, label]) => (
-            <a key={href} href={href} className="transition hover:text-gold">
+            <a key={href} href={href} className="font-serif transition hover:text-gold">
               {label}
             </a>
           ))}
         </div>
         <a
-          href="#contato"
-          className="hidden shrink-0 rounded-xl bg-gold px-4 py-2.5 font-serif text-[11px] font-semibold uppercase tracking-[0.18em] text-ink transition hover:bg-[color:var(--gold-soft)] md:inline-block"
+          href="#expediente"
+          className="hidden shrink-0 rounded-none border border-gold px-4 py-2.5 font-serif text-[11px] font-semibold uppercase tracking-[0.22em] text-gold transition hover:bg-gold hover:text-ink md:inline-block"
         >
-          Agendar conversa
+          Agendar leitura
         </a>
         <button
           type="button"
           aria-label="Abrir menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-cream/15 text-cream transition hover:border-gold hover:text-gold md:hidden"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-cream/15 text-cream transition hover:border-gold hover:text-gold md:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -174,14 +169,14 @@ function Nav() {
       {open && (
         <div className="md:hidden">
           <div className="container-x pb-5">
-            <div className="rounded-2xl border border-cream/10 bg-ink-soft p-5">
+            <div className="border border-cream/10 bg-ink-soft p-5">
               <ul className="divide-y divide-cream/[0.07]">
                 {links.map(([href, label]) => (
                   <li key={href}>
                     <a
                       href={href}
                       onClick={() => setOpen(false)}
-                      className="block py-3 font-serif text-[13px] uppercase tracking-[0.22em] text-cream/85 hover:text-gold"
+                      className="block py-3 font-serif text-[13px] uppercase tracking-[0.24em] text-cream/85 hover:text-gold"
                     >
                       {label}
                     </a>
@@ -189,11 +184,11 @@ function Nav() {
                 ))}
               </ul>
               <a
-                href="#contato"
+                href="#expediente"
                 onClick={() => setOpen(false)}
-                className="mt-5 block rounded-xl bg-gold px-5 py-3 text-center font-serif text-[11px] font-semibold uppercase tracking-[0.22em] text-ink"
+                className="mt-5 block border border-gold px-5 py-3 text-center font-serif text-[11px] font-semibold uppercase tracking-[0.22em] text-gold"
               >
-                Agendar conversa
+                Agendar leitura
               </a>
             </div>
           </div>
@@ -204,51 +199,83 @@ function Nav() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Hero                                                                      */
+/*  Capa editorial                                                            */
 /* -------------------------------------------------------------------------- */
 
-function Hero() {
+function Cover() {
   return (
     <header id="top" className="relative isolate overflow-hidden bg-ink pt-24">
       <img
         src={heroImg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover opacity-20"
+        className="absolute inset-0 h-full w-full object-cover opacity-[0.14]"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/95 to-ink" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/95 to-ink" />
 
-      <div className="relative container-x pt-6 pb-20 md:pt-10 md:pb-32">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge>NR-1 Conforme</Badge>
-          <Badge>Lei 14.831/2024</Badge>
-          <Badge tone="outline">PUC Minas · PIBIC-FAPEMIG</Badge>
+      <div className="relative container-x pt-8 pb-24 md:pt-14 md:pb-36">
+        {/* Masthead */}
+        <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-cream/[0.10] pb-6">
+          <div className="font-serif text-[11px] uppercase tracking-[0.4em] text-cream/60">
+            ACTIO · Edição Nº 01
+          </div>
+          <div className="font-serif text-[11px] uppercase tracking-[0.32em] text-[color:var(--steel)]">
+            Dossiê · Belo Horizonte · 2026
+          </div>
         </div>
 
-        <h1 className="mt-8 max-w-4xl font-serif font-light leading-[1.02] tracking-[-0.025em] text-[2.6rem] text-cream sm:text-6xl md:text-[5rem]">
-          Saúde corporativa <br />
-          <span className="text-gold">é estratégia.</span>
-        </h1>
+        {/* Grid editorial */}
+        <div className="mt-14 grid gap-10 md:grid-cols-12 md:gap-12">
+          <div className="md:col-span-8">
+            <Rubric>Editorial de abertura</Rubric>
+            <Headline
+              as="h1"
+              className="mt-8 text-[2.75rem] sm:text-6xl md:text-[5.4rem]"
+            >
+              Da conformidade
+              <br />
+              <span className="italic text-gold">à cultura.</span>
+            </Headline>
+            <p className="mt-8 max-w-xl text-[15px] leading-[1.75] text-cream/70 md:text-[16px]">
+              Uma leitura em cinco atos sobre por que saúde deixou de ser benefício e
+              passou a ser indicador de gestão — para empresas que não querem descobrir
+              o custo depois que ele aparece na folha.
+            </p>
+          </div>
 
-        <p className="mt-8 max-w-xl text-[15px] leading-[1.7] text-cream/70 md:text-base">
-          546.254 afastamentos por transtornos mentais em 2025 — o maior número já
-          registrado. Para empresas que tratam saúde como vantagem competitiva, e não
-          como ação de bem-estar de prateleira.
-        </p>
+          <aside className="border-t border-cream/[0.10] pt-8 md:col-span-4 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+            <Kicker>Nesta edição</Kicker>
+            <ul className="mt-6 space-y-4 font-serif text-[13px] text-cream/80">
+              {[
+                ["I", "O silêncio que custa caro"],
+                ["II", "A lei virou linha de base"],
+                ["III", "Ciência traduzida em rotina"],
+                ["IV", "Um método em 90 dias"],
+                ["V", "Programas escaláveis"],
+              ].map(([r, t]) => (
+                <li key={r} className="flex items-baseline gap-4">
+                  <span className="w-6 shrink-0 text-gold">{r}</span>
+                  <span className="flex-1 leading-snug">{t}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 border-t border-cream/[0.10] pt-6">
+              <a
+                href="#dossie"
+                className="inline-flex items-center gap-2 font-serif text-[11px] uppercase tracking-[0.28em] text-gold transition hover:text-cream"
+              >
+                Iniciar leitura <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </aside>
+        </div>
 
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
-          <a
-            href="#contato"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-7 py-4 font-serif text-[12px] font-semibold uppercase tracking-[0.2em] text-ink transition hover:bg-[color:var(--gold-soft)]"
-          >
-            Agendar visita técnica
-          </a>
-          <a
-            href="#programa"
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-cream/15 px-7 py-4 font-serif text-[12px] font-semibold uppercase tracking-[0.2em] text-cream transition hover:border-gold hover:text-gold"
-          >
-            Ver programas <ArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+        {/* Assinatura da edição */}
+        <div className="mt-16 flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-cream/[0.10] pt-8 text-[11px] uppercase tracking-[0.28em] text-cream/50">
+          <span className="font-serif">NR-1 · vigente 05/2026</span>
+          <span className="font-serif">Lei 14.831/2024</span>
+          <span className="font-serif">PUC Minas · PIBIC-FAPEMIG</span>
+          <span className="ml-auto font-serif text-gold/80">Direção Dr. L. F. B. Leite</span>
         </div>
       </div>
     </header>
@@ -256,91 +283,115 @@ function Hero() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Problema — stat cards dourados                                            */
+/*  Ato I — O silêncio que custa caro (feature magazine)                      */
 /* -------------------------------------------------------------------------- */
 
-function Problema() {
-  const stats = [
-    ["93%", "dos profissionais com saúde comprometida continuam comparecendo ao trabalho — o custo invisível do presenteísmo."],
-    ["+68%", "crescimento em afastamentos por transtornos mentais no Brasil em apenas um ano."],
-    ["1 em 4", "trabalhadores em países industrializados exposto a riscos psicossociais crônicos."],
-    ["38%", "dos profissionais com DM2 apresentam depressão concomitante não diagnosticada."],
-    ["546.254", "benefícios concedidos por transtornos mentais em 2025 no Brasil — o maior número já registrado."],
-    ["NR-1", "Portaria MTE nº 1.419/2024 em vigor desde maio/2026."],
-  ];
+function AtoI() {
   return (
-    <section className="bg-[color:var(--ink-soft)] py-20 md:py-28">
+    <section id="dossie" className="relative bg-ink py-24 md:py-32">
       <div className="container-x">
-        <Eyebrow>O problema</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
-          O custo invisível do adoecimento corporativo.
-        </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-[1.7] text-cream/70">
-          Pessoas sobrecarregadas, sedentárias e sem instrução clínica tornam-se um
-          risco silencioso para si e para a organização — com impacto direto em
-          produtividade, cultura e resultados.
-        </p>
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {stats.map(([k, b]) => (
-            <div
-              key={k}
-              className="rounded-2xl border border-cream/[0.07] bg-ink p-6"
-            >
-              <div className="font-serif text-4xl font-bold leading-none text-gold">
-                {k}
-              </div>
-              <p className="mt-4 text-[13px] leading-[1.6] text-cream/70">{b}</p>
-            </div>
-          ))}
+        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
+          <Rubric>Ato I</Rubric>
+          <Kicker>Reportagem · pág. 04</Kicker>
         </div>
 
-        <p className="mt-8 max-w-3xl text-[12px] italic leading-relaxed text-[color:var(--steel)]">
-          Ministério da Previdência Social, 2025 · Bialowolski P et al. PLoS One,
-          2020 · Ipsos World Mental Health Day Report, 2024.
-        </p>
+        <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-14">
+          {/* Coluna manchete */}
+          <div className="md:col-span-7">
+            <Headline className="text-[2rem] md:text-[3.4rem]">
+              O silêncio que custa caro.
+            </Headline>
+            <p className="mt-8 text-[15px] leading-[1.75] text-cream/85 first-letter:font-serif first-letter:text-6xl first-letter:font-light first-letter:leading-none first-letter:text-gold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+              A maior parte do adoecimento corporativo não aparece em atestado. Aparece
+              em prazos que escorregam, reuniões esvaziadas de energia, decisões
+              adiadas — e num dado silencioso: a maioria dos profissionais com saúde
+              comprometida continua comparecendo ao trabalho como se nada estivesse
+              acontecendo.
+            </p>
+            <p className="mt-5 columns-1 gap-8 text-[14.5px] leading-[1.75] text-cream/75 md:columns-2">
+              Chamamos isso de presenteísmo, e ele custa mais do que qualquer
+              afastamento. É o intervalo entre o momento em que o corpo pede socorro
+              e o momento em que a empresa percebe. Nesse intervalo, cultura, entrega
+              e retenção erodem — sem que nenhum indicador soe o alarme.
+              <br className="hidden md:block" />
+              <br className="hidden md:block" />
+              A saída não é oferecer mais uma ação isolada de bem-estar. É construir
+              uma leitura contínua da saúde do time — clínica, mensurável e
+              acompanhada por profissionais. É trocar campanhas por método.
+            </p>
+          </div>
+
+          {/* Coluna lateral com dados */}
+          <aside className="md:col-span-5">
+            <div className="border-y border-cream/[0.10] py-6">
+              <blockquote className="font-serif text-2xl italic leading-[1.25] text-cream md:text-[1.7rem]">
+                “Antes do afastamento, existe uma janela.
+                <span className="text-gold"> Nela cabe uma decisão.”</span>
+              </blockquote>
+            </div>
+
+            <ul className="mt-8 divide-y divide-cream/[0.10]">
+              {[
+                ["93%", "dos profissionais com saúde comprometida seguem comparecendo — presenteísmo invisível."],
+                ["+68%", "de crescimento de afastamentos por transtornos mentais no Brasil em um ano."],
+                ["546.254", "benefícios concedidos por transtornos mentais em 2025 — recorde histórico."],
+                ["1 / 4", "trabalhadores em países industrializados exposto a riscos psicossociais crônicos."],
+              ].map(([k, b]) => (
+                <li key={k} className="grid grid-cols-[auto_1fr] items-baseline gap-5 py-4">
+                  <span className="font-serif text-[26px] font-light leading-none text-gold">
+                    {k}
+                  </span>
+                  <p className="text-[13px] leading-[1.55] text-cream/80">{b}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-[10.5px] italic leading-relaxed text-[color:var(--steel)]">
+              Fontes: Ministério da Previdência Social, 2025 · Bialowolski P et al.
+              PLoS One, 2020 · Ipsos, 2024.
+            </p>
+          </aside>
+        </div>
       </div>
     </section>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Reflexão                                                                  */
+/*  Ensaio — perguntas ao leitor                                              */
 /* -------------------------------------------------------------------------- */
 
-function Reflection() {
-  const questions = [
+function Ensaio() {
+  const perguntas = [
     "Quantas pessoas do seu time estão presentes — mas não inteiras?",
-    "E quantas você consegue ver antes que o custo apareça em afastamento ou demissão?",
-    "É possível cumprir exigências legais sem se afogar em burocracia?",
-    "Sua empresa trata saúde do trabalhador apenas como exames admissionais e ASOs?",
-    "Sua empresa está adequada para lidar com riscos psicossociais da NR-1?",
-    "Sua empresa possui indicadores confiáveis de saúde corporativa?",
+    "Quantas dessas você consegue enxergar antes que o custo apareça em folha?",
+    "É possível cumprir a NR-1 sem se afogar em burocracia?",
+    "Sua saúde ocupacional se resume a admissional, periódico e ASO?",
+    "Você tem indicadores confiáveis de saúde corporativa — ou intuição?",
   ];
   return (
-    <section className="bg-ink py-20 md:py-28">
-      <div className="container-x grid gap-14 md:grid-cols-12">
-        <div className="md:col-span-5">
-          <Eyebrow>Ponto de partida</Eyebrow>
-          <SectionTitle className="mt-5">
-            O que sua instituição ganha com o que investe nas pessoas?
-          </SectionTitle>
-          <blockquote className="mt-10 rounded-r-xl border-l-2 border-gold bg-[color:var(--ink-soft)] px-5 py-4 font-serif text-base italic leading-snug text-cream/80">
-            A oportunidade não está em oferecer mais uma ação de bem-estar — mas em
-            transformar exigências legais em cultura empresarial de bem-estar.
-          </blockquote>
+    <section className="bg-[color:var(--ink-soft)] py-24 md:py-32">
+      <div className="container-x">
+        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
+          <Rubric>Entre atos · ensaio</Rubric>
+          <Kicker>Cinco perguntas ao leitor</Kicker>
         </div>
-        <div className="md:col-span-7">
-          <p className="font-serif text-[10px] font-semibold uppercase tracking-[0.3em] text-[color:var(--steel)]">
-            Apenas para refletir
-          </p>
-          <ol className="mt-6 divide-y divide-cream/[0.07] border-y border-cream/[0.07]">
-            {questions.map((q, i) => (
-              <li key={q} className="grid grid-cols-[auto_1fr] gap-5 py-6">
-                <span className="font-serif text-2xl font-light text-gold">
+        <div className="mt-14 grid gap-12 md:grid-cols-12 md:gap-16">
+          <Headline className="text-[1.8rem] md:col-span-5 md:text-[2.6rem]">
+            Antes de qualquer programa, cinco perguntas que só a diretoria pode
+            responder.
+          </Headline>
+          <ol className="md:col-span-7">
+            {perguntas.map((q, i) => (
+              <li
+                key={q}
+                className="grid grid-cols-[auto_1fr] items-baseline gap-6 border-b border-cream/[0.10] py-5 first:border-t"
+              >
+                <span className="font-serif text-3xl font-light text-gold">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="text-[15px] leading-[1.6] text-cream/90">{q}</p>
+                <p className="font-serif text-[17px] leading-[1.45] text-cream/90 md:text-[19px]">
+                  {q}
+                </p>
               </li>
             ))}
           </ol>
@@ -351,129 +402,91 @@ function Reflection() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Visão · 3 pilares                                                         */
+/*  Ato II — Conformidade (Legislação)                                        */
 /* -------------------------------------------------------------------------- */
 
-function Pillars() {
-  const items = [
-    {
-      n: "01",
-      title: "Saúde física",
-      body: "Hábitos, prevenção de doenças crônicas e qualidade de vida com prescrição individualizada.",
-    },
-    {
-      n: "02",
-      title: "Saúde mental",
-      body: "Mapeamento de riscos psicossociais (PHQ-9, GAD-7, DASS-21) e estratégias de prevenção.",
-    },
-    {
-      n: "03",
-      title: "Gestão corporativa",
-      body: "Indicadores consolidados para RH, SST e diretoria — base para tomada de decisão.",
-    },
-  ];
+function AtoII() {
   return (
-    <section className="bg-[color:var(--ink-soft)] py-20 md:py-28">
+    <section id="legado" className="bg-ink py-24 md:py-32">
       <div className="container-x">
-        <div className="grid items-end gap-8 md:grid-cols-12">
-          <div className="md:col-span-7">
-            <Eyebrow>Nossa visão</Eyebrow>
-            <SectionTitle className="mt-5">
-              Da ação isolada à gestão de indicadores.
-            </SectionTitle>
+        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
+          <Rubric>Ato II</Rubric>
+          <Kicker>Conformidade · pág. 12</Kicker>
+        </div>
+
+        <div className="mt-12 grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-8">
+            <Headline className="text-[2rem] md:text-[3.4rem]">
+              A lei virou linha de base —{" "}
+              <span className="italic text-gold">o resto é reputação.</span>
+            </Headline>
+            <p className="mt-8 max-w-2xl text-[15px] leading-[1.75] text-cream/75">
+              Em maio de 2026, a nova NR-1 tornou os riscos psicossociais parte
+              obrigatória do PGR. No mesmo movimento, a Lei 14.831 abriu espaço para
+              quem decide ir além. Duas frentes, um único plano: transformar
+              obrigação em vantagem.
+            </p>
           </div>
-          <p className="text-[15px] leading-[1.7] text-cream/70 md:col-span-5">
-            O ACTIO estrutura programas que combinam conscientização, avaliação,
-            acompanhamento e relatórios executivos — conectando saúde física, mental e
-            produtividade.
-          </p>
         </div>
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {items.map((p) => (
-            <div
-              key={p.n}
-              className="rounded-2xl border border-cream/[0.07] bg-ink p-7"
-            >
-              <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--gold)]/15 font-serif text-sm font-bold text-gold">
-                {p.n}
-              </div>
-              <h3 className="mt-6 font-serif text-xl font-medium text-cream">
-                {p.title}
-              </h3>
-              <p className="mt-3 text-[14px] leading-[1.65] text-cream/70">{p.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
-/* -------------------------------------------------------------------------- */
-/*  Legislação                                                                */
-/* -------------------------------------------------------------------------- */
-
-function Legislacao() {
-  return (
-    <section id="legislacao" className="bg-ink py-20 md:py-28">
-      <div className="container-x">
-        <Eyebrow>Legislação & conformidade</Eyebrow>
-        <SectionTitle className="mt-5 max-w-4xl">
-          Sua empresa já tem uma obrigação legal. Nós ajudamos a cumpri-la — e a ir além.
-        </SectionTitle>
-
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <article className="rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-8">
-            <Badge>Vigente desde 05/2026</Badge>
-            <h3 className="mt-5 font-serif text-2xl font-medium text-cream">
-              NR-1 atualizada — riscos psicossociais
+        <div className="mt-14 grid gap-0 border border-cream/[0.10] md:grid-cols-2">
+          <article className="border-b border-cream/[0.10] p-8 md:border-b-0 md:border-r md:p-10">
+            <Kicker>Coluna A · obrigatório</Kicker>
+            <h3 className="mt-4 font-serif text-2xl font-light text-cream md:text-[1.8rem]">
+              NR-1 — riscos psicossociais no PGR
             </h3>
-            <ul className="mt-5 space-y-3 text-[13px] leading-[1.65] text-cream/75">
-              <li>— Portaria MTE nº 1.419/2024 incluiu burnout, sobrecarga, assédio e estresse crônico no PGR.</li>
-              <li>— Obrigatório para todas as empresas com trabalhadores CLT.</li>
-              <li>— Fiscalização ativa com multas e embargos desde 26/05/2026.</li>
+            <p className="mt-5 text-[13.5px] leading-[1.7] text-cream/75">
+              A Portaria MTE 1.419/2024 incluiu burnout, sobrecarga, assédio e
+              estresse crônico entre os riscos que precisam ser identificados,
+              avaliados e prevenidos. Vale para toda empresa com CLT. Fiscalização
+              ativa, multa e embargo desde 26/05/2026.
+            </p>
+            <ul className="mt-6 divide-y divide-cream/[0.10] text-[13px] text-cream/80">
+              {[
+                "Identificação de riscos por avaliação clínica individual",
+                "Plano de intervenção documentado e rastreável",
+                "Reavaliação e evidência de eficácia",
+              ].map((i) => (
+                <li key={i} className="grid grid-cols-[auto_1fr] gap-3 py-3">
+                  <span className="text-gold">—</span>
+                  <span>{i}</span>
+                </li>
+              ))}
             </ul>
           </article>
 
-          <article className="rounded-2xl border border-gold/25 bg-[color:var(--ink-soft)] p-8">
-            <Badge>Vantagem competitiva</Badge>
-            <h3 className="mt-5 font-serif text-2xl font-medium text-cream">
-              Lei 14.831 — Empresa Promotora da Saúde Mental
+          <article className="bg-[color:var(--ink-soft)] p-8 md:p-10">
+            <Kicker>Coluna B · voluntário</Kicker>
+            <h3 className="mt-4 font-serif text-2xl font-light text-cream md:text-[1.8rem]">
+              Lei 14.831 — <span className="text-gold">selo de reputação</span>
             </h3>
-            <p className="mt-5 text-[13px] leading-[1.65] text-cream/75">
-              Sancionada em março/2024, institui certificação federal para empresas
-              que vão além do mínimo legal. Válida por 2 anos, reconhece organizações
-              com programas estruturados.
+            <p className="mt-5 text-[13.5px] leading-[1.7] text-cream/75">
+              Sancionada em março/2024, cria a certificação federal de{" "}
+              <em>Empresa Promotora da Saúde Mental</em>. Vale por dois anos e
+              reconhece organizações que estruturam programa, promovem
+              conscientização e mensuram resultados.
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {["Promoção da saúde mental", "Bem-estar", "Métricas"].map((t) => (
-                <Badge key={t} tone="outline">
-                  {t}
-                </Badge>
-              ))}
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["Promoção da saúde mental", "Bem-estar organizacional", "Métricas verificáveis"].map(
+                (t) => (
+                  <span
+                    key={t}
+                    className="inline-block border border-cream/15 px-3 py-1 font-serif text-[10px] uppercase tracking-[0.24em] text-cream/70"
+                  >
+                    {t}
+                  </span>
+                ),
+              )}
             </div>
+            <p className="mt-6 border-l-2 border-gold pl-4 font-serif text-[13px] italic leading-[1.55] text-cream/80">
+              Cumprir a NR-1 é obrigação. Buscar o selo da 14.831 é escolha —
+              e diferencial competitivo diante de talentos e clientes.
+            </p>
           </article>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
-          {[
-            ["NR-1 · Identificação de riscos", "Avaliação clínica individual mapeia sobrecarga, sedentarismo e indicadores metabólicos — base para o PGR."],
-            ["NR-1 · Medidas de prevenção", "Plano de atividade física e alimentação personalizado constitui intervenção documentada e rastreável."],
-            ["Lei 14.831 · Apoio à saúde mental", "Palestras + acompanhamento de 90 dias atendem o pilar de Promoção da Saúde Mental."],
-            ["Lei 14.831 · Conscientização", "Eventos educativos baseados em evidência cumprem o Art. 3º, alínea c da lei."],
-          ].map(([t, b]) => (
-            <div key={t} className="rounded-xl border-l-2 border-gold bg-[color:var(--ink-soft)] p-5">
-              <div className="font-serif text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
-                {t}
-              </div>
-              <p className="mt-2 text-[13px] leading-[1.6] text-cream/75">{b}</p>
-            </div>
-          ))}
-        </div>
-
-        <p className="mt-8 text-[11px] italic leading-relaxed text-[color:var(--steel)]">
-          Portaria MTE nº 1.419/2024 · Lei nº 14.831/2024 · Ministério da Previdência
-          Social (2025).
+        <p className="mt-6 text-[10.5px] italic text-[color:var(--steel)]">
+          Portaria MTE 1.419/2024 · Lei 14.831/2024 · Ministério da Previdência Social.
         </p>
       </div>
     </section>
@@ -481,43 +494,52 @@ function Legislacao() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  ROI — stat boxes                                                          */
+/*  Data spread — ciência em números                                          */
 /* -------------------------------------------------------------------------- */
 
-function ROI() {
-  const stats = [
-    { k: "2,3×", title: "Mais produtivos", body: "Profissionais saudáveis são até 2,3× mais produtivos que aqueles com saúde comprometida.", ref: "Carnethon M et al. Circulation. 2009." },
-    { k: "R$2,54", title: "Por real investido", body: "Para cada real investido em saúde preventiva, R$2,54 de economia em custos médicos.", ref: "Dement JM et al. J Occup Environ Med. 2015." },
-    { k: "−28%", title: "Menos afastamentos", body: "Programas preventivos reduzem em até 28% afastamentos por doença crônica.", ref: "Carnethon M et al. Circulation. 2009." },
-    { k: "93%", title: "Presenteísmo", body: "Profissionais presentes mas debilitados respondem por 93% da perda de produtividade.", ref: "Bialowolski P et al. PLoS One. 2020." },
+function DataSpread() {
+  const dados = [
+    { k: "2,3×", t: "Produtividade", b: "Profissionais saudáveis performam até 2,3× acima de pares debilitados.", r: "Carnethon M et al. Circulation, 2009." },
+    { k: "R$ 2,54", t: "Retorno por real", b: "Para cada real investido em prevenção, economia média em custos médicos.", r: "Dement JM et al. J Occup Environ Med, 2015." },
+    { k: "−28%", t: "Afastamentos", b: "Redução observada em programas preventivos estruturados.", r: "Carnethon M et al. Circulation, 2009." },
+    { k: "61%", t: "Sintomas mentais", b: "Redução robusta de depressão e ansiedade com atividade física supervisionada.", r: "Munro NR et al. Br J Sports Med, 2026." },
+    { k: "15 min/d", t: "Limiar mínimo", b: "MVPA a partir de 15 min/dia já melhora a saúde mental autorrelatada.", r: "Munro NR et al., 2026." },
+    { k: "HR 0,71", t: "Alimentação", b: "Maior adesão à dieta EAT-Lancet associada a menor risco de depressão.", r: "Lu X et al. Nat Commun, 2024." },
   ];
   return (
-    <section className="bg-[color:var(--ink-soft)] py-20 md:py-28">
+    <section id="metodo" className="bg-[color:var(--ink-soft)] py-24 md:py-32">
       <div className="container-x">
-        <Eyebrow>O ROI</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
-          Pessoas saudáveis performam mais.
-        </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-[1.7] text-cream/70">
-          A ciência comprova: saúde corporativa não é benefício — é vantagem
-          competitiva. Programas preventivos documentam ganhos mensuráveis em
-          produtividade, retenção e custos médicos.
-        </p>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((s) => (
-            <div
-              key={s.title}
-              className="flex flex-col rounded-2xl border border-cream/[0.07] bg-ink p-7"
-            >
-              <div className="font-serif text-[44px] font-bold leading-none text-gold">
-                {s.k}
+        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
+          <Rubric>Ato III</Rubric>
+          <Kicker>Ciência traduzida · pág. 20</Kicker>
+        </div>
+
+        <div className="mt-12 grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-7">
+            <Headline className="text-[2rem] md:text-[3.2rem]">
+              Ciência traduzida <span className="italic text-gold">em rotina.</span>
+            </Headline>
+          </div>
+          <p className="text-[15px] leading-[1.75] text-cream/75 md:col-span-5">
+            Duas frentes de evidência sustentam o programa: atividade física
+            supervisionada e alimentação com padrão anti-inflamatório. Nada de
+            promessa; tudo com desfecho medido em revistas revisadas por pares.
+          </p>
+        </div>
+
+        {/* Grid tipográfico */}
+        <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-cream/[0.10] bg-cream/[0.10] sm:grid-cols-2 lg:grid-cols-3">
+          {dados.map((d) => (
+            <div key={d.t} className="flex flex-col bg-ink p-7 md:p-8">
+              <div className="font-serif text-[42px] font-light leading-none text-gold md:text-[54px]">
+                {d.k}
               </div>
-              <h3 className="mt-5 font-serif text-base font-medium text-cream">
-                {s.title}
-              </h3>
-              <p className="mt-2 text-[13px] leading-[1.6] text-cream/70">{s.body}</p>
+              <div className="mt-5 font-serif text-[11px] font-semibold uppercase tracking-[0.28em] text-cream">
+                {d.t}
+              </div>
+              <p className="mt-3 text-[13px] leading-[1.6] text-cream/75">{d.b}</p>
               <p className="mt-auto pt-5 text-[10px] italic leading-snug text-[color:var(--steel)]">
-                {s.ref}
+                {d.r}
               </p>
             </div>
           ))}
@@ -528,227 +550,104 @@ function ROI() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Evidência científica                                                      */
+/*  Ato IV — Método ACTIO_90 (Jornada + o que medimos)                        */
 /* -------------------------------------------------------------------------- */
 
-function Evidencia() {
-  return (
-    <section id="evidencia" className="bg-ink py-20 md:py-28">
-      <div className="container-x">
-        <Eyebrow>Evidência científica</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
-          O que ensinamos ao seu time — em duas frentes.
-        </SectionTitle>
-
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <article className="rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-8">
-            <Eyebrow>Primeiro eixo</Eyebrow>
-            <h3 className="mt-3 font-serif text-2xl font-medium text-cream">
-              Atividade física e saúde mental
-            </h3>
-            <p className="mt-5 text-[13px] leading-[1.65] text-cream/75">
-              <span className="text-cream">Meta-análise · 79.551 participantes:</span>{" "}
-              efeitos terapêuticos mensuráveis na redução de depressão, ansiedade e
-              sofrimento psicológico.
-            </p>
-            <ul className="mt-6 space-y-4 border-t border-cream/[0.07] pt-6">
-              {[
-                ["61%", "Redução robusta de sintomas em todas as populações adultas."],
-                ["2×", "Treinos combinados supervisionados em grupo: mais eficazes que aeróbico isolado."],
-                ["15 min", "15 min/dia de MVPA já melhoram a saúde mental autorrelatada."],
-              ].map(([k, b]) => (
-                <li key={k} className="grid grid-cols-[auto_1fr] gap-4">
-                  <span className="font-serif text-xl font-bold text-gold">{k}</span>
-                  <p className="text-[13px] leading-[1.6] text-cream/80">{b}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-[10px] italic leading-snug text-[color:var(--steel)]">
-              Munro NR et al. Br J Sports Med. 2026;60(8):590-599.
-            </p>
-          </article>
-
-          <article className="rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-8">
-            <Eyebrow>Segundo eixo</Eyebrow>
-            <h3 className="mt-3 font-serif text-2xl font-medium text-cream">
-              Alimentação e saúde mental
-            </h3>
-            <p className="mt-5 text-[13px] leading-[1.65] text-cream/75">
-              <span className="text-cream">
-                Estudo prospectivo · 180.446 participantes · 11,6 anos:
-              </span>{" "}
-              maior adesão à dieta EAT-Lancet associou-se a menor risco de depressão
-              (HR 0,71–0,81) e ansiedade.
-            </p>
-            <div className="mt-6 border-t border-cream/[0.07] pt-6">
-              <div className="font-serif text-[10px] font-semibold uppercase tracking-[0.22em] text-[color:var(--steel)]">
-                Padrões com evidência
-              </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {["Mediterrânea", "DASH", "EAT-Lancet"].map((t) => (
-                  <Badge key={t} tone="outline">
-                    {t}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-            <ul className="mt-6 space-y-3 text-[13px] leading-[1.6] text-cream/80">
-              <li>→ <span className="text-cream">Vitaminas do complexo B</span> — síntese de serotonina, dopamina e GABA.</li>
-              <li>→ <span className="text-cream">Magnésio e probióticos</span> — modulação da ansiedade e eixo microbioma-intestino-cérebro.</li>
-              <li>⨯ <span className="text-cream">Evitar:</span> ultraprocessados, açúcares refinados e padrões pró-inflamatórios.</li>
-            </ul>
-            <p className="mt-6 text-[10px] italic leading-snug text-[color:var(--steel)]">
-              Lu X et al. Nat Commun. 2024;15(1):5599.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Programa ACTIO_90                                                         */
-/* -------------------------------------------------------------------------- */
-
-function Programa() {
-  return (
-    <section id="programa" className="bg-[color:var(--ink-soft)] py-20 md:py-28">
-      <div className="container-x grid gap-12 md:grid-cols-12 md:gap-16">
-        <div className="md:col-span-5">
-          <Eyebrow>O ACTIO_90</Eyebrow>
-          <SectionTitle className="mt-5">
-            Educação e promoção em saúde, entregues na sua empresa.
-          </SectionTitle>
-          <p className="mt-6 text-[15px] leading-[1.7] text-cream/75">
-            O Programa ACTIO_90 Saúde Corporativa Impacto Real traduz evidência
-            científica em boas práticas. Elimina barreiras de acesso, simplifica a
-            literatura e fala a língua do seu time.
-          </p>
-          <dl className="mt-8 space-y-6 border-t border-cream/[0.07] pt-6">
-            <div>
-              <dt className="font-serif text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
-                Público-alvo
-              </dt>
-              <dd className="mt-2 text-[14px] text-cream/80">
-                Grupos de 10+ colaboradores — foco em lideranças e times estratégicos.
-              </dd>
-            </div>
-            <div>
-              <dt className="font-serif text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
-                Duração & entregáveis
-              </dt>
-              <dd className="mt-2 text-[14px] text-cream/80">
-                90 dias de acompanhamento contínuo. Cada participante recebe relatório
-                individual personalizado e canal direto com especialistas por WhatsApp.
-              </dd>
-            </div>
-          </dl>
-        </div>
-        <div className="md:col-span-7">
-          <img
-            src={consultaImg}
-            alt="Médica em consulta com paciente"
-            loading="lazy"
-            className="aspect-[4/5] w-full rounded-2xl object-cover grayscale"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Jornada                                                                   */
-/* -------------------------------------------------------------------------- */
-
-function Jornada() {
-  const steps = [
-    { d: "D0", title: "Início", bullets: ["Primeiro ciclo de palestras de educação e promoção em saúde", "Avaliação de composição corporal e vitais", "Bioimpedância + PA + Glicemia + FC + SpO₂"] },
-    { d: "D1 → D10", title: "Consultas individuais", bullets: ["Consultas médicas individuais e online", "Solicitação de exames, se aplicáveis", "Prescrição alimentar personalizada", "Plano de atividades físicas exclusivo"] },
-    { d: "D11 → D30", title: "Execução & engajamento", bullets: ["Acompanhamento via WhatsApp com especialistas", "Ajustes contínuos do plano alimentar e de atividades", "Educação contínua em saúde"] },
-    { d: "D31 → D60", title: "Reavaliação clínica", bullets: ["Segundo ciclo de palestras", "Adequação do plano alimentar e de atividades", "Reavaliação de todos os indicadores"] },
-    { d: "D61 → D90", title: "Entrega final", bullets: ["Terceiro ciclo de palestras", "Avaliação final de composição corporal e vitais", "Relatório individual personalizado do percurso"] },
+function AtoIV() {
+  const marcos = [
+    { d: "D0", t: "Fundação", b: "Palestra de abertura, avaliação de composição corporal e sinais vitais. Bioimpedância, PA, glicemia, FC, SpO₂." },
+    { d: "D1 → D10", t: "Consulta clínica", b: "Consultas médicas individuais online. Exames se aplicáveis, prescrição alimentar e plano físico personalizados." },
+    { d: "D11 → D30", t: "Rotina em curso", b: "Canal direto por WhatsApp com especialistas. Ajustes contínuos e educação semanal em saúde." },
+    { d: "D31 → D60", t: "Reavaliação", b: "Segundo ciclo educativo, adequação dos planos e nova leitura dos indicadores." },
+    { d: "D61 → D90", t: "Entrega", b: "Terceiro ciclo, avaliação final e relatório individual do percurso — pronto para gestão." },
   ];
-  return (
-    <section className="bg-ink py-20 md:py-28">
-      <div className="container-x">
-        <Eyebrow>Jornada ACTIO_90</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
-          90 dias de transformação — 5 marcos clínicos.
-        </SectionTitle>
 
-        <ol className="mt-12 divide-y divide-cream/[0.07] border-y border-cream/[0.07]">
-          {steps.map((s, i) => (
-            <li key={s.d} className="grid gap-6 py-8 md:grid-cols-12 md:gap-10">
-              <div className="md:col-span-4">
-                <div className="font-serif text-[10px] font-semibold uppercase tracking-[0.22em] text-[color:var(--steel)]">
-                  Marco {String(i + 1).padStart(2, "0")}
-                </div>
-                <div className="mt-2 font-serif text-2xl font-light text-gold md:text-3xl">
-                  {s.d}
-                </div>
-                <div className="mt-1 text-[13px] text-cream/75">{s.title}</div>
+  const medidas = [
+    { g: "Corpo", i: ["Bioimpedância InBody 120", "Massa muscular e gordura", "Cintura-quadril", "Score InBody"] },
+    { g: "Sinais vitais", i: ["Pressão arterial", "Glicemia", "Frequência cardíaca", "SpO₂"] },
+    { g: "Mente (validados)", i: ["PHQ-9 · depressão", "GAD-7 · ansiedade", "GHQ-12 · sofrimento", "DASS-21 · triplo"] },
+  ];
+
+  return (
+    <section className="bg-ink py-24 md:py-32">
+      <div className="container-x">
+        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
+          <Rubric>Ato IV</Rubric>
+          <Kicker>Método ACTIO_90 · pág. 28</Kicker>
+        </div>
+
+        <div className="mt-12 grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-8">
+            <Headline className="text-[2rem] md:text-[3.4rem]">
+              Um método <span className="italic text-gold">em 90 dias</span> — cinco
+              marcos clínicos, um relatório executivo.
+            </Headline>
+          </div>
+          <p className="text-[15px] leading-[1.75] text-cream/75 md:col-span-4">
+            Educação, avaliação e acompanhamento entregues dentro da empresa — na
+            língua do time e no ritmo do calendário corporativo.
+          </p>
+        </div>
+
+        {/* Timeline horizontal em desktop, vertical em mobile */}
+        <ol className="mt-14 grid gap-6 border-t border-cream/[0.10] pt-8 md:grid-cols-5 md:gap-4">
+          {marcos.map((m, i) => (
+            <li key={m.d} className="relative border-t-2 border-gold/40 pt-5 md:pt-6">
+              <div className="absolute -top-[7px] left-0 h-3 w-3 rounded-full bg-gold" />
+              <div className="font-serif text-[10px] uppercase tracking-[0.28em] text-[color:var(--steel)]">
+                Marco {String(i + 1).padStart(2, "0")}
               </div>
-              <ul className="space-y-2.5 text-[14px] leading-[1.6] text-cream/85 md:col-span-8">
-                {s.bullets.map((b) => (
-                  <li key={b} className="grid grid-cols-[auto_1fr] gap-3">
-                    <span className="mt-2 h-1 w-1 rounded-full bg-gold" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-2 font-serif text-2xl font-light text-gold">{m.d}</div>
+              <div className="mt-1 font-serif text-[15px] text-cream">{m.t}</div>
+              <p className="mt-3 text-[12.5px] leading-[1.55] text-cream/70">{m.b}</p>
             </li>
           ))}
         </ol>
-      </div>
-    </section>
-  );
-}
 
-/* -------------------------------------------------------------------------- */
-/*  Medimos                                                                   */
-/* -------------------------------------------------------------------------- */
-
-function Medimos() {
-  const groups = [
-    { title: "Medidas corporais", items: ["Bioimpedância (InBody 120)", "Massa muscular e gordura", "Relação cintura-quadril", "Score InBody"] },
-    { title: "Sinais vitais", items: ["Pressão arterial", "Glicemia", "Frequência cardíaca", "Saturação de O₂"] },
-    { title: "Saúde mental (validados)", items: ["PHQ-9 — depressão", "GAD-7 — ansiedade", "GHQ-12 — sofrimento mental", "DASS-21 — instrumento triplo"] },
-  ];
-  return (
-    <section className="bg-[color:var(--ink-soft)] py-20 md:py-28">
-      <div className="container-x">
-        <Eyebrow>O que medimos</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
-          Métricas que importam — e por quê.
-        </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-[1.7] text-cream/70">
-          Não queremos formar atletas. Queremos cuidar das pessoas do seu time naquilo
-          que mais adoece e prevenir desfechos desfavoráveis.
-        </p>
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {groups.map((g) => (
-            <div
-              key={g.title}
-              className="rounded-2xl border border-cream/[0.07] bg-ink p-7"
-            >
-              <h3 className="font-serif text-lg font-medium text-cream">{g.title}</h3>
-              <ul className="mt-5 space-y-2.5 text-[13px] text-cream/75">
-                {g.items.map((i) => (
-                  <li key={i} className="grid grid-cols-[auto_1fr] gap-3">
-                    <span className="text-gold">—</span>
-                    <span>{i}</span>
-                  </li>
-                ))}
-              </ul>
+        {/* O que medimos + imagem */}
+        <div className="mt-20 grid gap-10 md:grid-cols-12 md:gap-14">
+          <div className="md:col-span-5">
+            <img
+              src={consultaImg}
+              alt="Consulta clínica"
+              loading="lazy"
+              className="aspect-[4/5] w-full object-cover grayscale contrast-110"
+            />
+            <p className="mt-3 font-serif text-[10.5px] uppercase tracking-[0.24em] text-[color:var(--steel)]">
+              Fig. 01 · Avaliação clínica presencial, sede do cliente.
+            </p>
+          </div>
+          <div className="md:col-span-7">
+            <Kicker>O que medimos</Kicker>
+            <Headline className="mt-3 text-[1.6rem] md:text-[2.2rem]">
+              Métricas que importam — e por que importam.
+            </Headline>
+            <p className="mt-5 text-[14.5px] leading-[1.7] text-cream/75">
+              Não formamos atletas. Cuidamos das pessoas do seu time naquilo que mais
+              adoece — e prevenimos os desfechos que a empresa não vê.
+            </p>
+            <div className="mt-8 grid gap-px overflow-hidden border border-cream/[0.10] bg-cream/[0.10] sm:grid-cols-3">
+              {medidas.map((m) => (
+                <div key={m.g} className="bg-ink p-6">
+                  <div className="font-serif text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
+                    {m.g}
+                  </div>
+                  <ul className="mt-4 space-y-2 text-[12.5px] text-cream/80">
+                    {m.i.map((x) => (
+                      <li key={x} className="grid grid-cols-[auto_1fr] gap-2">
+                        <span className="text-gold">·</span>
+                        <span>{x}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="mt-6 rounded-2xl border-l-2 border-gold bg-ink p-6 text-[13px] leading-[1.65] text-cream/85">
-          <span className="text-gold">Pressão arterial:</span> rastreamento de
-          hipertensão — principal causa de AVC no Brasil. A identificação precoce
-          permite intervenção clínica antes do evento cardiovascular irreversível.
+            <p className="mt-6 border-l-2 border-gold pl-4 text-[13px] leading-[1.6] text-cream/85">
+              A pressão arterial isolada já rastreia hipertensão — principal causa de
+              AVC no Brasil. Diagnosticar cedo é intervir antes do irreversível.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -756,98 +655,116 @@ function Medimos() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Serviços — Now / One (destaque) / X                                       */
+/*  Ato V — Programas Now / One / X                                           */
 /* -------------------------------------------------------------------------- */
 
-function Servicos() {
+function AtoV() {
   const tiers = [
     {
       tag: "Diagnóstico estratégico",
       name: "_Now",
-      desc: "Mapeamento inicial de indicadores de saúde mental, riscos psicossociais e oportunidades de intervenção.",
+      pretitle: "Prancheta 01",
+      desc: "Uma leitura inicial da saúde do seu time — para saber onde intervir antes de investir.",
       items: ["Entrevista com colaboradores", "Palestras empresariais", "Relatório simplificado"],
-      variant: "subtle" as const,
+      variant: "outline" as const,
     },
     {
       tag: "30 a 180 dias · acompanhamento",
       name: "_One",
-      desc: "Programa de promoção da saúde e qualidade de vida com acompanhamento e evolução mensurável.",
-      items: ["Entrevistas e acompanhamento individualizado", "Palestras empresariais", "Consultas com profissionais"],
+      pretitle: "Prancheta 02",
+      desc: "Programa de promoção da saúde com acompanhamento contínuo e evolução mensurável.",
+      items: ["Entrevistas e acompanhamento individualizado", "Palestras empresariais", "Consultas com especialistas"],
       variant: "solid" as const,
     },
     {
       tag: "Premium · liderança",
       name: "_X",
-      desc: "Solução premium para lideranças e equipes estratégicas, com acompanhamento ampliado.",
+      pretitle: "Prancheta 03",
+      desc: "Solução dedicada a lideranças e equipes estratégicas, com acompanhamento ampliado.",
       items: ["Apoio médico online e WhatsApp", "Planos personalizados", "Relatório executivo"],
-      variant: "border" as const,
+      variant: "outline" as const,
     },
   ];
   return (
-    <section id="servicos" className="bg-ink py-20 md:py-28">
+    <section id="programas" className="bg-[color:var(--ink-soft)] py-24 md:py-32">
       <div className="container-x">
-        <Eyebrow>Nossos programas</Eyebrow>
-        <SectionTitle className="mt-5 max-w-4xl">
-          Três níveis — escaláveis para diferentes maturidades corporativas.
-        </SectionTitle>
-        <p className="mt-6 max-w-2xl text-[15px] leading-[1.7] text-cream/70">
-          O formato final é definido após entender o porte, o perfil de colaboradores e
-          os objetivos da instituição.
-        </p>
+        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
+          <Rubric>Ato V</Rubric>
+          <Kicker>Programas · pág. 36</Kicker>
+        </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-7">
+            <Headline className="text-[2rem] md:text-[3.4rem]">
+              Três programas <span className="italic text-gold">escaláveis.</span>
+            </Headline>
+          </div>
+          <p className="text-[15px] leading-[1.75] text-cream/75 md:col-span-5">
+            Não vendemos pacotes fechados. O desenho final leva em conta porte, perfil
+            de colaboradores e maturidade da instituição.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
           {tiers.map((t) => {
-            const isSolid = t.variant === "solid";
-            const isBorder = t.variant === "border";
-            const cardCls = isSolid
-              ? "rounded-2xl bg-gold p-8 text-ink"
-              : isBorder
-              ? "rounded-2xl border border-gold/40 bg-[color:var(--ink-soft)] p-8"
-              : "rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-8";
-            const tagCls = isSolid ? "text-ink/70" : "text-gold";
-            const wordmarkCls = isSolid ? "text-ink/55" : "text-[color:var(--steel)]";
-            const nameCls = isSolid ? "text-ink" : "text-gold";
-            const descCls = isSolid ? "text-ink/80" : "text-cream/75";
-            const itemsCls = isSolid
-              ? "border-ink/15 text-ink/85"
-              : "border-cream/[0.07] text-cream/85";
-            const checkCls = isSolid ? "text-ink" : "text-gold";
+            const solid = t.variant === "solid";
+            const card = solid
+              ? "bg-gold text-ink"
+              : "border border-cream/[0.10] bg-ink text-cream";
             return (
-              <div key={t.name} className={cardCls}>
-                <div className={`font-serif text-[10px] font-semibold uppercase tracking-[0.3em] ${wordmarkCls}`}>
-                  ACTIO
+              <article key={t.name} className={`flex flex-col p-8 md:p-10 ${card}`}>
+                <div
+                  className={`font-serif text-[10px] uppercase tracking-[0.32em] ${
+                    solid ? "text-ink/60" : "text-[color:var(--steel)]"
+                  }`}
+                >
+                  {t.pretitle}
                 </div>
-                <div className="mt-2 flex items-baseline gap-3">
-                  <h3 className={`font-serif text-3xl font-medium ${nameCls}`}>
-                    {t.name}
-                  </h3>
-                  {isSolid && (
-                    <span className="rounded-full bg-ink px-2 py-0.5 font-serif text-[9px] font-bold uppercase tracking-[0.2em] text-gold">
-                      Popular
-                    </span>
-                  )}
-                </div>
-                <div className={`mt-3 font-serif text-[10px] font-semibold uppercase tracking-[0.22em] ${tagCls}`}>
+                <h3
+                  className={`mt-6 font-serif text-5xl font-light ${
+                    solid ? "text-ink" : "text-cream"
+                  }`}
+                >
+                  ACTIO<span className={solid ? "text-ink/70" : "text-gold"}>{t.name}</span>
+                </h3>
+                <div
+                  className={`mt-4 font-serif text-[11px] font-semibold uppercase tracking-[0.24em] ${
+                    solid ? "text-ink/75" : "text-gold"
+                  }`}
+                >
                   {t.tag}
                 </div>
-                <p className={`mt-5 text-[13px] leading-[1.65] ${descCls}`}>
+                <p
+                  className={`mt-5 text-[13.5px] leading-[1.7] ${
+                    solid ? "text-ink/85" : "text-cream/80"
+                  }`}
+                >
                   {t.desc}
                 </p>
-                <ul className={`mt-6 space-y-2.5 border-t pt-5 text-[13px] ${itemsCls}`}>
+                <ul
+                  className={`mt-6 space-y-2.5 border-t pt-5 text-[13px] ${
+                    solid ? "border-ink/20 text-ink/85" : "border-cream/[0.10] text-cream/85"
+                  }`}
+                >
                   {t.items.map((i) => (
                     <li key={i} className="grid grid-cols-[auto_1fr] gap-3">
-                      <span className={checkCls}>✓</span>
+                      <span className={solid ? "text-ink" : "text-gold"}>—</span>
                       <span>{i}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+                {solid && (
+                  <div className="mt-6 inline-block self-start border border-ink/30 px-3 py-1 font-serif text-[9px] uppercase tracking-[0.28em] text-ink">
+                    Escolha mais frequente
+                  </div>
+                )}
+              </article>
             );
           })}
         </div>
 
-        <p className="mt-10 max-w-2xl rounded-r-xl border-l-2 border-gold bg-[color:var(--ink-soft)] px-5 py-4 font-serif text-base italic text-cream/85">
-          Não é uma solução de prateleira. É uma conversa técnica de 30 minutos.
+        <p className="mt-10 max-w-2xl border-l-2 border-gold pl-5 font-serif text-[17px] italic leading-snug text-cream/90 md:text-[19px]">
+          Não é solução de prateleira — é uma conversa técnica de trinta minutos.
         </p>
       </div>
     </section>
@@ -855,53 +772,69 @@ function Servicos() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Diretor técnico                                                           */
+/*  Perfil — Dr. Leandro                                                      */
 /* -------------------------------------------------------------------------- */
 
-function Responsavel() {
+function Perfil() {
   return (
-    <section id="responsavel" className="bg-[color:var(--ink-soft)] py-20 md:py-28">
+    <section id="perfil" className="bg-ink py-24 md:py-32">
       <div className="container-x">
-        <Eyebrow>Direção técnica</Eyebrow>
-        <SectionTitle className="mt-5 max-w-3xl">
-          Quem desenvolveu o ACTIO_90.
-        </SectionTitle>
+        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
+          <Rubric>Perfil</Rubric>
+          <Kicker>Direção técnica · pág. 44</Kicker>
+        </div>
 
-        <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-14">
+        <div className="mt-12 grid gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
             <img
               src={doctorImg}
               alt="Dr. Leandro Fernando Batista Leite"
               loading="lazy"
-              className="aspect-[4/5] w-full rounded-2xl object-cover grayscale"
+              className="aspect-[4/5] w-full object-cover grayscale"
             />
+            <p className="mt-3 font-serif text-[10.5px] uppercase tracking-[0.24em] text-[color:var(--steel)]">
+              Retrato · Dr. Leandro F. B. Leite
+            </p>
           </div>
+
           <div className="md:col-span-7">
-            <blockquote className="rounded-r-xl border-l-2 border-gold bg-ink px-5 py-4 font-serif text-xl italic leading-snug text-cream/90 md:text-2xl">
-              Medicina exercida com foco centrado na pessoa — pautada nas melhores
-              práticas e evidências científicas.
+            <blockquote className="font-serif text-2xl italic leading-[1.2] text-cream md:text-[2rem]">
+              “Medicina exercida com foco{" "}
+              <span className="text-gold">centrado na pessoa</span> — pautada pelas
+              melhores práticas e evidências científicas.”
             </blockquote>
 
-            <div className="mt-10 border-t border-cream/[0.07] pt-8">
-              <div className="font-serif text-2xl font-light text-cream md:text-3xl">
+            <div className="mt-10 border-t border-cream/[0.10] pt-8">
+              <Headline as="h3" className="text-[1.8rem] md:text-[2.4rem]">
                 Dr. Leandro Fernando Batista Leite
+              </Headline>
+              <div className="mt-3 font-serif text-[11px] font-semibold uppercase tracking-[0.28em] text-gold">
+                CRM-MG 68.021 · RQE 67.627 · Diretor técnico
               </div>
-              <div className="mt-2 font-serif text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
-                CRM-MG 68.021 · RQE 67.627
+
+              <div className="mt-8 grid gap-8 sm:grid-cols-2">
+                <p className="text-[14px] leading-[1.75] text-cream/80">
+                  Pai, marido, médico especialista há mais de dez anos, leitor voraz e
+                  preceptor do internato de medicina da PUC-Minas. Entusiasta e
+                  praticante de atividades físicas.
+                </p>
+                <p className="text-[14px] leading-[1.75] text-cream/80">
+                  Fundador e diretor técnico do ACTIO_90, supervisor clínico direto de
+                  todos os participantes ao longo dos noventa dias de programa.
+                </p>
               </div>
-              <p className="mt-6 text-[14px] leading-[1.7] text-cream/80">
-                Pai, marido, médico especialista há +10 anos, leitor voraz, preceptor
-                do internato de medicina da PUC-Minas, entusiasta e praticante de
-                atividades físicas, fundador e diretor técnico do ACTIO_90.
-              </p>
-              <p className="mt-4 text-[14px] leading-[1.7] text-cream/80">
-                Supervisor clínico direto de todos os participantes do programa ao
-                longo dos 90 dias.
-              </p>
+
               <div className="mt-8 flex flex-wrap gap-2">
-                <Badge tone="outline">PUC Minas</Badge>
-                <Badge tone="outline">PIBIC-FAPEMIG</Badge>
-                <Badge tone="outline">Medicina baseada em evidência</Badge>
+                {["PUC Minas", "PIBIC-FAPEMIG", "Medicina baseada em evidência"].map(
+                  (t) => (
+                    <span
+                      key={t}
+                      className="inline-block border border-cream/15 px-3 py-1 font-serif text-[10px] uppercase tracking-[0.24em] text-cream/70"
+                    >
+                      {t}
+                    </span>
+                  ),
+                )}
               </div>
             </div>
           </div>
@@ -912,101 +845,130 @@ function Responsavel() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Contato — CTA final                                                       */
+/*  Expediente — contato + CTA                                                */
 /* -------------------------------------------------------------------------- */
 
-function Contato() {
+function Expediente() {
+  const passos = [
+    ["01", "Entender o cenário", "Mapeamos o momento atual de RH, SST e saúde corporativa."],
+    ["02", "Identificar oportunidades", "Riscos, aderência regulatória e prioridades reais."],
+    ["03", "Arquitetura sob medida", "Proposta inicial de programa desenhada para o seu contexto."],
+  ];
   return (
-    <section id="contato" className="bg-ink py-20 md:py-28">
+    <section id="expediente" className="bg-[color:var(--ink-soft)] py-24 md:py-32">
       <div className="container-x">
-        <div className="mx-auto max-w-3xl text-center">
-          <Eyebrow>Próximo passo</Eyebrow>
-          <SectionTitle className="mt-5">
-            Pronto para elevar o padrão da sua gestão de saúde?
-          </SectionTitle>
-          <p className="mt-6 text-[15px] leading-[1.7] text-cream/75">
-            Em 30 minutos, a equipe ACTIO conhece o contexto da instituição e
-            apresenta caminhos para transformar saúde corporativa em indicadores de
-            gestão. Não é uma solução de prateleira.
-          </p>
+        <div className="flex items-baseline justify-between border-b border-cream/[0.10] pb-4">
+          <Rubric>Expediente</Rubric>
+          <Kicker>Carta ao leitor · pág. 48</Kicker>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl gap-4 md:grid-cols-3">
-          {[
-            ["01", "Entender o cenário", "Mapeamos o contexto atual de RH, SST e saúde corporativa."],
-            ["02", "Identificar oportunidades", "Pontos de risco, oportunidade e aderência regulatória."],
-            ["03", "Arquitetura sob medida", "Proposta inicial de programa personalizado."],
-          ].map(([n, t, b]) => (
-            <div
-              key={n}
-              className="rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-7"
+        <div className="mt-14 grid gap-12 md:grid-cols-12 md:gap-16">
+          <div className="md:col-span-7">
+            <Headline className="text-[2rem] md:text-[3.4rem]">
+              Pronto para elevar o padrão da sua gestão de{" "}
+              <span className="italic text-gold">saúde?</span>
+            </Headline>
+            <p className="mt-8 max-w-xl text-[15px] leading-[1.75] text-cream/80">
+              Em trinta minutos, conhecemos o contexto da instituição e apresentamos
+              caminhos concretos para transformar saúde corporativa em indicadores de
+              gestão. É uma conversa técnica — não um pitch comercial.
+            </p>
+
+            <ol className="mt-10 divide-y divide-cream/[0.10] border-y border-cream/[0.10]">
+              {passos.map(([n, t, b]) => (
+                <li key={n} className="grid grid-cols-[auto_1fr] items-baseline gap-6 py-5">
+                  <span className="font-serif text-3xl font-light text-gold">{n}</span>
+                  <div>
+                    <div className="font-serif text-[16px] text-cream">{t}</div>
+                    <p className="mt-1 text-[13px] leading-[1.55] text-cream/70">{b}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <a
+              href="https://wa.me/5531992655261"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-10 inline-flex items-center justify-center gap-3 border border-gold bg-gold px-8 py-4 font-serif text-[12px] font-semibold uppercase tracking-[0.24em] text-ink transition hover:bg-transparent hover:text-gold"
             >
-              <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[color:var(--gold)]/15 font-serif text-sm font-bold text-gold">
-                {n}
-              </div>
-              <div className="mt-5 font-serif text-lg font-medium text-cream">{t}</div>
-              <p className="mt-2 text-[13px] leading-[1.6] text-cream/70">{b}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mx-auto mt-12 max-w-3xl text-center">
-          <a
-            href="https://wa.me/5531992655261"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-8 py-4 font-serif text-[12px] font-semibold uppercase tracking-[0.22em] text-ink transition hover:bg-[color:var(--gold-soft)]"
-          >
-            Agendar visita técnica <ArrowRight className="h-4 w-4" />
-          </a>
-          <div className="mx-auto mt-8 max-w-md rounded-2xl border border-cream/[0.07] bg-[color:var(--ink-soft)] p-6 text-center">
-            <div className="font-serif text-lg font-medium text-cream">
-              Gustavo Cavalcanti
-            </div>
-            <div className="mt-1 font-serif text-[10px] font-semibold uppercase tracking-[0.28em] text-gold">
-              Diretor Comercial
-            </div>
-            <div className="mt-4 space-y-1 text-[13px] text-cream/85">
-              <EmailLink />
-
-              <a
-                href="https://wa.me/5531992655261"
-                target="_blank"
-                rel="noreferrer"
-                className="block font-serif tracking-[0.14em] transition hover:text-gold"
-              >
-                31 99265-5261
-              </a>
-            </div>
+              Agendar visita técnica <ArrowUpRight className="h-4 w-4" />
+            </a>
           </div>
+
+          <aside className="md:col-span-5">
+            <div className="border border-cream/[0.10] bg-ink p-8">
+              <Kicker>Contato editorial</Kicker>
+              <div className="mt-5 font-serif text-2xl font-light text-cream">
+                Gustavo Cavalcanti
+              </div>
+              <div className="mt-1 font-serif text-[10px] font-semibold uppercase tracking-[0.28em] text-gold">
+                Diretor Comercial
+              </div>
+              <dl className="mt-8 divide-y divide-cream/[0.10] border-t border-cream/[0.10] text-[13.5px]">
+                <div className="grid grid-cols-[80px_1fr] items-baseline gap-4 py-4">
+                  <dt className="font-serif text-[10px] uppercase tracking-[0.28em] text-[color:var(--steel)]">
+                    E-mail
+                  </dt>
+                  <dd className="break-all text-cream/90">
+                    <EmailLink />
+                  </dd>
+                </div>
+                <div className="grid grid-cols-[80px_1fr] items-baseline gap-4 py-4">
+                  <dt className="font-serif text-[10px] uppercase tracking-[0.28em] text-[color:var(--steel)]">
+                    WhatsApp
+                  </dt>
+                  <dd>
+                    <a
+                      href="https://wa.me/5531992655261"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-serif tracking-[0.12em] text-cream/90 underline decoration-gold/40 underline-offset-4 transition hover:text-gold hover:decoration-gold"
+                    >
+                      31 99265-5261
+                    </a>
+                  </dd>
+                </div>
+                <div className="grid grid-cols-[80px_1fr] items-baseline gap-4 py-4">
+                  <dt className="font-serif text-[10px] uppercase tracking-[0.28em] text-[color:var(--steel)]">
+                    Sede
+                  </dt>
+                  <dd className="text-cream/80">Belo Horizonte · MG</dd>
+                </div>
+              </dl>
+            </div>
+
+            <p className="mt-6 font-serif text-[11px] italic leading-[1.7] text-[color:var(--steel)]">
+              Esta edição foi composta em Space Grotesk e Inter. Impressa em pixels
+              sobre fundo tinta. Circulação nacional.
+            </p>
+          </aside>
         </div>
-
-
       </div>
     </section>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Footer                                                                    */
+/*  Rodapé — colofão                                                          */
 /* -------------------------------------------------------------------------- */
 
 function Footer() {
   return (
-    <footer className="border-t border-cream/[0.07] bg-ink py-12">
-      <div className="container-x flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-        <div>
+    <footer className="border-t border-cream/[0.10] bg-ink py-12">
+      <div className="container-x grid gap-8 md:grid-cols-12">
+        <div className="md:col-span-4">
           <ActioWordmark size="sm" />
           <div className="mt-3 font-serif text-[10px] uppercase tracking-[0.3em] text-[color:var(--steel)]">
             Saúde corporativa é estratégia
           </div>
         </div>
-        <p className="max-w-md text-[11px] leading-[1.7] text-cream/65">
-          Programa ACTIO_90 · Medicina baseada em evidências · Diretor técnico
+        <p className="text-[11.5px] leading-[1.75] text-cream/65 md:col-span-5">
+          Programa ACTIO_90 · Medicina baseada em evidências · Direção técnica
           Dr. Leandro F. B. Leite, CRM-MG 68.021 / RQE 67.627.
         </p>
-        <div className="font-serif text-[10px] uppercase tracking-[0.22em] text-[color:var(--steel)]">
-          © {new Date().getFullYear()} ACTIO
+        <div className="font-serif text-[10px] uppercase tracking-[0.24em] text-[color:var(--steel)] md:col-span-3 md:text-right">
+          © {new Date().getFullYear()} ACTIO · Edição Nº 01
         </div>
       </div>
     </footer>
@@ -1021,19 +983,15 @@ function Index() {
   return (
     <main className="bg-ink text-cream">
       <Nav />
-      <Hero />
-      <Problema />
-      <Reflection />
-      <Pillars />
-      <Legislacao />
-      <ROI />
-      <Evidencia />
-      <Programa />
-      <Jornada />
-      <Medimos />
-      <Servicos />
-      <Responsavel />
-      <Contato />
+      <Cover />
+      <AtoI />
+      <Ensaio />
+      <AtoII />
+      <DataSpread />
+      <AtoIV />
+      <AtoV />
+      <Perfil />
+      <Expediente />
       <Footer />
     </main>
   );
