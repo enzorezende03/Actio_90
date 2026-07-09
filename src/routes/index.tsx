@@ -19,6 +19,7 @@ import {
 import heroImg from "@/assets/hero.jpg";
 import consultaImg from "@/assets/consulta.jpg";
 import doctorImg from "@/assets/dr-leandro.png";
+import gustavoImg from "@/assets/gustavo-cavalcanti.png.asset.json";
 
 /* -------------------------------------------------------------------------- */
 /*  Utilidades                                                                */
@@ -850,16 +851,12 @@ function Authority() {
         {/* Gustavo */}
         <div className="grid gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5 md:order-2">
-            <div className="flex aspect-[4/5] w-full items-center justify-center rounded-2xl border border-cream/[0.10] bg-ink">
-              <div className="text-center">
-                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-gold/40 bg-gold/10 font-serif text-4xl font-light text-gold">
-                  GC
-                </div>
-                <div className="mt-5 font-serif text-[13px] uppercase tracking-[0.28em] text-cream/60">
-                  Fundador
-                </div>
-              </div>
-            </div>
+            <img
+              src={gustavoImg.url}
+              alt="Gustavo Cavalcanti"
+              loading="lazy"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+            />
           </div>
           <div className="md:col-span-7 md:order-1">
             <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
