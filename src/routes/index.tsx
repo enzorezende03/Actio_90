@@ -19,6 +19,7 @@ import {
 import heroImg from "@/assets/hero.jpg";
 import consultaImg from "@/assets/consulta.jpg";
 import doctorImg from "@/assets/dr-leandro.png";
+import gustavoImg from "@/assets/gustavo-cavalcanti.png.asset.json";
 
 /* -------------------------------------------------------------------------- */
 /*  Utilidades                                                                */
