@@ -19,7 +19,7 @@ import {
 import heroImg from "@/assets/hero.jpg";
 import consultaImg from "@/assets/consulta.jpg";
 import doctorImg from "@/assets/dr-leandro.png";
-import gustavoImg from "@/assets/gustavo-cavalcanti.png.asset.json";
+import gustavoImg from "@/assets/gustavo-cavalcanti.png";
 
 /* -------------------------------------------------------------------------- */
 /*  Utilidades                                                                */
@@ -852,7 +852,7 @@ function Authority() {
         <div className="grid gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5 md:order-2">
             <img
-              src={gustavoImg.url}
+              src={gustavoImg}
               alt="Gustavo Cavalcanti"
               loading="lazy"
               className="aspect-[4/5] w-full rounded-2xl object-cover"
